@@ -1,6 +1,6 @@
 # Site settings
 title: Mitul Mistry - Tech Blog
-email: MitulMistryArt@gmailc.com
+email: MitulMistryArt@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   Tech blog of Mitul Mistry
 baseurl: "" # the subpath of your site, e.g. /blog/
