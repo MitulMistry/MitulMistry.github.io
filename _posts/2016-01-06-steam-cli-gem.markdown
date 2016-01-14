@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Steam Top Sellers CLI Gem"
-date:   2016-01-06 23:44:56
+date:   2016-01-13 22:20:00
 categories: ruby
 ---
 
@@ -15,7 +15,7 @@ I initially used Nokogiri for the `Scraper` class, then manually navigated throu
 
 2) As soon as I finished the `Scraper` methods, the Steam Store changed its entire website and CSS structure for its holiday sale, and rewriting the methods temporarily only to revert to the old methods when the sale was over seemed tedious and inefficient.
 
-So after doing some research, I was able to find a better way: leveraging the Steam Storefront API. I created a new class, `SteamAPIHandler`, to acquire the JSON data and parse it, using the data to create `Game` objects that could then interact with the `CLI`. This allowed me access to a much larger amount of data and proved to be much more efficient as well. For example, an old `Scraper` method:
+So after doing some research, I was able to find a better way: leveraging the Steam Storefront API. I created a new class, `SteamAPIHandler`, to acquire the JSON data and parse it, using the data to create `Game` objects that could then interact with the `CLI`. This allowed me access to a much larger amount of data and proved to be much more efficient as well. For example, here's an old `Scraper` method:
 
 {% highlight ruby %}
 def self.scrape_top_sellers(store_url)
@@ -55,7 +55,7 @@ def self.get_top_sellers
 end
 {% endhighlight %}
 
-In practice, the `CLI`, upon loading, uses the `SteamAPIHandler` to acquire the top sellers and create `Game` objects from the data. It prints out the information on the screen, then, when the user selects a game to get more information on, the `CLI` then uses the `SteamAPIHandler` to acquire additional data and print it out. I had a method that acquired the additional information as soon as the `CLI` loaded, but it caused additional load time at it had to make ten queries to the API in succession, as opposed to one at a time where the load time is much less noticeable.
+In practice, the `CLI`, upon loading, uses the `SteamAPIHandler` to acquire the top sellers and create `Game` objects from the data. It prints out the information on the screen, then, when the user selects a game to get more information on, the `CLI` uses the `SteamAPIHandler` to acquire additional data and print it out. I had a method that acquired the additional information as soon as the `CLI` loaded, but it caused additional load time as it had to make ten queries to the API in succession, as opposed to one at a time where the load time is much less noticeable.
 
 Overall, it was a good learning experience and I accomplished what I had set out to do. You can see the source code for this project [here on Github.][github-repo]
 
