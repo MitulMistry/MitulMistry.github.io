@@ -6,9 +6,44 @@
 </description>
     <link>http://mitulmistry.github.io//</link>
     <atom:link href="http://mitulmistry.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 06 Jan 2016 05:25:45 +0000</pubDate>
-    <lastBuildDate>Wed, 06 Jan 2016 05:25:45 +0000</lastBuildDate>
+    <pubDate>Fri, 22 Jan 2016 04:10:28 +0000</pubDate>
+    <lastBuildDate>Fri, 22 Jan 2016 04:10:28 +0000</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Sinatra Project - Simple Blog</title>
+        <description>&lt;p&gt;After learning the basics of Ruby and ORMs, I’ve been working on a project leveraging the Sinatra development framework. Along with Activerecord, I’ve used it to build a simple blogging application and I will describe the process of developing it here.&lt;/p&gt;
+
+&lt;p&gt;The project uses basic Model View Controller architecture. It has a few simple models that interact with various routes in the controller which then composes and serves the different blog pages through the views.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Models:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The first thing I worked on were the models that would represent the data necessary for the blog to work using Activerecord. This includes &lt;code&gt;Users&lt;/code&gt; which would write and edit &lt;code&gt;Posts&lt;/code&gt;, which would in turn have &lt;code&gt;Tags&lt;/code&gt;. In addition, I used the model &lt;code&gt;PostTags&lt;/code&gt; as well, but only as an intermediary for a join table to connect &lt;code&gt;Posts&lt;/code&gt; and &lt;code&gt;Tags&lt;/code&gt;. This was necessary because a &lt;code&gt;Post&lt;/code&gt; has many &lt;code&gt;Tags&lt;/code&gt;, and a &lt;code&gt;Tag&lt;/code&gt; has many &lt;code&gt;Posts&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Controllers:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;-to route paths to actions&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Views:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;-erb files using embedded ruby to dynamically serve requested content.
+-using Bootstrap for basic frontend&lt;/p&gt;
+
+&lt;p&gt;Conclusion&lt;/p&gt;
+
+&lt;p&gt;You can find the source code for this project &lt;a href=&quot;https://github.com/MitulMistry/sinatra-simple-blog&quot;&gt;here on Github.&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 22 Jan 2016 22:20:00 +0000</pubDate>
+        <link>http://mitulmistry.github.io//ruby/sinatra/2016/01/22/sinatra-project.html</link>
+        <guid isPermaLink="true">http://mitulmistry.github.io//ruby/sinatra/2016/01/22/sinatra-project.html</guid>
+        
+        
+        <category>ruby</category>
+        
+        <category>sinatra</category>
+        
+      </item>
     
       <item>
         <title>Steam Top Sellers CLI Gem</title>
@@ -22,7 +57,7 @@
 
 &lt;p&gt;2) As soon as I finished the &lt;code&gt;Scraper&lt;/code&gt; methods, the Steam Store changed its entire website and CSS structure for its holiday sale, and rewriting the methods temporarily only to revert to the old methods when the sale was over seemed tedious and inefficient.&lt;/p&gt;
 
-&lt;p&gt;So after doing some research, I was able to find a better way: leveraging the Steam Storefront API. I created a new class, &lt;code&gt;SteamAPIHandler&lt;/code&gt;, to acquire the JSON data and parse it, using the data to create &lt;code&gt;Game&lt;/code&gt; objects that could then interact with the &lt;code&gt;CLI&lt;/code&gt;. This allowed me access to a much larger amount of data and proved to be much more efficient as well. For example, an old &lt;code&gt;Scraper&lt;/code&gt; method:&lt;/p&gt;
+&lt;p&gt;So after doing some research, I was able to find a better way: leveraging the Steam Storefront API. I created a new class, &lt;code&gt;SteamAPIHandler&lt;/code&gt;, to acquire the JSON data and parse it, using the data to create &lt;code&gt;Game&lt;/code&gt; objects that could then interact with the &lt;code&gt;CLI&lt;/code&gt;. This allowed me access to a much larger amount of data and proved to be much more efficient as well. For example, here’s an old &lt;code&gt;Scraper&lt;/code&gt; method:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;scrape_top_sellers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;store_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;return_array&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#empty array that will contain the game hashes to return at the end of the method&lt;/span&gt;
@@ -58,14 +93,14 @@
   &lt;span class=&quot;n&quot;&gt;data_hash&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;top_sellers&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;items&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#selects desired part of hash&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;In practice, the &lt;code&gt;CLI&lt;/code&gt;, upon loading, uses the &lt;code&gt;SteamAPIHandler&lt;/code&gt; to acquire the top sellers and create &lt;code&gt;Game&lt;/code&gt; objects from the data. It prints out the information on the screen, then, when the user selects a game to get more information on, the &lt;code&gt;CLI&lt;/code&gt; then uses the &lt;code&gt;SteamAPIHandler&lt;/code&gt; to acquire additional data and print it out. I had a method that acquired the additional information as soon as the &lt;code&gt;CLI&lt;/code&gt; loaded, but it caused additional load time at it had to make ten queries to the API in succession, as opposed to one at a time where the load time is much less noticeable.&lt;/p&gt;
+&lt;p&gt;In practice, the &lt;code&gt;CLI&lt;/code&gt;, upon loading, uses the &lt;code&gt;SteamAPIHandler&lt;/code&gt; to acquire the top sellers and create &lt;code&gt;Game&lt;/code&gt; objects from the data. It prints out the information on the screen, then, when the user selects a game to get more information on, the &lt;code&gt;CLI&lt;/code&gt; uses the &lt;code&gt;SteamAPIHandler&lt;/code&gt; to acquire additional data and print it out. I had a method that acquired the additional information as soon as the &lt;code&gt;CLI&lt;/code&gt; loaded, but it caused additional load time as it had to make ten queries to the API in succession, as opposed to one at a time where the load time is much less noticeable.&lt;/p&gt;
 
 &lt;p&gt;Overall, it was a good learning experience and I accomplished what I had set out to do. You can see the source code for this project &lt;a href=&quot;https://github.com/MitulMistry/steam-top-sellers-cli-gem&quot;&gt;here on Github.&lt;/a&gt;&lt;/p&gt;
 
 </description>
-        <pubDate>Wed, 06 Jan 2016 23:44:56 +0000</pubDate>
-        <link>http://mitulmistry.github.io//ruby/2016/01/06/steam-cli-gem.html</link>
-        <guid isPermaLink="true">http://mitulmistry.github.io//ruby/2016/01/06/steam-cli-gem.html</guid>
+        <pubDate>Wed, 13 Jan 2016 22:20:00 +0000</pubDate>
+        <link>http://mitulmistry.github.io//ruby/2016/01/13/steam-cli-gem.html</link>
+        <guid isPermaLink="true">http://mitulmistry.github.io//ruby/2016/01/13/steam-cli-gem.html</guid>
         
         
         <category>ruby</category>

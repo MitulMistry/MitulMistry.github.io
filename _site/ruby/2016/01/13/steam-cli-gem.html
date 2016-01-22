@@ -11,7 +11,7 @@
 ">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="http://mitulmistry.github.io//ruby/2016/01/06/steam-cli-gem.html">
+    <link rel="canonical" href="http://mitulmistry.github.io//ruby/2016/01/13/steam-cli-gem.html">
 </head>
 
 
@@ -58,7 +58,7 @@
 
   <header class="post-header">
     <h1 class="post-title">Steam Top Sellers CLI Gem</h1>
-    <p class="post-meta">Jan 6, 2016</p>
+    <p class="post-meta">Jan 13, 2016</p>
   </header>
 
   <article class="post-content">
@@ -72,7 +72,7 @@
 
 <p>2) As soon as I finished the <code>Scraper</code> methods, the Steam Store changed its entire website and CSS structure for its holiday sale, and rewriting the methods temporarily only to revert to the old methods when the sale was over seemed tedious and inefficient.</p>
 
-<p>So after doing some research, I was able to find a better way: leveraging the Steam Storefront API. I created a new class, <code>SteamAPIHandler</code>, to acquire the JSON data and parse it, using the data to create <code>Game</code> objects that could then interact with the <code>CLI</code>. This allowed me access to a much larger amount of data and proved to be much more efficient as well. For example, an old <code>Scraper</code> method:</p>
+<p>So after doing some research, I was able to find a better way: leveraging the Steam Storefront API. I created a new class, <code>SteamAPIHandler</code>, to acquire the JSON data and parse it, using the data to create <code>Game</code> objects that could then interact with the <code>CLI</code>. This allowed me access to a much larger amount of data and proved to be much more efficient as well. For example, here’s an old <code>Scraper</code> method:</p>
 
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">scrape_top_sellers</span><span class="p">(</span><span class="n">store_url</span><span class="p">)</span>
   <span class="n">return_array</span> <span class="o">=</span> <span class="o">[]</span> <span class="c1">#empty array that will contain the game hashes to return at the end of the method</span>
@@ -108,7 +108,7 @@
   <span class="n">data_hash</span><span class="o">[</span><span class="s2">&quot;top_sellers&quot;</span><span class="o">][</span><span class="s2">&quot;items&quot;</span><span class="o">]</span> <span class="c1">#selects desired part of hash</span>
 <span class="k">end</span></code></pre></div>
 
-<p>In practice, the <code>CLI</code>, upon loading, uses the <code>SteamAPIHandler</code> to acquire the top sellers and create <code>Game</code> objects from the data. It prints out the information on the screen, then, when the user selects a game to get more information on, the <code>CLI</code> then uses the <code>SteamAPIHandler</code> to acquire additional data and print it out. I had a method that acquired the additional information as soon as the <code>CLI</code> loaded, but it caused additional load time at it had to make ten queries to the API in succession, as opposed to one at a time where the load time is much less noticeable.</p>
+<p>In practice, the <code>CLI</code>, upon loading, uses the <code>SteamAPIHandler</code> to acquire the top sellers and create <code>Game</code> objects from the data. It prints out the information on the screen, then, when the user selects a game to get more information on, the <code>CLI</code> uses the <code>SteamAPIHandler</code> to acquire additional data and print it out. I had a method that acquired the additional information as soon as the <code>CLI</code> loaded, but it caused additional load time as it had to make ten queries to the API in succession, as opposed to one at a time where the load time is much less noticeable.</p>
 
 <p>Overall, it was a good learning experience and I accomplished what I had set out to do. You can see the source code for this project <a href="https://github.com/MitulMistry/steam-top-sellers-cli-gem">here on Github.</a></p>
 

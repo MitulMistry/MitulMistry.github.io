@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Mitul Mistry - Tech Blog</title>
+    <title>Sinatra Project - Simple Blog</title>
     <meta name="description" content="Mitul Mistry, full-stack developer and designer
 ">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="http://mitulmistry.github.io//">
+    <link rel="canonical" href="http://mitulmistry.github.io//ruby/sinatra/2016/01/22/sinatra-project.html">
 </head>
 
 
@@ -54,37 +54,37 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="home">
+        <div class="post">
 
-  <h1 class="page-heading">Posts</h1>
+  <header class="post-header">
+    <h1 class="post-title">Sinatra Project - Simple Blog</h1>
+    <p class="post-meta">Jan 22, 2016</p>
+  </header>
 
-  <ul class="post-list">
-    
-      <li>
-        <span class="post-meta">Jan 22, 2016</span>
+  <article class="post-content">
+    <p>After learning the basics of Ruby and ORMs, I’ve been working on a project leveraging the Sinatra development framework. Along with Activerecord, I’ve used it to build a simple blogging application and I will describe the process of developing it here.</p>
 
-        <h2>
-          <a class="post-link" href="/ruby/sinatra/2016/01/22/sinatra-project.html">Sinatra Project - Simple Blog</a>
-        </h2>
-        <p>After learning the basics of Ruby and ORMs, I’ve been working on a project leveraging the Sinatra development framework. Along with Activerecord, I’ve used it to build a simple blogging application and I will describe the process of developing it here.</p>
+<p>The project uses basic Model View Controller architecture. It has a few simple models that interact with various routes in the controller which then composes and serves the different blog pages through the views.</p>
+
+<p><strong>Models:</strong></p>
+
+<p>The first thing I worked on were the models that would represent the data necessary for the blog to work using Activerecord. This includes <code>Users</code> which would write and edit <code>Posts</code>, which would in turn have <code>Tags</code>. In addition, I used the model <code>PostTags</code> as well, but only as an intermediary for a join table to connect <code>Posts</code> and <code>Tags</code>. This was necessary because a <code>Post</code> has many <code>Tags</code>, and a <code>Tag</code> has many <code>Posts</code>.</p>
+
+<p><strong>Controllers:</strong></p>
+
+<p>-to route paths to actions</p>
+
+<p><strong>Views:</strong></p>
+
+<p>-erb files using embedded ruby to dynamically serve requested content.
+-using Bootstrap for basic frontend</p>
+
+<p>Conclusion</p>
+
+<p>You can find the source code for this project <a href="https://github.com/MitulMistry/sinatra-simple-blog">here on Github.</a></p>
 
 
-      </li>
-    
-      <li>
-        <span class="post-meta">Jan 13, 2016</span>
-
-        <h2>
-          <a class="post-link" href="/ruby/2016/01/13/steam-cli-gem.html">Steam Top Sellers CLI Gem</a>
-        </h2>
-        <p>In my process of learning Ruby, I’ve been working on a CLI gem that I’ll discuss here. My goal was to create a command line interface that could retrieve a list of the currently top selling games at the <a href="http://store.steampowered.com/">Steam Store</a>. Upon retrieving the list, the user would then be able to select a game and get more detailed information.</p>
-
-
-      </li>
-    
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p>
+  </article>
 
 </div>
 
