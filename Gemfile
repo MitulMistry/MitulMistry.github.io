@@ -1,6 +1,4 @@
-# A sample Gemfile
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-# gem "rails"
 gem 'github-pages'
-gem 'jekyll'
+gem 'octopress', '~> 3.0.0.rc.12'
