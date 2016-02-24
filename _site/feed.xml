@@ -6,8 +6,8 @@
 </description>
     <link>http://mitulmistry.github.io//</link>
     <atom:link href="http://mitulmistry.github.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 22 Jan 2016 04:10:28 +0000</pubDate>
-    <lastBuildDate>Fri, 22 Jan 2016 04:10:28 +0000</lastBuildDate>
+    <pubDate>Wed, 24 Feb 2016 06:12:29 +0000</pubDate>
+    <lastBuildDate>Wed, 24 Feb 2016 06:12:29 +0000</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -18,25 +18,65 @@
 
 &lt;p&gt;&lt;strong&gt;Models:&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;The first thing I worked on were the models that would represent the data necessary for the blog to work using Activerecord. This includes &lt;code&gt;Users&lt;/code&gt; which would write and edit &lt;code&gt;Posts&lt;/code&gt;, which would in turn have &lt;code&gt;Tags&lt;/code&gt;. In addition, I used the model &lt;code&gt;PostTags&lt;/code&gt; as well, but only as an intermediary for a join table to connect &lt;code&gt;Posts&lt;/code&gt; and &lt;code&gt;Tags&lt;/code&gt;. This was necessary because a &lt;code&gt;Post&lt;/code&gt; has many &lt;code&gt;Tags&lt;/code&gt;, and a &lt;code&gt;Tag&lt;/code&gt; has many &lt;code&gt;Posts&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The first thing I worked on were the models that would represent the data necessary for the blog to work using Activerecord. This includes &lt;code&gt;Users&lt;/code&gt; which would write and edit &lt;code&gt;Posts&lt;/code&gt;, which would in turn have &lt;code&gt;Tags&lt;/code&gt;. In addition, I used the model &lt;code&gt;PostTags&lt;/code&gt; as well, but only as an intermediary for a join table to connect &lt;code&gt;Posts&lt;/code&gt; and &lt;code&gt;Tags&lt;/code&gt;. This was necessary because a &lt;code&gt;Post&lt;/code&gt; has many &lt;code&gt;Tags&lt;/code&gt;, and a &lt;code&gt;Tag&lt;/code&gt; has many &lt;code&gt;Posts&lt;/code&gt;, and any time there’s a mutual ‘has many’ relationship between models, a join table is needed.&lt;/p&gt;
+
+&lt;p&gt;These associations provide a useful way to list different types of &lt;code&gt;Posts&lt;/code&gt;. All &lt;code&gt;Posts&lt;/code&gt; belong to a &lt;code&gt;User&lt;/code&gt;, so you can easily list all of a &lt;code&gt;User&lt;/code&gt;’s &lt;code&gt;Posts&lt;/code&gt;, or all of a &lt;code&gt;Tag&lt;/code&gt;’s &lt;code&gt;Posts&lt;/code&gt; as well. Providing an easy way to organize information is critical to building a successful application, and ActiveRecord provides ample ways of doing just that.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;The &lt;code&gt;Post&lt;/code&gt; model code:&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Post&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;belongs_to&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:user&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;has_many&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:post_tags&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;has_many&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:tags&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;through&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:post_tags&lt;/span&gt;
+
+  &lt;span class=&quot;kp&quot;&gt;extend&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;FindBySlug&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;slug&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;downcase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gsub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot; &amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;readable_date&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;created_at&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strftime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;%b %d, %Y&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;Controllers:&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;-to route paths to actions&lt;/p&gt;
+&lt;p&gt;Unlike a framework like Rails, Sinatra has a unified router and controller. I used a separate controller for each model which helped organize all the different routes and actions. The &lt;code&gt;Users&lt;/code&gt; controller focuses on signing up and logging in &lt;code&gt;Users&lt;/code&gt;. The &lt;code&gt;Posts&lt;/code&gt; controller deals with the majority of the application’s functionality, namely the creation, editting, and deletion of &lt;code&gt;Posts&lt;/code&gt; as well as &lt;code&gt;Tags&lt;/code&gt; (since &lt;code&gt;Tags&lt;/code&gt; are created in the same page as &lt;code&gt;Posts&lt;/code&gt;). Finally, the &lt;code&gt;Tags&lt;/code&gt; and application  controllers focus on a few utility tasks. As a whole, the controllers work together to facilitate the functionality of the website and process all the data.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;An route/action to render the new post creation form:&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/posts/new&amp;#39;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;logged_in?&lt;/span&gt;
+    &lt;span class=&quot;vi&quot;&gt;@tags&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Tag&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;all&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;erb&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:&amp;#39;posts/new&amp;#39;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;redirect&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/users/login&amp;#39;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;Views:&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;-erb files using embedded ruby to dynamically serve requested content.
--using Bootstrap for basic frontend&lt;/p&gt;
+&lt;p&gt;Just like Rails, Sinatra uses &lt;code&gt;ERB&lt;/code&gt; files (Embedded Ruby) to dynamically generate html web pages and serve requested content. The views correspond to the routes/actions in the associated controllers, so there are views for showing a user page, displaying a login form, and so on. Using Bootstrap for basic frontend styling helps make the application look at least palatable (as opposed to hideous unstyled html). It may be a bit superficial, but it helps the application look like a complete thought.&lt;/p&gt;
 
-&lt;p&gt;Conclusion&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;The ERB code to display all the posts for a tag:&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%= @tag.name %&amp;gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;% @tag.posts.each do |post| %&amp;gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;h3&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/posts/&amp;lt;%= post.slug %&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%= post.title %&amp;gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/h3&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;h4&amp;gt;&lt;/span&gt;By: &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/users/&amp;lt;%= post.user.slug %&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%= post.user.username %&amp;gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/h4&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%= post.readable_date %&amp;gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%= post.content %&amp;gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;% end %&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;In conclusion, the project took longer than I expected due to the necessary refactoring to deal with things like processing the form data during post creation and editting as well all the individual gears necessary for even a simple web project like this involving a back end. It was certainly an educational experience and a good step towards learning to build professional grade applications.&lt;/p&gt;
 
 &lt;p&gt;You can find the source code for this project &lt;a href=&quot;https://github.com/MitulMistry/sinatra-simple-blog&quot;&gt;here on Github.&lt;/a&gt;&lt;/p&gt;
 
 </description>
-        <pubDate>Fri, 22 Jan 2016 22:20:00 +0000</pubDate>
-        <link>http://mitulmistry.github.io//ruby/sinatra/2016/01/22/sinatra-project.html</link>
-        <guid isPermaLink="true">http://mitulmistry.github.io//ruby/sinatra/2016/01/22/sinatra-project.html</guid>
+        <pubDate>Wed, 24 Feb 2016 16:00:00 +0000</pubDate>
+        <link>http://mitulmistry.github.io//ruby/sinatra/2016/02/24/sinatra-project.html</link>
+        <guid isPermaLink="true">http://mitulmistry.github.io//ruby/sinatra/2016/02/24/sinatra-project.html</guid>
         
         
         <category>ruby</category>
