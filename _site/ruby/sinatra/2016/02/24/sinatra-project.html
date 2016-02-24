@@ -111,13 +111,13 @@
 
 <p><em>The ERB code to display all the posts for a tag:</em></p>
 
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;h2&gt;</span><span class="err">&lt;</span>%= @tag.name %&gt;<span class="nt">&lt;/h2&gt;</span>
-<span class="err">&lt;</span>% @tag.posts.each do |post| %&gt;
-  <span class="nt">&lt;h3&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/posts/&lt;%= post.slug %&gt;&quot;</span><span class="nt">&gt;</span><span class="err">&lt;</span>%= post.title %&gt;<span class="nt">&lt;/a&gt;&lt;/h3&gt;</span>
-  <span class="nt">&lt;h4&gt;</span>By: <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/users/&lt;%= post.user.slug %&gt;&quot;</span><span class="nt">&gt;</span><span class="err">&lt;</span>%= post.user.username %&gt;<span class="nt">&lt;/a&gt;&lt;/h4&gt;</span>
-  <span class="nt">&lt;p&gt;&lt;strong&gt;</span><span class="err">&lt;</span>%= post.readable_date %&gt;<span class="nt">&lt;/strong&gt;&lt;/p&gt;</span>
-  <span class="nt">&lt;p&gt;</span><span class="err">&lt;</span>%= post.content %&gt;<span class="nt">&lt;/p&gt;</span>
-<span class="err">&lt;</span>% end %&gt;</code></pre></div>
+<div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="x">&lt;h2&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@tag</span><span class="o">.</span><span class="n">name</span> <span class="cp">%&gt;</span><span class="x">&lt;/h2&gt;</span>
+<span class="cp">&lt;%</span> <span class="vi">@tag</span><span class="o">.</span><span class="n">posts</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">post</span><span class="o">|</span> <span class="cp">%&gt;</span><span class="x"></span>
+<span class="x">  &lt;h3&gt;&lt;a href=&quot;/posts/</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="o">.</span><span class="n">slug</span> <span class="cp">%&gt;</span><span class="x">&quot;&gt;</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="o">.</span><span class="n">title</span> <span class="cp">%&gt;</span><span class="x">&lt;/a&gt;&lt;/h3&gt;</span>
+<span class="x">  &lt;h4&gt;By: &lt;a href=&quot;/users/</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">slug</span> <span class="cp">%&gt;</span><span class="x">&quot;&gt;</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span> <span class="cp">%&gt;</span><span class="x">&lt;/a&gt;&lt;/h4&gt;</span>
+<span class="x">  &lt;p&gt;&lt;strong&gt;</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="o">.</span><span class="n">readable_date</span> <span class="cp">%&gt;</span><span class="x">&lt;/strong&gt;&lt;/p&gt;</span>
+<span class="x">  &lt;p&gt;</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="o">.</span><span class="n">content</span> <span class="cp">%&gt;</span><span class="x">&lt;/p&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span><span class="x"></span></code></pre></div>
 
 <p>In conclusion, the project took longer than I expected due to the necessary refactoring to deal with things like processing the form data during post creation and editting as well all the individual gears necessary for even a simple web project like this involving a back end. It was certainly an educational experience and a good step towards learning to build professional grade applications.</p>
 

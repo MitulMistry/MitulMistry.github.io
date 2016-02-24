@@ -56,7 +56,7 @@ end
 Just like Rails, Sinatra uses `ERB` files (Embedded Ruby) to dynamically generate html web pages and serve requested content. The views correspond to the routes/actions in the associated controllers, so there are views for showing a user page, displaying a login form, and so on. Using Bootstrap for basic frontend styling helps make the application look at least palatable (as opposed to hideous unstyled html). It may be a bit superficial, but it helps the application look like a complete thought.
 
 *The ERB code to display all the posts for a tag:*
-{% highlight html %}
+{% highlight ERB %}
 <h2><%= @tag.name %></h2>
 <% @tag.posts.each do |post| %>
   <h3><a href="/posts/<%= post.slug %>"><%= post.title %></a></h3>
