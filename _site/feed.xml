@@ -4,13 +4,59 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-02-24T18:26:11-06:00</updated>
+<updated>2016-03-21T19:24:00-05:00</updated>
 <id>/</id>
 <author>
   <name>Mitul Mistry</name>
   <uri>/</uri>
   <email>MitulMistryDev@gmail.com</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[Rails Project - Storyplan]]></title>
+ <link rel="alternate" type="text/html" href="/ruby/rails/rails-project/" />
+  <id>/ruby/rails/rails-project</id>
+  <published>2016-03-21T11:00:00-05:00</published>
+  <updated>2016-03-21T11:00:00-05:00</updated>
+  <author>
+    <name>Mitul Mistry</name>
+    <uri></uri>
+    <email>MitulMistryDev@gmail.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;Making a Rails application is hard. There are so many compoments, considerations, and features to be dealt with that the process can quickly become complicated and overwhelming, especially when you’re just starting out as a developer. For my first full-fledged Rails project, I’ll give an overview on how I broke down the process and attempted to build out the application one piece at a time.&lt;/p&gt;
+
+&lt;p&gt;The application is tentatively titled Storyplan and is intended as a tool to help writers plan out stories. Writing a story often requires a great deal of structure, planning, and constituent components, and I wanted to create a website that would make it easier to build and keep track of everything.&lt;/p&gt;
+
+&lt;h2 id=&quot;models&quot;&gt;Models&lt;/h2&gt;
+
+&lt;p&gt;I started out by mapping out the models and migrations. Using the &lt;code class=&quot;highlighter-rouge&quot;&gt;rails generate resource&lt;/code&gt; command, you can use Rails to generate a model, database migration for that model, and a controller, and I used it to get a head start. My models were as follows:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt; - Generated using the Devise gem for authentication&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Story&lt;/code&gt; - Belongs to a &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Chapter&lt;/code&gt; - Belongs to a &lt;code class=&quot;highlighter-rouge&quot;&gt;Story&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Character&lt;/code&gt; - Has many &lt;code class=&quot;highlighter-rouge&quot;&gt;Chapters&lt;/code&gt; through a join table and vice versa, belongs to a &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Audience&lt;/code&gt; - Has many &lt;code class=&quot;highlighter-rouge&quot;&gt;Stories&lt;/code&gt; through a join table and vice versa&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Genre&lt;/code&gt; - Has many &lt;code class=&quot;highlighter-rouge&quot;&gt;Stories&lt;/code&gt; through a join table and vice versa&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Comment&lt;/code&gt; - Belongs to both a &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt; and a &lt;code class=&quot;highlighter-rouge&quot;&gt;Story&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;With these models, I was able to set up the associations necessary to do things like show all the &lt;code class=&quot;highlighter-rouge&quot;&gt;Stories&lt;/code&gt; of a &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt; or all the &lt;code class=&quot;highlighter-rouge&quot;&gt;Characters&lt;/code&gt; in a &lt;code class=&quot;highlighter-rouge&quot;&gt;Story&lt;/code&gt;. This also makes it easier for a user to explore the different connections of a writer’s work.&lt;/p&gt;
+
+&lt;h2 id=&quot;routes-and-controllers&quot;&gt;Routes and Controllers&lt;/h2&gt;
+
+&lt;p&gt;Unlike Sinatra, Rails has a separate router from its controllers and uses it to map the routes to actions in those controllers. My routes were mostly resources for the above mentioned models, with a few nested resources to do things like the find all the &lt;code class=&quot;highlighter-rouge&quot;&gt;Characters&lt;/code&gt; of a particular &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;views&quot;&gt;Views&lt;/h2&gt;
+
+&lt;p&gt;You can find the source code for this project &lt;a href=&quot;https://github.com/MitulMistry/rails-storyplan&quot;&gt;here on Github.&lt;/a&gt;&lt;/p&gt;
+
+
+    &lt;p&gt;&lt;a href=&quot;/ruby/rails/rails-project/&quot;&gt;Rails Project - Storyplan&lt;/a&gt; was originally published by Mitul Mistry at &lt;a href=&quot;&quot;&gt;Mitul Mistry - Tech Blog&lt;/a&gt; on March 21, 2016.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
