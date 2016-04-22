@@ -62,6 +62,7 @@ There are other levels of complexity involved, such as authorization (making sur
 *[See the story controller here.][storyplan-story-controller]*
 
 **Views**
+
 For the front end, I used the [Bootstrap-Sass][bootstrap-sass] gem for Rails. It has a very generic look to it, but for now it works to help it look presentable.
 
 The views use a variety of partials to make the display code reusable. For example, for each model, there is a partial that creates a sort of visual card for it that includes pertinent information. I then use a grid system to display collections of that model.
