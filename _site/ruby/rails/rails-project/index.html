@@ -130,14 +130,14 @@
     <div class="header-title-wrap">
       <h1>Rails Project - Storyplan</h1>
       
-        <h2><span class="entry-date date published updated"><time datetime="2016-03-21T11:00:00-05:00">March 21, 2016</time></span></h2>
+        <h2><span class="entry-date date published updated"><time datetime="2016-04-22T08:00:00-05:00">April 22, 2016</time></span></h2>
       
 
       
         <p class="entry-reading-time">
           <i class="fa fa-clock-o"></i>
           
-          Reading time ~1 minute
+          Reading time ~4 minutes
         </p><!-- /.entry-reading-time -->
       
     </div><!-- /.header-title-wrap -->
@@ -188,29 +188,106 @@
       <h1 class="post-title entry-title">Rails Project - Storyplan</h1>
       <p>Making a Rails application is hard. There are so many compoments, considerations, and features to be dealt with that the process can quickly become complicated and overwhelming, especially when you’re just starting out as a developer. For my first full-fledged Rails project, I’ll give an overview on how I broke down the process and attempted to build out the application one piece at a time.</p>
 
-<p>The application is tentatively titled Storyplan and is intended as a tool to help writers plan out stories. Writing a story often requires a great deal of structure, planning, and constituent components, and I wanted to create a website that would make it easier to build and keep track of everything.</p>
+<p>The application is tentatively titled Storyplan and is intended as a tool to help writers plot out stories. Writing a story often requires a great deal of structure, planning, and constituent components, and I wanted to create a website that would make it easier to build and keep track of everything.</p>
 
 <h2 id="models">Models</h2>
 
 <p>I started out by mapping out the models and migrations. Using the <code class="highlighter-rouge">rails generate resource</code> command, you can use Rails to generate a model, database migration for that model, and a controller, and I used it to get a head start. My models were as follows:</p>
 
 <ul>
-  <li><code class="highlighter-rouge">User</code> - Generated using the Devise gem for authentication</li>
-  <li><code class="highlighter-rouge">Story</code> - Belongs to a <code class="highlighter-rouge">User</code></li>
-  <li><code class="highlighter-rouge">Chapter</code> - Belongs to a <code class="highlighter-rouge">Story</code></li>
-  <li><code class="highlighter-rouge">Character</code> - Has many <code class="highlighter-rouge">Chapters</code> through a join table and vice versa, belongs to a <code class="highlighter-rouge">User</code></li>
-  <li><code class="highlighter-rouge">Audience</code> - Has many <code class="highlighter-rouge">Stories</code> through a join table and vice versa</li>
-  <li><code class="highlighter-rouge">Genre</code> - Has many <code class="highlighter-rouge">Stories</code> through a join table and vice versa</li>
-  <li><code class="highlighter-rouge">Comment</code> - Belongs to both a <code class="highlighter-rouge">User</code> and a <code class="highlighter-rouge">Story</code></li>
+  <li><code class="highlighter-rouge">User</code> - Generated using the Devise gem for authentication.</li>
+  <li><code class="highlighter-rouge">Story</code> - Belongs to a <code class="highlighter-rouge">User</code>.</li>
+  <li><code class="highlighter-rouge">Chapter</code> - Belongs to a <code class="highlighter-rouge">Story</code>.</li>
+  <li><code class="highlighter-rouge">Character</code> - Has many <code class="highlighter-rouge">Chapters</code> through a join table and vice versa, belongs to a <code class="highlighter-rouge">User</code>.</li>
+  <li><code class="highlighter-rouge">Audience</code> - Has many <code class="highlighter-rouge">Stories</code> through a join table and vice versa.</li>
+  <li><code class="highlighter-rouge">Genre</code> - Has many <code class="highlighter-rouge">Stories</code> through a join table and vice versa.</li>
+  <li><code class="highlighter-rouge">Comment</code> - Belongs to both a <code class="highlighter-rouge">User</code> and a <code class="highlighter-rouge">Story</code>.</li>
 </ul>
 
 <p>With these models, I was able to set up the associations necessary to do things like show all the <code class="highlighter-rouge">Stories</code> of a <code class="highlighter-rouge">User</code> or all the <code class="highlighter-rouge">Characters</code> in a <code class="highlighter-rouge">Story</code>. This also makes it easier for a user to explore the different connections of a writer’s work.</p>
+
+<p>These models have a variety of validations to ensure bad data isn’t entered into the system, as well as class and instance methods to give the models additional functionality beyond being mere data containers.</p>
+
+<p><em>The <code class="highlighter-rouge">Story</code> model:</em></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Story</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">belongs_to</span> <span class="ss">:user</span>
+  <span class="n">has_many</span> <span class="ss">:story_genres</span>
+  <span class="n">has_many</span> <span class="ss">:genres</span><span class="p">,</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">distinct</span> <span class="p">},</span> <span class="ss">through: :story_genres</span>
+  <span class="n">has_many</span> <span class="ss">:story_audiences</span>
+  <span class="n">has_many</span> <span class="ss">:audiences</span><span class="p">,</span> <span class="ss">through: :story_audiences</span>
+  <span class="n">has_many</span> <span class="ss">:chapters</span><span class="p">,</span> <span class="ss">dependent: :destroy</span> <span class="c1">#destroys all chapters belonging to it when the story is destroyed</span>
+  <span class="n">has_many</span> <span class="ss">:characters</span><span class="p">,</span> <span class="ss">through: :chapters</span>
+  <span class="n">has_many</span> <span class="ss">:comments</span>
+
+  <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">presence: </span><span class="kp">true</span>
+  <span class="n">validates</span> <span class="ss">:user_id</span><span class="p">,</span> <span class="ss">presence: </span><span class="kp">true</span>
+  <span class="n">validates</span> <span class="ss">:target_word_count</span><span class="p">,</span> <span class="ss">numericality: </span><span class="p">{</span> <span class="ss">only_integer: </span><span class="kp">true</span> <span class="p">},</span> <span class="ss">allow_blank: </span><span class="kp">true</span>
+  <span class="n">validates</span> <span class="ss">:overview</span><span class="p">,</span> <span class="ss">length: </span><span class="p">{</span> <span class="ss">maximum: </span><span class="mi">4000</span> <span class="p">}</span>
+
+  <span class="kp">extend</span> <span class="no">ClassOrderable</span>
+
+  <span class="k">def</span> <span class="nf">recent_comments</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">comments</span><span class="p">.</span><span class="nf">order</span><span class="p">(</span><span class="s1">'created_at DESC'</span><span class="p">).</span><span class="nf">last</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1">#self.comments.limit(10).order('created_at DESC').reverse</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
 
 <h2 id="routes-and-controllers">Routes and Controllers</h2>
 
 <p>Unlike Sinatra, Rails has a separate router from its controllers and uses it to map the routes to actions in those controllers. My routes were mostly resources for the above mentioned models, with a few nested resources to do things like the find all the <code class="highlighter-rouge">Characters</code> of a particular <code class="highlighter-rouge">User</code>.</p>
 
+<p><em><a href="https://github.com/MitulMistry/rails-storyplan/blob/master/config/routes.rb">See the routes file here.</a></em></p>
+
+<p>As far as controllers are concerned, I used one controller per model with a few miscellaneous controllers thrown in as well to handle other tasks. This is basically a CRUD (Create, Read, Update, Delete) application, so many of the controllers handle similar tasks. So for example, the <code class="highlighter-rouge">Stories</code> controller handles serving all the stories for the stories index, showing a particular story, serving a form for a new story or editing an old one, processing the creation and update of a story based on input from the form, and destroying a story as well. These correspond to <a href="http://guides.rubyonrails.org/routing.html">RESTful routes</a> (Representational State Transfer): Index, Show, New, Create, Edit, Update, Destroy.</p>
+
+<p>There are other levels of complexity involved, such as authorization (making sure the user creating or updating a story has permission to do so) or white-listing the data received (using <a href="http://edgeguides.rubyonrails.org/action_controller_overview.html#strong-parameters">strong parameters</a>) from the form so no improper data is forcibly entered.</p>
+
+<p><em><a href="https://github.com/MitulMistry/rails-storyplan/blob/master/app/controllers/stories_controller.rb">See the story controller here.</a></em></p>
+
 <h2 id="views">Views</h2>
+<p>For the front end, I used the <a href="https://github.com/twbs/bootstrap-sass">Bootstrap-Sass</a> gem for Rails. It has a very generic look to it, but for now it works to help it look presentable.</p>
+
+<p>The views use a variety of partials to make the display code reusable. For example, for each model, there is a partial that creates a sort of visual card for it that includes pertinent information. I then use a grid system to display collections of that model.</p>
+
+<p><em>Code for the story card partial:</em></p>
+
+<figure class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="cp">&lt;%</span> <span class="n">story</span> <span class="o">=</span> <span class="n">item</span> <span class="k">unless</span> <span class="n">story</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-sm-12 col-md-4"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"thumbnail"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"caption"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;h3&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="n">story</span><span class="p">.</span><span class="nf">name</span><span class="p">,</span> <span class="n">story</span> <span class="cp">%&gt;</span><span class="nt">&lt;/h3&gt;</span>
+      <span class="nt">&lt;p&gt;&lt;strong&gt;</span>Written by:<span class="nt">&lt;/strong&gt;</span> <span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="n">story</span><span class="p">.</span><span class="nf">user</span><span class="p">.</span><span class="nf">username</span><span class="p">,</span> <span class="n">writer_path</span><span class="p">(</span><span class="n">story</span><span class="p">.</span><span class="nf">user</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="nt">&lt;/p&gt;</span>
+      <span class="nt">&lt;p&gt;&lt;strong&gt;</span>Overview: <span class="nt">&lt;/strong&gt;</span><span class="cp">&lt;%=</span> <span class="n">story_truncated_overview</span><span class="p">(</span><span class="n">story</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="nt">&lt;/p&gt;</span>
+      <span class="nt">&lt;p&gt;&lt;strong&gt;</span>Target word count:<span class="nt">&lt;/strong&gt;</span> <span class="cp">&lt;%=</span> <span class="n">story</span><span class="p">.</span><span class="nf">target_word_count</span> <span class="cp">%&gt;</span><span class="nt">&lt;/p&gt;</span>
+      <span class="cp">&lt;%</span> <span class="k">if</span> <span class="o">!</span><span class="n">story</span><span class="p">.</span><span class="nf">audiences</span><span class="p">.</span><span class="nf">empty?</span> <span class="cp">%&gt;</span>
+      <span class="nt">&lt;p&gt;&lt;strong&gt;</span>Target audience:<span class="nt">&lt;/strong&gt;</span>
+        <span class="cp">&lt;%</span> <span class="n">story</span><span class="p">.</span><span class="nf">audiences</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">audience</span><span class="o">|</span> <span class="cp">%&gt;</span>
+          <span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="n">audience</span><span class="p">.</span><span class="nf">name</span><span class="p">,</span> <span class="n">audience</span><span class="p">,</span> <span class="ss">class: </span><span class="s2">"label label-warning"</span> <span class="cp">%&gt;</span>
+        <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+      <span class="nt">&lt;/p&gt;</span>
+      <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+      <span class="cp">&lt;%</span> <span class="k">if</span> <span class="o">!</span><span class="n">story</span><span class="p">.</span><span class="nf">genres</span><span class="p">.</span><span class="nf">empty?</span> <span class="cp">%&gt;</span>
+      <span class="nt">&lt;p&gt;&lt;strong&gt;</span>Genres:<span class="nt">&lt;/strong&gt;</span>
+        <span class="cp">&lt;%</span> <span class="n">story</span><span class="p">.</span><span class="nf">genres</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">genre</span><span class="o">|</span> <span class="cp">%&gt;</span>
+          <span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="n">genre</span><span class="p">.</span><span class="nf">name</span><span class="p">,</span> <span class="n">genre</span><span class="p">,</span> <span class="ss">class: </span><span class="s2">"label label-primary"</span> <span class="cp">%&gt;</span>
+        <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+      <span class="nt">&lt;/p&gt;</span>
+      <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre></figure>
+
+<p>So when you go to the stories index page, it displays a grid of stories that simply repeat that model partial with new information from each collection item.</p>
+
+<h2 id="authentication">Authentication</h2>
+
+<p>Setting up a secure login/logout system can be challenging considering the number of security threats we must now contend with. You can roll your own authentication using <a href="https://github.com/codahale/bcrypt-ruby">bcrypt</a> to securely story password hashes, but I wanted something with more functionality built in. That’s why I used the Devise gem which provides for the creation of its own <code class="highlighter-rouge">User</code> model and gives you additional tools like email confirmation should you desire them. Most importantly, it’s battle tested and commonly used to provide secure authentication for Rails applications.</p>
+
+<p>In addition, I used <a href="https://github.com/plataformatec/devise">Devise</a> to provide OAuth authentication for Facebook, so you can securely sign in with a Facebook account as well.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Overall, this is just a small overview of what turned out to be a relatively complex project. There’s a lot more functionality I’d like to build eventually to make this more of a viable tool for writers, including building more of a front end, but for now it has served its purpose.</p>
 
 <p>You can find the source code for this project <a href="https://github.com/MitulMistry/rails-storyplan">here on Github.</a></p>
 

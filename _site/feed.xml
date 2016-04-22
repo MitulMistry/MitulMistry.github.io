@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-03-21T19:24:00-05:00</updated>
+<updated>2016-04-22T12:40:35-05:00</updated>
 <id>/</id>
 <author>
   <name>Mitul Mistry</name>
@@ -17,8 +17,8 @@
   <title type="html"><![CDATA[Rails Project - Storyplan]]></title>
  <link rel="alternate" type="text/html" href="/ruby/rails/rails-project/" />
   <id>/ruby/rails/rails-project</id>
-  <published>2016-03-21T11:00:00-05:00</published>
-  <updated>2016-03-21T11:00:00-05:00</updated>
+  <published>2016-04-22T08:00:00-05:00</published>
+  <updated>2016-04-22T08:00:00-05:00</updated>
   <author>
     <name>Mitul Mistry</name>
     <uri></uri>
@@ -27,34 +27,111 @@
   <content type="html">
     &lt;p&gt;Making a Rails application is hard. There are so many compoments, considerations, and features to be dealt with that the process can quickly become complicated and overwhelming, especially when you’re just starting out as a developer. For my first full-fledged Rails project, I’ll give an overview on how I broke down the process and attempted to build out the application one piece at a time.&lt;/p&gt;
 
-&lt;p&gt;The application is tentatively titled Storyplan and is intended as a tool to help writers plan out stories. Writing a story often requires a great deal of structure, planning, and constituent components, and I wanted to create a website that would make it easier to build and keep track of everything.&lt;/p&gt;
+&lt;p&gt;The application is tentatively titled Storyplan and is intended as a tool to help writers plot out stories. Writing a story often requires a great deal of structure, planning, and constituent components, and I wanted to create a website that would make it easier to build and keep track of everything.&lt;/p&gt;
 
 &lt;h2 id=&quot;models&quot;&gt;Models&lt;/h2&gt;
 
 &lt;p&gt;I started out by mapping out the models and migrations. Using the &lt;code class=&quot;highlighter-rouge&quot;&gt;rails generate resource&lt;/code&gt; command, you can use Rails to generate a model, database migration for that model, and a controller, and I used it to get a head start. My models were as follows:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt; - Generated using the Devise gem for authentication&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Story&lt;/code&gt; - Belongs to a &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Chapter&lt;/code&gt; - Belongs to a &lt;code class=&quot;highlighter-rouge&quot;&gt;Story&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Character&lt;/code&gt; - Has many &lt;code class=&quot;highlighter-rouge&quot;&gt;Chapters&lt;/code&gt; through a join table and vice versa, belongs to a &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Audience&lt;/code&gt; - Has many &lt;code class=&quot;highlighter-rouge&quot;&gt;Stories&lt;/code&gt; through a join table and vice versa&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Genre&lt;/code&gt; - Has many &lt;code class=&quot;highlighter-rouge&quot;&gt;Stories&lt;/code&gt; through a join table and vice versa&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Comment&lt;/code&gt; - Belongs to both a &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt; and a &lt;code class=&quot;highlighter-rouge&quot;&gt;Story&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt; - Generated using the Devise gem for authentication.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Story&lt;/code&gt; - Belongs to a &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Chapter&lt;/code&gt; - Belongs to a &lt;code class=&quot;highlighter-rouge&quot;&gt;Story&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Character&lt;/code&gt; - Has many &lt;code class=&quot;highlighter-rouge&quot;&gt;Chapters&lt;/code&gt; through a join table and vice versa, belongs to a &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Audience&lt;/code&gt; - Has many &lt;code class=&quot;highlighter-rouge&quot;&gt;Stories&lt;/code&gt; through a join table and vice versa.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Genre&lt;/code&gt; - Has many &lt;code class=&quot;highlighter-rouge&quot;&gt;Stories&lt;/code&gt; through a join table and vice versa.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Comment&lt;/code&gt; - Belongs to both a &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt; and a &lt;code class=&quot;highlighter-rouge&quot;&gt;Story&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;With these models, I was able to set up the associations necessary to do things like show all the &lt;code class=&quot;highlighter-rouge&quot;&gt;Stories&lt;/code&gt; of a &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt; or all the &lt;code class=&quot;highlighter-rouge&quot;&gt;Characters&lt;/code&gt; in a &lt;code class=&quot;highlighter-rouge&quot;&gt;Story&lt;/code&gt;. This also makes it easier for a user to explore the different connections of a writer’s work.&lt;/p&gt;
+
+&lt;p&gt;These models have a variety of validations to ensure bad data isn’t entered into the system, as well as class and instance methods to give the models additional functionality beyond being mere data containers.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;Story&lt;/code&gt; model:&lt;/em&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Story&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;belongs_to&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:user&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;has_many&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:story_genres&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;has_many&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:genres&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;distinct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;through: :story_genres&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;has_many&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:story_audiences&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;has_many&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:audiences&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;through: :story_audiences&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;has_many&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:chapters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;dependent: :destroy&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#destroys all chapters belonging to it when the story is destroyed&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;has_many&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:characters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;through: :chapters&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;has_many&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:comments&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;validates&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;presence: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;validates&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:user_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;presence: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;validates&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:target_word_count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;numericality: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;only_integer: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;allow_blank: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;validates&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:overview&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;length: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;maximum: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4000&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;kp&quot;&gt;extend&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ClassOrderable&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;recent_comments&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;comments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;created_at DESC&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#self.comments.limit(10).order(&#39;created_at DESC&#39;).reverse&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h2 id=&quot;routes-and-controllers&quot;&gt;Routes and Controllers&lt;/h2&gt;
 
 &lt;p&gt;Unlike Sinatra, Rails has a separate router from its controllers and uses it to map the routes to actions in those controllers. My routes were mostly resources for the above mentioned models, with a few nested resources to do things like the find all the &lt;code class=&quot;highlighter-rouge&quot;&gt;Characters&lt;/code&gt; of a particular &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt;.&lt;/p&gt;
 
+&lt;p&gt;&lt;em&gt;&lt;a href=&quot;https://github.com/MitulMistry/rails-storyplan/blob/master/config/routes.rb&quot;&gt;See the routes file here.&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;As far as controllers are concerned, I used one controller per model with a few miscellaneous controllers thrown in as well to handle other tasks. This is basically a CRUD (Create, Read, Update, Delete) application, so many of the controllers handle similar tasks. So for example, the &lt;code class=&quot;highlighter-rouge&quot;&gt;Stories&lt;/code&gt; controller handles serving all the stories for the stories index, showing a particular story, serving a form for a new story or editing an old one, processing the creation and update of a story based on input from the form, and destroying a story as well. These correspond to &lt;a href=&quot;http://guides.rubyonrails.org/routing.html&quot;&gt;RESTful routes&lt;/a&gt; (Representational State Transfer): Index, Show, New, Create, Edit, Update, Destroy.&lt;/p&gt;
+
+&lt;p&gt;There are other levels of complexity involved, such as authorization (making sure the user creating or updating a story has permission to do so) or white-listing the data received (using &lt;a href=&quot;http://edgeguides.rubyonrails.org/action_controller_overview.html#strong-parameters&quot;&gt;strong parameters&lt;/a&gt;) from the form so no improper data is forcibly entered.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;a href=&quot;https://github.com/MitulMistry/rails-storyplan/blob/master/app/controllers/stories_controller.rb&quot;&gt;See the story controller here.&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
 &lt;h2 id=&quot;views&quot;&gt;Views&lt;/h2&gt;
+&lt;p&gt;For the front end, I used the &lt;a href=&quot;https://github.com/twbs/bootstrap-sass&quot;&gt;Bootstrap-Sass&lt;/a&gt; gem for Rails. It has a very generic look to it, but for now it works to help it look presentable.&lt;/p&gt;
+
+&lt;p&gt;The views use a variety of partials to make the display code reusable. For example, for each model, there is a partial that creates a sort of visual card for it that includes pertinent information. I then use a grid system to display collections of that model.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Code for the story card partial:&lt;/em&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-erb&quot; data-lang=&quot;erb&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;story&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;story&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;col-sm-12 col-md-4&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;thumbnail&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;caption&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;h3&amp;gt;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;link_to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;story&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;story&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h3&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;&lt;/span&gt;Written by:&lt;span class=&quot;nt&quot;&gt;&amp;lt;/strong&amp;gt;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;link_to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;story&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;writer_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;story&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;&lt;/span&gt;Overview: &lt;span class=&quot;nt&quot;&gt;&amp;lt;/strong&amp;gt;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;story_truncated_overview&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;story&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;&lt;/span&gt;Target word count:&lt;span class=&quot;nt&quot;&gt;&amp;lt;/strong&amp;gt;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;story&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;target_word_count&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;cp&quot;&gt;&amp;lt;%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;story&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;audiences&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;empty?&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;&lt;/span&gt;Target audience:&lt;span class=&quot;nt&quot;&gt;&amp;lt;/strong&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;cp&quot;&gt;&amp;lt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;story&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;audiences&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;audience&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;link_to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;audience&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;audience&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;label label-warning&quot;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;cp&quot;&gt;&amp;lt;%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;cp&quot;&gt;&amp;lt;%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;cp&quot;&gt;&amp;lt;%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;story&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;genres&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;empty?&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;&lt;/span&gt;Genres:&lt;span class=&quot;nt&quot;&gt;&amp;lt;/strong&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;cp&quot;&gt;&amp;lt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;story&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;genres&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;genre&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;link_to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;genre&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;genre&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;class: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;label label-primary&quot;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;cp&quot;&gt;&amp;lt;%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;cp&quot;&gt;&amp;lt;%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;So when you go to the stories index page, it displays a grid of stories that simply repeat that model partial with new information from each collection item.&lt;/p&gt;
+
+&lt;h2 id=&quot;authentication&quot;&gt;Authentication&lt;/h2&gt;
+
+&lt;p&gt;Setting up a secure login/logout system can be challenging considering the number of security threats we must now contend with. You can roll your own authentication using &lt;a href=&quot;https://github.com/codahale/bcrypt-ruby&quot;&gt;bcrypt&lt;/a&gt; to securely story password hashes, but I wanted something with more functionality built in. That’s why I used the Devise gem which provides for the creation of its own &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt; model and gives you additional tools like email confirmation should you desire them. Most importantly, it’s battle tested and commonly used to provide secure authentication for Rails applications.&lt;/p&gt;
+
+&lt;p&gt;In addition, I used &lt;a href=&quot;https://github.com/plataformatec/devise&quot;&gt;Devise&lt;/a&gt; to provide OAuth authentication for Facebook, so you can securely sign in with a Facebook account as well.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Overall, this is just a small overview of what turned out to be a relatively complex project. There’s a lot more functionality I’d like to build eventually to make this more of a viable tool for writers, including building more of a front end, but for now it has served its purpose.&lt;/p&gt;
 
 &lt;p&gt;You can find the source code for this project &lt;a href=&quot;https://github.com/MitulMistry/rails-storyplan&quot;&gt;here on Github.&lt;/a&gt;&lt;/p&gt;
 
 
-    &lt;p&gt;&lt;a href=&quot;/ruby/rails/rails-project/&quot;&gt;Rails Project - Storyplan&lt;/a&gt; was originally published by Mitul Mistry at &lt;a href=&quot;&quot;&gt;Mitul Mistry - Tech Blog&lt;/a&gt; on March 21, 2016.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;/ruby/rails/rails-project/&quot;&gt;Rails Project - Storyplan&lt;/a&gt; was originally published by Mitul Mistry at &lt;a href=&quot;&quot;&gt;Mitul Mistry - Tech Blog&lt;/a&gt; on April 22, 2016.&lt;/p&gt;
   </content>
 </entry>
 
