@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-04-22T12:40:35-05:00</updated>
+<updated>2016-04-22T14:29:01-05:00</updated>
 <id>/</id>
 <author>
   <name>Mitul Mistry</name>
@@ -25,13 +25,13 @@
     <email>MitulMistryDev@gmail.com</email>
   </author>
   <content type="html">
-    &lt;p&gt;Making a Rails application is hard. There are so many compoments, considerations, and features to be dealt with that the process can quickly become complicated and overwhelming, especially when you’re just starting out as a developer. For my first full-fledged Rails project, I’ll give an overview on how I broke down the process and attempted to build out the application one piece at a time.&lt;/p&gt;
+    &lt;p&gt;Making a Rails application is hard. There are so many components, considerations, and features to be dealt with that the process can quickly become complicated and overwhelming, especially when you’re just starting out as a developer. For my first full-fledged Rails project, I’ll give an overview on how I broke down the process and attempted to build out the application one piece at a time.&lt;/p&gt;
 
 &lt;p&gt;The application is tentatively titled Storyplan and is intended as a tool to help writers plot out stories. Writing a story often requires a great deal of structure, planning, and constituent components, and I wanted to create a website that would make it easier to build and keep track of everything.&lt;/p&gt;
 
 &lt;h2 id=&quot;models&quot;&gt;Models&lt;/h2&gt;
 
-&lt;p&gt;I started out by mapping out the models and migrations. Using the &lt;code class=&quot;highlighter-rouge&quot;&gt;rails generate resource&lt;/code&gt; command, you can use Rails to generate a model, database migration for that model, and a controller, and I used it to get a head start. My models were as follows:&lt;/p&gt;
+&lt;p&gt;I started by mapping out the models and migrations. Using the &lt;code class=&quot;highlighter-rouge&quot;&gt;rails generate resource&lt;/code&gt; command, you can use Rails to generate a model, database migration for that model, and a controller, and I used it to get a head start. My models were as follows:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt; - Generated using the Devise gem for authentication.&lt;/li&gt;
@@ -67,7 +67,7 @@
   &lt;span class=&quot;kp&quot;&gt;extend&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ClassOrderable&lt;/span&gt;
 
   &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;recent_comments&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;comments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;created_at DESC&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#self.comments.limit(10).order(&#39;created_at DESC&#39;).reverse&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;comments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;created_at DESC&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
@@ -77,7 +77,7 @@
 
 &lt;p&gt;&lt;em&gt;&lt;a href=&quot;https://github.com/MitulMistry/rails-storyplan/blob/master/config/routes.rb&quot;&gt;See the routes file here.&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;As far as controllers are concerned, I used one controller per model with a few miscellaneous controllers thrown in as well to handle other tasks. This is basically a CRUD (Create, Read, Update, Delete) application, so many of the controllers handle similar tasks. So for example, the &lt;code class=&quot;highlighter-rouge&quot;&gt;Stories&lt;/code&gt; controller handles serving all the stories for the stories index, showing a particular story, serving a form for a new story or editing an old one, processing the creation and update of a story based on input from the form, and destroying a story as well. These correspond to &lt;a href=&quot;http://guides.rubyonrails.org/routing.html&quot;&gt;RESTful routes&lt;/a&gt; (Representational State Transfer): Index, Show, New, Create, Edit, Update, Destroy.&lt;/p&gt;
+&lt;p&gt;As far as controllers are concerned, I used one controller per model with a few miscellaneous controllers thrown in as well to handle other tasks. This is basically a CRUD (Create, Read, Update, Delete) application, so many of the controllers handle similar tasks. So for example, the &lt;code class=&quot;highlighter-rouge&quot;&gt;Stories&lt;/code&gt; controller handles serving all the stories for the stories index, showing a particular story, serving a form for a new story or editing an old one, processing the creation and update of a story based on input from the form, and destroying a story as well. These correspond to &lt;a href=&quot;http://guides.rubyonrails.org/routing.html&quot;&gt;RESTful routes&lt;/a&gt; (Representational State Transfer): Index, Show, New, Create, Edit, Update, Destroy. This is simply a paradigm to keep things consistent across different web applications and is an example of Rails’s philosophy of convention over configuration.&lt;/p&gt;
 
 &lt;p&gt;There are other levels of complexity involved, such as authorization (making sure the user creating or updating a story has permission to do so) or white-listing the data received (using &lt;a href=&quot;http://edgeguides.rubyonrails.org/action_controller_overview.html#strong-parameters&quot;&gt;strong parameters&lt;/a&gt;) from the form so no improper data is forcibly entered.&lt;/p&gt;
 
@@ -120,13 +120,13 @@
 
 &lt;h2 id=&quot;authentication&quot;&gt;Authentication&lt;/h2&gt;
 
-&lt;p&gt;Setting up a secure login/logout system can be challenging considering the number of security threats we must now contend with. You can roll your own authentication using &lt;a href=&quot;https://github.com/codahale/bcrypt-ruby&quot;&gt;bcrypt&lt;/a&gt; to securely story password hashes, but I wanted something with more functionality built in. That’s why I used the Devise gem which provides for the creation of its own &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt; model and gives you additional tools like email confirmation should you desire them. Most importantly, it’s battle tested and commonly used to provide secure authentication for Rails applications.&lt;/p&gt;
+&lt;p&gt;Setting up a secure login/logout system can be challenging considering the number of security threats out there. You can roll your own authentication using &lt;a href=&quot;https://github.com/codahale/bcrypt-ruby&quot;&gt;bcrypt&lt;/a&gt; to securely store password hashes, but I wanted something with more functionality built in. That’s why I used the &lt;a href=&quot;https://github.com/plataformatec/devise&quot;&gt;Devise&lt;/a&gt; gem which provides for the creation of its own &lt;code class=&quot;highlighter-rouge&quot;&gt;User&lt;/code&gt; model and gives you additional tools like email confirmation should you desire them. Most importantly, it’s battle tested and commonly used to provide secure authentication for Rails applications.&lt;/p&gt;
 
-&lt;p&gt;In addition, I used &lt;a href=&quot;https://github.com/plataformatec/devise&quot;&gt;Devise&lt;/a&gt; to provide OAuth authentication for Facebook, so you can securely sign in with a Facebook account as well.&lt;/p&gt;
+&lt;p&gt;In addition, I used Devise to provide OAuth authentication for Facebook, so you can securely sign in with a Facebook account as well.&lt;/p&gt;
 
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
 
-&lt;p&gt;Overall, this is just a small overview of what turned out to be a relatively complex project. There’s a lot more functionality I’d like to build eventually to make this more of a viable tool for writers, including building more of a front end, but for now it has served its purpose.&lt;/p&gt;
+&lt;p&gt;Overall, this is just a small overview of what turned out to be a relatively complex project. There’s a lot more functionality I’d like to build eventually to make this more of a viable tool for writers, including building more of a front end, but for now it serves its purpose.&lt;/p&gt;
 
 &lt;p&gt;You can find the source code for this project &lt;a href=&quot;https://github.com/MitulMistry/rails-storyplan&quot;&gt;here on Github.&lt;/a&gt;&lt;/p&gt;
 

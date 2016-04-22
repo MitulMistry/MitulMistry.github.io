@@ -4,13 +4,13 @@ title:  "Rails Project - Storyplan"
 date:   2016-04-22 13:00:00
 categories: ruby rails
 ---
-Making a Rails application is hard. There are so many compoments, considerations, and features to be dealt with that the process can quickly become complicated and overwhelming, especially when you're just starting out as a developer. For my first full-fledged Rails project, I'll give an overview on how I broke down the process and attempted to build out the application one piece at a time.
+Making a Rails application is hard. There are so many components, considerations, and features to be dealt with that the process can quickly become complicated and overwhelming, especially when you're just starting out as a developer. For my first full-fledged Rails project, I'll give an overview on how I broke down the process and attempted to build out the application one piece at a time.
 
 The application is tentatively titled Storyplan and is intended as a tool to help writers plot out stories. Writing a story often requires a great deal of structure, planning, and constituent components, and I wanted to create a website that would make it easier to build and keep track of everything.
 
 ##Models##
 
-I started out by mapping out the models and migrations. Using the `rails generate resource` command, you can use Rails to generate a model, database migration for that model, and a controller, and I used it to get a head start. My models were as follows:
+I started by mapping out the models and migrations. Using the `rails generate resource` command, you can use Rails to generate a model, database migration for that model, and a controller, and I used it to get a head start. My models were as follows:
 
 * `User` - Generated using the Devise gem for authentication.
 * `Story` - Belongs to a `User`.
@@ -44,7 +44,7 @@ class Story < ActiveRecord::Base
   extend ClassOrderable
 
   def recent_comments
-    self.comments.order('created_at DESC').last(10) #self.comments.limit(10).order('created_at DESC').reverse
+    self.comments.order('created_at DESC').last(10)
   end
 end
 {% endhighlight %}
@@ -55,7 +55,7 @@ Unlike Sinatra, Rails has a separate router from its controllers and uses it to 
 
 *[See the routes file here.][storyplan-routes]*
 
-As far as controllers are concerned, I used one controller per model with a few miscellaneous controllers thrown in as well to handle other tasks. This is basically a CRUD (Create, Read, Update, Delete) application, so many of the controllers handle similar tasks. So for example, the `Stories` controller handles serving all the stories for the stories index, showing a particular story, serving a form for a new story or editing an old one, processing the creation and update of a story based on input from the form, and destroying a story as well. These correspond to [RESTful routes][restful-routes] (Representational State Transfer): Index, Show, New, Create, Edit, Update, Destroy.
+As far as controllers are concerned, I used one controller per model with a few miscellaneous controllers thrown in as well to handle other tasks. This is basically a CRUD (Create, Read, Update, Delete) application, so many of the controllers handle similar tasks. So for example, the `Stories` controller handles serving all the stories for the stories index, showing a particular story, serving a form for a new story or editing an old one, processing the creation and update of a story based on input from the form, and destroying a story as well. These correspond to [RESTful routes][restful-routes] (Representational State Transfer): Index, Show, New, Create, Edit, Update, Destroy. This is simply a paradigm to keep things consistent across different web applications and is an example of Rails's philosophy of convention over configuration.
 
 There are other levels of complexity involved, such as authorization (making sure the user creating or updating a story has permission to do so) or white-listing the data received (using [strong parameters][strong-params]) from the form so no improper data is forcibly entered.
 
@@ -99,13 +99,13 @@ So when you go to the stories index page, it displays a grid of stories that sim
 
 ##Authentication##
 
-Setting up a secure login/logout system can be challenging considering the number of security threats we must now contend with. You can roll your own authentication using [bcrypt][bcrypt] to securely story password hashes, but I wanted something with more functionality built in. That's why I used the Devise gem which provides for the creation of its own `User` model and gives you additional tools like email confirmation should you desire them. Most importantly, it's battle tested and commonly used to provide secure authentication for Rails applications.
+Setting up a secure login/logout system can be challenging considering the number of security threats out there. You can roll your own authentication using [bcrypt][bcrypt] to securely store password hashes, but I wanted something with more functionality built in. That's why I used the [Devise][devise] gem which provides for the creation of its own `User` model and gives you additional tools like email confirmation should you desire them. Most importantly, it's battle tested and commonly used to provide secure authentication for Rails applications.
 
-In addition, I used [Devise][devise] to provide OAuth authentication for Facebook, so you can securely sign in with a Facebook account as well.
+In addition, I used Devise to provide OAuth authentication for Facebook, so you can securely sign in with a Facebook account as well.
 
 ##Conclusion##
 
-Overall, this is just a small overview of what turned out to be a relatively complex project. There's a lot more functionality I'd like to build eventually to make this more of a viable tool for writers, including building more of a front end, but for now it has served its purpose.  
+Overall, this is just a small overview of what turned out to be a relatively complex project. There's a lot more functionality I'd like to build eventually to make this more of a viable tool for writers, including building more of a front end, but for now it serves its purpose.
 
 You can find the source code for this project [here on Github.][github-repo]
 
