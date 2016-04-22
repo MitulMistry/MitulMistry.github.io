@@ -8,7 +8,7 @@ Making a Rails application is hard. There are so many components, considerations
 
 The application is tentatively titled Storyplan and is intended as a tool to help writers plot out stories. Writing a story often requires a great deal of structure, planning, and constituent components, and I wanted to create a website that would make it easier to build and keep track of everything.
 
-##Models##
+**Models**
 
 I started by mapping out the models and migrations. Using the `rails generate resource` command, you can use Rails to generate a model, database migration for that model, and a controller, and I used it to get a head start. My models were as follows:
 
@@ -49,7 +49,7 @@ class Story < ActiveRecord::Base
 end
 {% endhighlight %}
 
-##Routes and Controllers##
+**Routes and Controllers**
 
 Unlike Sinatra, Rails has a separate router from its controllers and uses it to map the routes to actions in those controllers. My routes were mostly resources for the above mentioned models, with a few nested resources to do things like the find all the `Characters` of a particular `User`.
 
@@ -61,7 +61,7 @@ There are other levels of complexity involved, such as authorization (making sur
 
 *[See the story controller here.][storyplan-story-controller]*
 
-##Views##
+**Views**
 For the front end, I used the [Bootstrap-Sass][bootstrap-sass] gem for Rails. It has a very generic look to it, but for now it works to help it look presentable.
 
 The views use a variety of partials to make the display code reusable. For example, for each model, there is a partial that creates a sort of visual card for it that includes pertinent information. I then use a grid system to display collections of that model.
@@ -97,13 +97,13 @@ The views use a variety of partials to make the display code reusable. For examp
 
 So when you go to the stories index page, it displays a grid of stories that simply repeat that model partial with new information from each collection item.
 
-##Authentication##
+**Authentication**
 
 Setting up a secure login/logout system can be challenging considering the number of security threats out there. You can roll your own authentication using [bcrypt][bcrypt] to securely store password hashes, but I wanted something with more functionality built in. That's why I used the [Devise][devise] gem which provides for the creation of its own `User` model and gives you additional tools like email confirmation should you desire them. Most importantly, it's battle tested and commonly used to provide secure authentication for Rails applications.
 
 In addition, I used Devise to provide OAuth authentication for Facebook, so you can securely sign in with a Facebook account as well.
 
-##Conclusion##
+**Conclusion**
 
 Overall, this is just a small overview of what turned out to be a relatively complex project. There's a lot more functionality I'd like to build eventually to make this more of a viable tool for writers, including building more of a front end, but for now it serves its purpose.
 
