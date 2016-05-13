@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "Why I decided to learn software development",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/general/learning-development/",
+      "date"     : "2016-05-12 18:30:00 -0500"
+    } ,
+  
+    {
       "title"    : "Rails Project - Storyplan",
       "category" : "",
       "tags"     : "",

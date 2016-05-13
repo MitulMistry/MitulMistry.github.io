@@ -92,6 +92,9 @@
             <ul class="header-submenu">
               
                 
+                  <li class="sub-item"><a href="/categories/#general">general</a></li>
+              
+                
                   <li class="sub-item"><a href="/categories/#rails">rails</a></li>
               
                 
@@ -159,6 +162,9 @@
           <ul>
             
               
+                <li><a href="/categories/#general">general</a></li>
+            
+              
                 <li><a href="/categories/#rails">rails</a></li>
             
               
@@ -185,6 +191,39 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2016-05-12T18:30:00-05:00"><a href="/general/learning-development/">May 12, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/general/learning-development/" rel="bookmark" title="Why I decided to learn software development" itemprop="url">Why I decided to learn software development</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    
+      <p>Making the decision to learn a hugely difficult skillset is not something to be taken lightly. This is especially true when it requires immense technical knowledge. So deciding to make a commitment to software development, for me, was a big deal.</p>
+
+<p>Previously, I had been working as an artist and designer. I loved art, but found the business side of creative work to be punishing and contrary to what made me passionate about art in the first place. As I spent years doing freelance jobs and checking job listings, the reality of the market eventually became clear. Artists were rarely in demand, but there were always openings for programmers.</p>
+
+<p>Software developers create products and facillitate services in ways that directly create value for users and employers. In contrast, the work that artists and designers do will always be more limited. In order to be relevant, you need skills that can actually solve people’s problems, and art just wasn’t enough of an answer.</p>
+
+<p>I had programmed before in the past - dealing with languages like <code class="highlighter-rouge">Visual Basic</code>, <code class="highlighter-rouge">Java</code>, and <code class="highlighter-rouge">C++</code>. I had enjoyed being able to create functional, interactive products, and solving problems in logical, algorithmic ways. It offered me a way to create more value for others and at a certain point, it became obvious that in order to achieve my goals, I needed to switch tracks.</p>
+
+<p>Since making that decision, I’ve made huge progress learning <code class="highlighter-rouge">Ruby</code>, <code class="highlighter-rouge">Rails</code>, <code class="highlighter-rouge">ActiveRecord</code>, <code class="highlighter-rouge">JavaScript</code>, and <code class="highlighter-rouge">Angular</code> as well. In a short period of time, I’ve developed a much more marketable skillset and I know that I’ll now be able to make more of an impact with what I’ve learned.</p>
+
+    
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2016-04-22T08:00:00-05:00"><a href="/ruby/rails/rails-project/">April 22, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
       
       <span class="entry-reading-time">
@@ -204,7 +243,7 @@
 
 <p>The application is tentatively titled Storyplan and is intended as a tool to help writers plot out stories. Writing a story often requires a great deal of structure, planning, and constituent components, and I wanted to create a website that would make it easier to build and keep track of everything.</p>
 
-<h2 id="models">Models</h2>
+<p><strong>Models</strong></p>
 
 <p>I started by mapping out the models and migrations. Using the <code class="highlighter-rouge">rails generate resource</code> command, you can use Rails to generate a model, database migration for that model, and a controller, and I used it to get a head start. My models were as follows:</p>
 
@@ -246,7 +285,7 @@
   <span class="k">end</span>
 <span class="k">end</span></code></pre></figure>
 
-<h2 id="routes-and-controllers">Routes and Controllers</h2>
+<p><strong>Routes and Controllers</strong></p>
 
 <p>Unlike Sinatra, Rails has a separate router from its controllers and uses it to map the routes to actions in those controllers. My routes were mostly resources for the above mentioned models, with a few nested resources to do things like the find all the <code class="highlighter-rouge">Characters</code> of a particular <code class="highlighter-rouge">User</code>.</p>
 
@@ -258,7 +297,8 @@
 
 <p><em><a href="https://github.com/MitulMistry/rails-storyplan/blob/master/app/controllers/stories_controller.rb">See the story controller here.</a></em></p>
 
-<h2 id="views">Views</h2>
+<p><strong>Views</strong></p>
+
 <p>For the front end, I used the <a href="https://github.com/twbs/bootstrap-sass">Bootstrap-Sass</a> gem for Rails. It has a very generic look to it, but for now it works to help it look presentable.</p>
 
 <p>The views use a variety of partials to make the display code reusable. For example, for each model, there is a partial that creates a sort of visual card for it that includes pertinent information. I then use a grid system to display collections of that model.</p>
@@ -293,13 +333,13 @@
 
 <p>So when you go to the stories index page, it displays a grid of stories that simply repeat that model partial with new information from each collection item.</p>
 
-<h2 id="authentication">Authentication</h2>
+<p><strong>Authentication</strong></p>
 
 <p>Setting up a secure login/logout system can be challenging considering the number of security threats out there. You can roll your own authentication using <a href="https://github.com/codahale/bcrypt-ruby">bcrypt</a> to securely store password hashes, but I wanted something with more functionality built in. That’s why I used the <a href="https://github.com/plataformatec/devise">Devise</a> gem which provides for the creation of its own <code class="highlighter-rouge">User</code> model and gives you additional tools like email confirmation should you desire them. Most importantly, it’s battle tested and commonly used to provide secure authentication for Rails applications.</p>
 
 <p>In addition, I used Devise to provide OAuth authentication for Facebook, so you can securely sign in with a Facebook account as well.</p>
 
-<h2 id="conclusion">Conclusion</h2>
+<p><strong>Conclusion</strong></p>
 
 <p>Overall, this is just a small overview of what turned out to be a relatively complex project. There’s a lot more functionality I’d like to build eventually to make this more of a viable tool for writers, including building more of a front end, but for now it serves its purpose.</p>
 

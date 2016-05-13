@@ -92,6 +92,9 @@
             <ul class="header-submenu">
               
                 
+                  <li class="sub-item"><a href="/categories/#general">general</a></li>
+              
+                
                   <li class="sub-item"><a href="/categories/#rails">rails</a></li>
               
                 
@@ -161,6 +164,9 @@
           <ul>
             
               
+                <li><a href="/categories/#general">general</a></li>
+            
+              
                 <li><a href="/categories/#rails">rails</a></li>
             
               
@@ -190,7 +196,7 @@
 
 <p>The application is tentatively titled Storyplan and is intended as a tool to help writers plot out stories. Writing a story often requires a great deal of structure, planning, and constituent components, and I wanted to create a website that would make it easier to build and keep track of everything.</p>
 
-<h2 id="models">Models</h2>
+<p><strong>Models</strong></p>
 
 <p>I started by mapping out the models and migrations. Using the <code class="highlighter-rouge">rails generate resource</code> command, you can use Rails to generate a model, database migration for that model, and a controller, and I used it to get a head start. My models were as follows:</p>
 
@@ -232,7 +238,7 @@
   <span class="k">end</span>
 <span class="k">end</span></code></pre></figure>
 
-<h2 id="routes-and-controllers">Routes and Controllers</h2>
+<p><strong>Routes and Controllers</strong></p>
 
 <p>Unlike Sinatra, Rails has a separate router from its controllers and uses it to map the routes to actions in those controllers. My routes were mostly resources for the above mentioned models, with a few nested resources to do things like the find all the <code class="highlighter-rouge">Characters</code> of a particular <code class="highlighter-rouge">User</code>.</p>
 
@@ -244,7 +250,8 @@
 
 <p><em><a href="https://github.com/MitulMistry/rails-storyplan/blob/master/app/controllers/stories_controller.rb">See the story controller here.</a></em></p>
 
-<h2 id="views">Views</h2>
+<p><strong>Views</strong></p>
+
 <p>For the front end, I used the <a href="https://github.com/twbs/bootstrap-sass">Bootstrap-Sass</a> gem for Rails. It has a very generic look to it, but for now it works to help it look presentable.</p>
 
 <p>The views use a variety of partials to make the display code reusable. For example, for each model, there is a partial that creates a sort of visual card for it that includes pertinent information. I then use a grid system to display collections of that model.</p>
@@ -279,13 +286,13 @@
 
 <p>So when you go to the stories index page, it displays a grid of stories that simply repeat that model partial with new information from each collection item.</p>
 
-<h2 id="authentication">Authentication</h2>
+<p><strong>Authentication</strong></p>
 
 <p>Setting up a secure login/logout system can be challenging considering the number of security threats out there. You can roll your own authentication using <a href="https://github.com/codahale/bcrypt-ruby">bcrypt</a> to securely store password hashes, but I wanted something with more functionality built in. That’s why I used the <a href="https://github.com/plataformatec/devise">Devise</a> gem which provides for the creation of its own <code class="highlighter-rouge">User</code> model and gives you additional tools like email confirmation should you desire them. Most importantly, it’s battle tested and commonly used to provide secure authentication for Rails applications.</p>
 
 <p>In addition, I used Devise to provide OAuth authentication for Facebook, so you can securely sign in with a Facebook account as well.</p>
 
-<h2 id="conclusion">Conclusion</h2>
+<p><strong>Conclusion</strong></p>
 
 <p>Overall, this is just a small overview of what turned out to be a relatively complex project. There’s a lot more functionality I’d like to build eventually to make this more of a viable tool for writers, including building more of a front end, but for now it serves its purpose.</p>
 
@@ -342,11 +349,16 @@
       <a href="/ruby/sinatra/sinatra-project/" class="read-more-btn">Read More</a>
     </div><!-- /.read-more-header -->
     <div class="read-more-content">
-      <h3><a href="/ruby/sinatra/sinatra-project/" title="Sinatra Project - Simple Blog">Sinatra Project - Simple Blog</a></h3>
-      <p>After learning the basics of Ruby and ORMs, I’ve been working on a project leveraging the Sinatra development framework. Along with Activ...&hellip; <a href="/ruby/sinatra/sinatra-project/">Continue reading</a></p>
+      <h3><a href="/general/learning-development/" title="Why I decided to learn software development">Why I decided to learn software development</a></h3>
+      <p>Making the decision to learn a hugely difficult skillset is not something to be taken lightly. This is especially true when it requires i...&hellip; <a href="/general/learning-development/">Continue reading</a></p>
     </div><!-- /.read-more-content -->
   
   <div class="read-more-list">
+    
+      <div class="list-item">
+        <h4><a href="/ruby/sinatra/sinatra-project/" title="Sinatra Project - Simple Blog">Sinatra Project - Simple Blog</a></h4>
+        <span>Published on February 24, 2016</span>
+      </div><!-- /.list-item -->
     
       <div class="list-item">
         <h4><a href="/ruby/steam-cli-gem/" title="Steam Top Sellers CLI Gem">Steam Top Sellers CLI Gem</a></h4>
