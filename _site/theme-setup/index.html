@@ -193,26 +193,26 @@
 <h2 id="basic-setup-for-a-new-jekyll-site">Basic Setup for a new Jekyll site</h2>
 
 <ol>
-  <li><a href="http://bundler.io">Install Bundler</a> <code class="highlighter-rouge">gem install bundler</code> and then install <a href="http://jekyllrb.com">Jekyll</a> and all dependencies <code class="highlighter-rouge">bundle install</code>.</li>
+  <li><a href="http://bundler.io">Install Bundler</a> <code>gem install bundler</code> and then install <a href="http://jekyllrb.com">Jekyll</a> and all dependencies <code>bundle install</code>.</li>
   <li>Fork the <a href="http://github.com/aron-bordin/neo-hpstr-jekyll-theme/fork">Neo-HPSTR Jekyll Theme repo</a>.</li>
   <li>Clone the repo you just forked and rename it.</li>
-  <li>Edit <code class="highlighter-rouge">_config.yml</code> to personalize your site.</li>
-  <li>Check out the sample posts in <code class="highlighter-rouge">_posts</code> to see examples for pulling in large feature images, assigning categories and tags, and other YAML data.</li>
+  <li>Edit <code>_config.yml</code> to personalize your site.</li>
+  <li>Check out the sample posts in <code>_posts</code> to see examples for pulling in large feature images, assigning categories and tags, and other YAML data.</li>
   <li>Read the documentation below for further customization pointers and documentation.</li>
 </ol>
 
 <div><a href="http://github.com/aron-bordin/neo-hpstr-jekyll-theme/archive/master.zip" class="btn">Download the Theme</a></div>
 
-<p class="notice"><strong>Pro-tip:</strong> Delete the <code class="highlighter-rouge">gh-pages</code> branch after cloning and start fresh by branching off <code class="highlighter-rouge">master</code>. There is a bunch of garbage in <code class="highlighter-rouge">gh-pages</code> used for the theme’s demo site that I’m guessing you don’t want on your site.</p>
+<p class="notice"><strong>Pro-tip:</strong> Delete the <code>gh-pages</code> branch after cloning and start fresh by branching off <code>master</code>. There is a bunch of garbage in <code>gh-pages</code> used for the theme’s demo site that I’m guessing you don’t want on your site.</p>
 
 <hr />
 
 <h2 id="setup-for-an-existing-jekyll-site">Setup for an Existing Jekyll site</h2>
 
 <ol>
-  <li>Clone the following folders: <code class="highlighter-rouge">_includes</code>, <code class="highlighter-rouge">_layouts</code>, <code class="highlighter-rouge">_sass</code>, <code class="highlighter-rouge">assets</code>, and <code class="highlighter-rouge">images</code>.</li>
-  <li>Clone the following folders/files and personalize content as need: <code class="highlighter-rouge">posts/</code>, <code class="highlighter-rouge">tags/</code>, <code class="highlighter-rouge">feed.xml</code> and <code class="highlighter-rouge">index.html</code>.</li>
-  <li>Set the following variables in your <code class="highlighter-rouge">config.yml</code> file:</li>
+  <li>Clone the following folders: <code>_includes</code>, <code>_layouts</code>, <code>_sass</code>, <code>assets</code>, and <code>images</code>.</li>
+  <li>Clone the following folders/files and personalize content as need: <code>posts/</code>, <code>tags/</code>, <code>feed.xml</code> and <code>index.html</code>.</li>
+  <li>Set the following variables in your <code>config.yml</code> file:</li>
 </ol>
 
 <figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">title</span><span class="pi">:</span>            <span class="s">Blog Title</span>
@@ -325,7 +325,7 @@
 
 <h2 id="running-jekyll">Running Jekyll</h2>
 
-<p>If <code class="highlighter-rouge">jekyll build</code> and <code class="highlighter-rouge">jekyll serve</code> throw errors you may have to run Jekyll with <code class="highlighter-rouge">bundle exec</code> instead.</p>
+<p>If <code>jekyll build</code> and <code>jekyll serve</code> throw errors you may have to run Jekyll with <code>bundle exec</code> instead.</p>
 
 <blockquote>
   <p>In some cases, running executables without bundle exec may work, if the executable happens to be installed in your system and does not pull in any gems that conflict with your bundle.</p>
@@ -373,11 +373,11 @@ bundle exec jekyll serve</code></pre></figure>
 
 <h2 id="customization">Customization</h2>
 
-<p>Most of the variables found here are used in the .html files found in <code class="highlighter-rouge">_includes</code> if you need to add or remove anything. A good place to start would be to add the <code class="highlighter-rouge">title</code>, <code class="highlighter-rouge">description</code>, and <code class="highlighter-rouge">url</code> for your site. Links are absolute and prefixed with <code class="highlighter-rouge"><span class="p">{</span><span class="err">{</span><span class="w"> </span><span class="err">site.url</span><span class="w"> </span><span class="p">}</span><span class="err">}</span></code> in the various <code class="highlighter-rouge">_includes</code> and <code class="highlighter-rouge">_layouts</code>, so remember to properly set <code class="highlighter-rouge">url</code><sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> to <code class="highlighter-rouge">http://localhost:4000</code> when developing locally.</p>
+<p>Most of the variables found here are used in the .html files found in <code>_includes</code> if you need to add or remove anything. A good place to start would be to add the <code>title</code>, <code>description</code>, and <code>url</code> for your site. Links are absolute and prefixed with <code>{{ site.url }}</code> in the various <code>_includes</code> and <code>_layouts</code>, so remember to properly set <code>url</code><sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> to <code>http://localhost:4000</code> when developing locally.</p>
 
 <h3 id="disqus-comments">Disqus Comments</h3>
 
-<p>Create a <a href="http://disqus.com">Disqus</a> account and change <code class="highlighter-rouge">disqus_shortname</code> in <code class="highlighter-rouge">_config.yml</code> to the Disqus <em>shortname</em> you just setup. By default comments appear on all post and pages if you assigned a shortname. To disable commenting on a post or page, add the following to its YAML Front Matter:</p>
+<p>Create a <a href="http://disqus.com">Disqus</a> account and change <code>disqus_shortname</code> in <code>_config.yml</code> to the Disqus <em>shortname</em> you just setup. By default comments appear on all post and pages if you assigned a shortname. To disable commenting on a post or page, add the following to its YAML Front Matter:</p>
 
 <figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">comments</span><span class="pi">:</span> <span class="s">false</span></code></pre></figure>
 
@@ -389,13 +389,13 @@ bundle exec jekyll serve</code></pre></figure>
 
 <h3 id="floating-social-share-links">Floating Social Share Links</h3>
 
-<p>To enable floating share links on the left of the screen, edit it on <code class="highlighter-rouge">_config.yml</code>:</p>
+<p>To enable floating share links on the left of the screen, edit it on <code>_config.yml</code>:</p>
 
 <figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">float_share</span><span class="pi">:</span> <span class="s">true</span></code></pre></figure>
 
 <h3 id="ownerauthor-information">Owner/Author Information</h3>
 
-<p>Change your name, and avatar photo (200x200 pixels or larger), email, and social networking URLs. If you want to link to an external image on Gravatar or something similar you’ll need to edit the path in <code class="highlighter-rouge">_includes/author.html</code> since it assumes it is hosted on your site.</p>
+<p>Change your name, and avatar photo (200x200 pixels or larger), email, and social networking URLs. If you want to link to an external image on Gravatar or something similar you’ll need to edit the path in <code>_includes/author.html</code> since it assumes it is hosted on your site.</p>
 
 <h3 id="google-analytics-and-webmaster-tools">Google Analytics and Webmaster Tools</h3>
 
@@ -403,7 +403,7 @@ bundle exec jekyll serve</code></pre></figure>
 
 <h3 id="top-menu---navigation-links">Top Menu - Navigation Links</h3>
 
-<p>To add additional links in the menu edit <code class="highlighter-rouge">_config.yml</code>. Use the following format to set the URL and title for as many links as you’d like. <em>External links will open in a new window..</em> You can create a sub-category using the <code class="highlighter-rouge">submenu</code> item. Also, you can list your post categories setting the <code class="highlighter-rouge">type: 'categories'</code></p>
+<p>To add additional links in the menu edit <code>_config.yml</code>. Use the following format to set the URL and title for as many links as you’d like. <em>External links will open in a new window..</em> You can create a sub-category using the <code>submenu</code> item. Also, you can list your post categories setting the <code>type: 'categories'</code></p>
 
 <figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">menu</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="s">title</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Home'</span>
@@ -439,7 +439,7 @@ bundle exec jekyll serve</code></pre></figure>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>octopress new post <span class="s2">"Post Title"</span></code></pre></figure>
 
-<p>Default works great if you want all your posts in one directory, but if you’re like me and want to group them into subfolders like <code class="highlighter-rouge">/posts</code>, <code class="highlighter-rouge">/portfolio</code>, etc. Then this is the command for you. By specifying the DIR it will create a new post in that folder and populate the <code class="highlighter-rouge">categories:</code> YAML with the same value.</p>
+<p>Default works great if you want all your posts in one directory, but if you’re like me and want to group them into subfolders like <code>/posts</code>, <code>/portfolio</code>, etc. Then this is the command for you. By specifying the DIR it will create a new post in that folder and populate the <code>categories:</code> YAML with the same value.</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>octopress new post <span class="s2">"New Portfolio Post Title"</span> --dir portfolio</code></pre></figure>
 
@@ -453,15 +453,15 @@ bundle exec jekyll serve</code></pre></figure>
 
 <h3 id="jekyll-includes">Jekyll _includes</h3>
 
-<p>For the most part you can leave these as is since the author/owner details are pulled from <code class="highlighter-rouge">_config.yml</code>. That said you’ll probably want to customize the copyright stuff in <code class="highlighter-rouge">footer.html</code> to your liking.</p>
+<p>For the most part you can leave these as is since the author/owner details are pulled from <code>_config.yml</code>. That said you’ll probably want to customize the copyright stuff in <code>footer.html</code> to your liking.</p>
 
 <h3 id="reading-time">Reading Time</h3>
 
-<p>On by default. To turn off remove <code class="highlighter-rouge">reading_time</code> from <code class="highlighter-rouge">_config.yml</code>. Default words per minute is set at 200 and can changed by updating <code class="highlighter-rouge">words_per_minute</code> in <code class="highlighter-rouge">_config.yml</code>.</p>
+<p>On by default. To turn off remove <code>reading_time</code> from <code>_config.yml</code>. Default words per minute is set at 200 and can changed by updating <code>words_per_minute</code> in <code>_config.yml</code>.</p>
 
 <h4 id="postpage-thumbnails-for-og-and-twitter-cards">Post/Page Thumbnails for OG and Twitter Cards</h4>
 
-<p>Post and page thumbnails work the same way. These are used by <a href="https://developers.facebook.com/docs/opengraph/">Open Graph</a> and <a href="https://dev.twitter.com/docs/cards">Twitter Cards</a> meta tags found in <code class="highlighter-rouge">head.html</code>. If you don’t assign a thumbnail the image you assigned to <code class="highlighter-rouge">site.owner.avatar</code> in <code class="highlighter-rouge">_config.yml</code> will be used.</p>
+<p>Post and page thumbnails work the same way. These are used by <a href="https://developers.facebook.com/docs/opengraph/">Open Graph</a> and <a href="https://dev.twitter.com/docs/cards">Twitter Cards</a> meta tags found in <code>head.html</code>. If you don’t assign a thumbnail the image you assigned to <code>site.owner.avatar</code> in <code>_config.yml</code> will be used.</p>
 
 <p>Here’s an example of what a tweet to your site could look like if you activate Twitter Cards and include all the metas in your post’s YAML.</p>
 
@@ -471,7 +471,7 @@ bundle exec jekyll serve</code></pre></figure>
 
 <p>Video embeds are responsive and scale with the width of the main content block with the help of <a href="http://fitvidsjs.com/">FitVids</a>.</p>
 
-<p>Adding YouTube video embeds causes errors when building your Jekyll site. To fix wrap the html within <code class="highlighter-rouge"><span class="p">{</span><span class="err">::nomarkdown</span><span class="p">}</span></code> tags. Example below:</p>
+<p>Adding YouTube video embeds causes errors when building your Jekyll site. To fix wrap the html within <code>{::nomarkdown}</code> tags. Example below:</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{::nomarkdown}
 <span class="nt">&lt;iframe</span> <span class="na">width=</span><span class="s">"560"</span> <span class="na">height=</span><span class="s">"315"</span> <span class="na">src=</span><span class="s">"http://www.youtube.com/embed/PWf4WUoMXwg"</span> <span class="na">frameborder=</span><span class="s">"0"</span> <span class="na">allowfullscreen</span><span class="nt">&gt;&lt;/iframe&gt;</span>
@@ -479,47 +479,47 @@ bundle exec jekyll serve</code></pre></figure>
 
 <h3 id="twitter-cards">Twitter Cards</h3>
 
-<p>Twitter cards make it possible to attach images and post summaries to Tweets that link to your content. Summary Card meta tags have been added to <code class="highlighter-rouge">head.html</code> to support this, you just need to <a href="https://dev.twitter.com/docs/cards">validate and apply your domain</a> to turn it on.</p>
+<p>Twitter cards make it possible to attach images and post summaries to Tweets that link to your content. Summary Card meta tags have been added to <code>head.html</code> to support this, you just need to <a href="https://dev.twitter.com/docs/cards">validate and apply your domain</a> to turn it on.</p>
 
 <h3 id="link-post-type">Link Post Type</h3>
 
-<p>Link blog like a champ by adding <code class="highlighter-rouge">link: http://url-you-want-linked</code> to a post’s YAML front matter. Arrow glyph links to the post’s permalink and the the <code class="highlighter-rouge">post-title</code> links to the source URL. Here’s an <a href="/sample-link-post/">example of a link post</a> if you need a visual.</p>
+<p>Link blog like a champ by adding <code>link: http://url-you-want-linked</code> to a post’s YAML front matter. Arrow glyph links to the post’s permalink and the the <code>post-title</code> links to the source URL. Here’s an <a href="/sample-link-post/">example of a link post</a> if you need a visual.</p>
 
 <hr />
 
 <h2 id="style-customization">Style Customization</h2>
 
-<p>Here you’ll find some useful scss variables to help you to customize your Blog interface. All variables can be found at <code class="highlighter-rouge">_sass/_variables.scss</code>.</p>
+<p>Here you’ll find some useful scss variables to help you to customize your Blog interface. All variables can be found at <code>_sass/_variables.scss</code>.</p>
 
 <h4 id="top-navbar-size">Top Navbar Size</h4>
 
-<p>To change its size, edit the <strong><code class="highlighter-rouge">$menu-height</code></strong> value. It’s recommended a value between 50px and 100px. This variable will automatically update the icon and menu size for you.</p>
+<p>To change its size, edit the <strong><code>$menu-height</code></strong> value. It’s recommended a value between 50px and 100px. This variable will automatically update the icon and menu size for you.</p>
 
 <h4 id="top-navbar-colors">Top Navbar Colors</h4>
 
 <p>The navbar uses two colors, the top color and overflow color. The top color represents the navbar color when the window is not scrolled and the overflow color represents the color when we have a sufficient scroll to change its color.</p>
 
-<p>You can change these colors using the <strong><code class="highlighter-rouge">$menu-top</code></strong> and <strong><code class="highlighter-rouge">$menu-overflow</code></strong> variable values.</p>
+<p>You can change these colors using the <strong><code>$menu-top</code></strong> and <strong><code>$menu-overflow</code></strong> variable values.</p>
 
 <h4 id="top-navbar-hover-color">Top Navbar hover color</h4>
 
-<p>The color that you see in the item under the mouse can be changed in the <strong><code class="highlighter-rouge">$header-margin</code></strong> variable.</p>
+<p>The color that you see in the item under the mouse can be changed in the <strong><code>$header-margin</code></strong> variable.</p>
 
 <hr />
 
 <h2 id="further-customization">Further Customization</h2>
 
-<p>Jekyll 2.x added support for Sass files making it much easier to modify a theme’s fonts and colors. By editing values found in <code class="highlighter-rouge">_sass/variables.scss</code> you can fine tune the site’s colors and typography.</p>
+<p>Jekyll 2.x added support for Sass files making it much easier to modify a theme’s fonts and colors. By editing values found in <code>_sass/variables.scss</code> you can fine tune the site’s colors and typography.</p>
 
-<p>For example if you wanted a red background instead of white you’d change <code class="highlighter-rouge">$bodycolor: #fff;</code> to <code class="highlighter-rouge">$bodycolor: $cc0033;</code>.</p>
+<p>For example if you wanted a red background instead of white you’d change <code>$bodycolor: #fff;</code> to <code>$bodycolor: $cc0033;</code>.</p>
 
-<p>To modify the site’s JavaScript files I setup a Grunt build script to lint/concatenate/minify all scripts into <code class="highlighter-rouge">scripts.min.js</code>. <a href="http://nodejs.org/">Install Node.js</a>, then <a href="http://gruntjs.com/getting-started">install Grunt</a>, and then finally install the dependencies for the theme contained in <code class="highlighter-rouge">package.json</code>:</p>
+<p>To modify the site’s JavaScript files I setup a Grunt build script to lint/concatenate/minify all scripts into <code>scripts.min.js</code>. <a href="http://nodejs.org/">Install Node.js</a>, then <a href="http://gruntjs.com/getting-started">install Grunt</a>, and then finally install the dependencies for the theme contained in <code>package.json</code>:</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">npm install</code></pre></figure>
 
-<p>From the theme’s root, use <code class="highlighter-rouge">grunt</code> to concatenate JavaScript files and optimize <code class="highlighter-rouge">.jpg</code>, <code class="highlighter-rouge">.png</code> and <code class="highlighter-rouge">.svg</code> files in the <code class="highlighter-rouge">images/</code> folder.</p>
+<p>From the theme’s root, use <code>grunt</code> to concatenate JavaScript files and optimize <code>.jpg</code>, <code>.png</code> and <code>.svg</code> files in the <code>images/</code> folder.</p>
 
-<p>You can also use <code class="highlighter-rouge">grunt dev</code> in combination with <code class="highlighter-rouge">bundle exec jekyll serve</code> to watch for updates in JS files that Grunt will then automatically re-build as you write your code, which will in turn auto-generate your Jekyll site when developing locally.</p>
+<p>You can also use <code>grunt dev</code> in combination with <code>bundle exec jekyll serve</code> to watch for updates in JS files that Grunt will then automatically re-build as you write your code, which will in turn auto-generate your Jekyll site when developing locally.</p>
 
 <hr />
 
@@ -538,7 +538,7 @@ bundle exec jekyll serve</code></pre></figure>
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p>Used to generate absolute URLs in <code class="highlighter-rouge">feed.xml</code>, and for canonical URLs in <code class="highlighter-rouge">head.html</code>. Don’t include a trailing <code class="highlighter-rouge">/</code> in your base url ie: http://mademistakes.com. When developing locally I suggest using http://localhost:4000 or whatever localhost you’re using to properly load all theme stylesheets, scripts, and image assets. If you leave this variable blank all links will resolve correctly except those pointing to home. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+      <p>Used to generate absolute URLs in <code>feed.xml</code>, and for canonical URLs in <code>head.html</code>. Don’t include a trailing <code>/</code> in your base url ie: http://mademistakes.com. When developing locally I suggest using http://localhost:4000 or whatever localhost you’re using to properly load all theme stylesheets, scripts, and image assets. If you leave this variable blank all links will resolve correctly except those pointing to home. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>

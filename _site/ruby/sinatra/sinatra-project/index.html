@@ -198,11 +198,11 @@
 
 <p><strong>Models:</strong></p>
 
-<p>The first thing I worked on were the models that would represent the data necessary for the blog to work using Activerecord. This includes <code class="highlighter-rouge">Users</code> which would write and edit <code class="highlighter-rouge">Posts</code>, which would in turn have <code class="highlighter-rouge">Tags</code>. In addition, I used the model <code class="highlighter-rouge">PostTags</code> as well, but only as an intermediary for a join table to connect <code class="highlighter-rouge">Posts</code> and <code class="highlighter-rouge">Tags</code>. This was necessary because a <code class="highlighter-rouge">Post</code> has many <code class="highlighter-rouge">Tags</code>, and a <code class="highlighter-rouge">Tag</code> has many <code class="highlighter-rouge">Posts</code>, and any time there’s a mutual ‘has many’ relationship between models, a join table is needed.</p>
+<p>The first thing I worked on were the models that would represent the data necessary for the blog to work using Activerecord. This includes <code>Users</code> which would write and edit <code>Posts</code>, which would in turn have <code>Tags</code>. In addition, I used the model <code>PostTags</code> as well, but only as an intermediary for a join table to connect <code>Posts</code> and <code>Tags</code>. This was necessary because a <code>Post</code> has many <code>Tags</code>, and a <code>Tag</code> has many <code>Posts</code>, and any time there’s a mutual ‘has many’ relationship between models, a join table is needed.</p>
 
-<p>These associations provide a useful way to list different types of <code class="highlighter-rouge">Posts</code>. All <code class="highlighter-rouge">Posts</code> belong to a <code class="highlighter-rouge">User</code>, so you can easily list all of a <code class="highlighter-rouge">User</code>’s <code class="highlighter-rouge">Posts</code>, or all of a <code class="highlighter-rouge">Tag</code>’s <code class="highlighter-rouge">Posts</code> as well. Providing an easy way to organize information is critical to building a successful application, and ActiveRecord provides ample ways of doing just that.</p>
+<p>These associations provide a useful way to list different types of <code>Posts</code>. All <code>Posts</code> belong to a <code>User</code>, so you can easily list all of a <code>User</code>’s <code>Posts</code>, or all of a <code>Tag</code>’s <code>Posts</code> as well. Providing an easy way to organize information is critical to building a successful application, and ActiveRecord provides ample ways of doing just that.</p>
 
-<p><em>The <code class="highlighter-rouge">Post</code> model code:</em></p>
+<p><em>The <code>Post</code> model code:</em></p>
 
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
   <span class="n">belongs_to</span> <span class="ss">:user</span>
@@ -222,7 +222,7 @@
 
 <p><strong>Controllers:</strong></p>
 
-<p>Unlike a framework like Rails, Sinatra has a unified router and controller. I used a separate controller for each model which helped organize all the different routes and actions. The <code class="highlighter-rouge">Users</code> controller focuses on signing up and logging in <code class="highlighter-rouge">Users</code>. The <code class="highlighter-rouge">Posts</code> controller deals with the majority of the application’s functionality, namely the creation, editting, and deletion of <code class="highlighter-rouge">Posts</code> as well as <code class="highlighter-rouge">Tags</code> (since <code class="highlighter-rouge">Tags</code> are created in the same page as <code class="highlighter-rouge">Posts</code>). Finally, the <code class="highlighter-rouge">Tags</code> and application  controllers focus on a few utility tasks. As a whole, the controllers work together to facilitate the functionality of the website and process all the data.</p>
+<p>Unlike a framework like Rails, Sinatra has a unified router and controller. I used a separate controller for each model which helped organize all the different routes and actions. The <code>Users</code> controller focuses on signing up and logging in <code>Users</code>. The <code>Posts</code> controller deals with the majority of the application’s functionality, namely the creation, editting, and deletion of <code>Posts</code> as well as <code>Tags</code> (since <code>Tags</code> are created in the same page as <code>Posts</code>). Finally, the <code>Tags</code> and application  controllers focus on a few utility tasks. As a whole, the controllers work together to facilitate the functionality of the website and process all the data.</p>
 
 <p><em>An route/action to render the new post creation form:</em></p>
 
@@ -237,7 +237,7 @@
 
 <p><strong>Views:</strong></p>
 
-<p>Just like Rails, Sinatra uses <code class="highlighter-rouge">ERB</code> files (Embedded Ruby) to dynamically generate html web pages and serve requested content. The views correspond to the routes/actions in the associated controllers, so there are views for showing a user page, displaying a login form, and so on. Using Bootstrap for basic frontend styling helps make the application look at least palatable (as opposed to hideous unstyled html). It may be a bit superficial, but it helps the application look like a complete thought.</p>
+<p>Just like Rails, Sinatra uses <code>ERB</code> files (Embedded Ruby) to dynamically generate html web pages and serve requested content. The views correspond to the routes/actions in the associated controllers, so there are views for showing a user page, displaying a login form, and so on. Using Bootstrap for basic frontend styling helps make the application look at least palatable (as opposed to hideous unstyled html). It may be a bit superficial, but it helps the application look like a complete thought.</p>
 
 <p><em>The ERB code to display all the posts for a tag:</em></p>
 
@@ -304,20 +304,20 @@
       <a href="/ruby/steam-cli-gem/" class="read-more-btn">Read More</a>
     </div><!-- /.read-more-header -->
     <div class="read-more-content">
-      <h3><a href="/general/learning-development/" title="Why I decided to learn software development">Why I decided to learn software development</a></h3>
-      <p>Making the decision to learn a hugely difficult skillset is not something to be taken lightly. This is especially true when it requires i...&hellip; <a href="/general/learning-development/">Continue reading</a></p>
+      <h3><a href="/general/github-remotes/" title="Github Remotes">Github Remotes</a></h3>
+      <p>Earlier in my education when I was coding in `C++`, I was using `Subversion` for version control (specifically [TortoiseSVN][tortoise-svn...&hellip; <a href="/general/github-remotes/">Continue reading</a></p>
     </div><!-- /.read-more-content -->
   
   <div class="read-more-list">
     
       <div class="list-item">
-        <h4><a href="/ruby/rails/rails-project/" title="Rails Project - Storyplan">Rails Project - Storyplan</a></h4>
-        <span>Published on April 22, 2016</span>
+        <h4><a href="/general/learning-development/" title="Why I decided to learn software development">Why I decided to learn software development</a></h4>
+        <span>Published on May 12, 2016</span>
       </div><!-- /.list-item -->
     
       <div class="list-item">
-        <h4><a href="/ruby/steam-cli-gem/" title="Steam Top Sellers CLI Gem">Steam Top Sellers CLI Gem</a></h4>
-        <span>Published on January 13, 2016</span>
+        <h4><a href="/ruby/rails/rails-project/" title="Rails Project - Storyplan">Rails Project - Storyplan</a></h4>
+        <span>Published on April 22, 2016</span>
       </div><!-- /.list-item -->
     
   </div><!-- /.read-more-list -->

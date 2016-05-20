@@ -191,6 +191,38 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2016-05-19T17:50:00-05:00"><a href="/general/github-remotes/">May 19, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/general/github-remotes/" rel="bookmark" title="Github Remotes" itemprop="url">Github Remotes</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    
+      <p>Earlier in my education when I was coding in <code>C++</code>, I was using <code>Subversion</code> for version control (specifically <a href="https://tortoisesvn.net">TortoiseSVN</a>). <code>SVN</code> worked well enough, and in class we were able to share code for the different projects we were working on effectively. But since then, for better or worse, the world has moved on to <code>Git</code>. You can read about the differences on countless websites, like <a href="http://stackoverflow.com/questions/871/why-is-git-better-than-subversion">here</a>, so I won’t get into it.</p>
+
+<p>For most of my efforts learning web development, I’ve been using <code>Github</code>. It’s the go-to destination for uploading, revisioning, and sharing code. A <code>remote</code> on <code>Github</code> is just a repository stored on their servers. You code locally on your machine - or your cloud IDE - and push code from your local repo to your <code>remote</code>. Because I’ve been coding in multiple development environments, this has made keeping code consistent relatively easy.</p>
+
+<p>Earlier when I was using SVN, I didn’t create multiple branches to develop different feature sets without breaking the master, something I do now when using <code>Git</code>. I’ve come to find that both systems offer great functionality, but your own practices for managing your code will ultimately make the most difference.</p>
+
+<p>You can take a look at my repos <a href="https://github.com/MitulMistry">here on Github.</a></p>
+
+
+    
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2016-05-12T18:30:00-05:00"><a href="/general/learning-development/">May 12, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
       
       <span class="entry-reading-time">
@@ -212,9 +244,9 @@
 
 <p>Software developers create products and facillitate services in ways that directly create value for users and employers. In contrast, the work that artists and designers do will always be more limited. In order to be relevant, you need skills that can actually solve people’s problems, and art just wasn’t enough of an answer.</p>
 
-<p>I had programmed before in the past - dealing with languages like <code class="highlighter-rouge">Visual Basic</code>, <code class="highlighter-rouge">Java</code>, and <code class="highlighter-rouge">C++</code>. I had enjoyed being able to create functional, interactive products, and solving problems in logical, algorithmic ways. It offered me a way to create more value for others and at a certain point, it became obvious that in order to achieve my goals, I needed to switch tracks.</p>
+<p>I had programmed before in the past - dealing with languages like <code>Visual Basic</code>, <code>Java</code>, and <code>C++</code>. I had enjoyed being able to create functional, interactive products, and solving problems in logical, algorithmic ways. It offered me a way to create more value for others and at a certain point, it became obvious that in order to achieve my goals, I needed to switch tracks.</p>
 
-<p>Since making that decision, I’ve made huge progress learning <code class="highlighter-rouge">Ruby</code>, <code class="highlighter-rouge">Rails</code>, <code class="highlighter-rouge">ActiveRecord</code>, <code class="highlighter-rouge">JavaScript</code>, and <code class="highlighter-rouge">Angular</code> as well. In a short period of time, I’ve developed a much more marketable skillset and I know that I’ll now be able to make more of an impact with what I’ve learned.</p>
+<p>Since making that decision, I’ve made huge progress learning <code>Ruby</code>, <code>Rails</code>, <code>ActiveRecord</code>, <code>JavaScript</code>, and <code>Angular</code> as well. In a short period of time, I’ve developed a much more marketable skillset and I know that I’ll now be able to make more of an impact with what I’ve learned.</p>
 
     
   </div><!-- /.entry-content -->
@@ -245,23 +277,23 @@
 
 <p><strong>Models</strong></p>
 
-<p>I started by mapping out the models and migrations. Using the <code class="highlighter-rouge">rails generate resource</code> command, you can use Rails to generate a model, database migration for that model, and a controller, and I used it to get a head start. My models were as follows:</p>
+<p>I started by mapping out the models and migrations. Using the <code>rails generate resource</code> command, you can use Rails to generate a model, database migration for that model, and a controller, and I used it to get a head start. My models were as follows:</p>
 
 <ul>
-  <li><code class="highlighter-rouge">User</code> - Generated using the Devise gem for authentication.</li>
-  <li><code class="highlighter-rouge">Story</code> - Belongs to a <code class="highlighter-rouge">User</code>.</li>
-  <li><code class="highlighter-rouge">Chapter</code> - Belongs to a <code class="highlighter-rouge">Story</code>.</li>
-  <li><code class="highlighter-rouge">Character</code> - Has many <code class="highlighter-rouge">Chapters</code> through a join table and vice versa, belongs to a <code class="highlighter-rouge">User</code>.</li>
-  <li><code class="highlighter-rouge">Audience</code> - Has many <code class="highlighter-rouge">Stories</code> through a join table and vice versa.</li>
-  <li><code class="highlighter-rouge">Genre</code> - Has many <code class="highlighter-rouge">Stories</code> through a join table and vice versa.</li>
-  <li><code class="highlighter-rouge">Comment</code> - Belongs to both a <code class="highlighter-rouge">User</code> and a <code class="highlighter-rouge">Story</code>.</li>
+  <li><code>User</code> - Generated using the Devise gem for authentication.</li>
+  <li><code>Story</code> - Belongs to a <code>User</code>.</li>
+  <li><code>Chapter</code> - Belongs to a <code>Story</code>.</li>
+  <li><code>Character</code> - Has many <code>Chapters</code> through a join table and vice versa, belongs to a <code>User</code>.</li>
+  <li><code>Audience</code> - Has many <code>Stories</code> through a join table and vice versa.</li>
+  <li><code>Genre</code> - Has many <code>Stories</code> through a join table and vice versa.</li>
+  <li><code>Comment</code> - Belongs to both a <code>User</code> and a <code>Story</code>.</li>
 </ul>
 
-<p>With these models, I was able to set up the associations necessary to do things like show all the <code class="highlighter-rouge">Stories</code> of a <code class="highlighter-rouge">User</code> or all the <code class="highlighter-rouge">Characters</code> in a <code class="highlighter-rouge">Story</code>. This also makes it easier for a user to explore the different connections of a writer’s work.</p>
+<p>With these models, I was able to set up the associations necessary to do things like show all the <code>Stories</code> of a <code>User</code> or all the <code>Characters</code> in a <code>Story</code>. This also makes it easier for a user to explore the different connections of a writer’s work.</p>
 
 <p>These models have a variety of validations to ensure bad data isn’t entered into the system, as well as class and instance methods to give the models additional functionality beyond being mere data containers.</p>
 
-<p><em>The <code class="highlighter-rouge">Story</code> model:</em></p>
+<p><em>The <code>Story</code> model:</em></p>
 
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Story</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
   <span class="n">belongs_to</span> <span class="ss">:user</span>
@@ -287,11 +319,11 @@
 
 <p><strong>Routes and Controllers</strong></p>
 
-<p>Unlike Sinatra, Rails has a separate router from its controllers and uses it to map the routes to actions in those controllers. My routes were mostly resources for the above mentioned models, with a few nested resources to do things like the find all the <code class="highlighter-rouge">Characters</code> of a particular <code class="highlighter-rouge">User</code>.</p>
+<p>Unlike Sinatra, Rails has a separate router from its controllers and uses it to map the routes to actions in those controllers. My routes were mostly resources for the above mentioned models, with a few nested resources to do things like the find all the <code>Characters</code> of a particular <code>User</code>.</p>
 
 <p><em><a href="https://github.com/MitulMistry/rails-storyplan/blob/master/config/routes.rb">See the routes file here.</a></em></p>
 
-<p>As far as controllers are concerned, I used one controller per model with a few miscellaneous controllers thrown in as well to handle other tasks. This is basically a CRUD (Create, Read, Update, Delete) application, so many of the controllers handle similar tasks. So for example, the <code class="highlighter-rouge">Stories</code> controller handles serving all the stories for the stories index, showing a particular story, serving a form for a new story or editing an old one, processing the creation and update of a story based on input from the form, and destroying a story as well. These correspond to <a href="http://guides.rubyonrails.org/routing.html">RESTful routes</a> (Representational State Transfer): Index, Show, New, Create, Edit, Update, Destroy. This is simply a paradigm to keep things consistent across different web applications and is an example of Rails’s philosophy of convention over configuration.</p>
+<p>As far as controllers are concerned, I used one controller per model with a few miscellaneous controllers thrown in as well to handle other tasks. This is basically a CRUD (Create, Read, Update, Delete) application, so many of the controllers handle similar tasks. So for example, the <code>Stories</code> controller handles serving all the stories for the stories index, showing a particular story, serving a form for a new story or editing an old one, processing the creation and update of a story based on input from the form, and destroying a story as well. These correspond to <a href="http://guides.rubyonrails.org/routing.html">RESTful routes</a> (Representational State Transfer): Index, Show, New, Create, Edit, Update, Destroy. This is simply a paradigm to keep things consistent across different web applications and is an example of Rails’s philosophy of convention over configuration.</p>
 
 <p>There are other levels of complexity involved, such as authorization (making sure the user creating or updating a story has permission to do so) or white-listing the data received (using <a href="http://edgeguides.rubyonrails.org/action_controller_overview.html#strong-parameters">strong parameters</a>) from the form so no improper data is forcibly entered.</p>
 
@@ -335,7 +367,7 @@
 
 <p><strong>Authentication</strong></p>
 
-<p>Setting up a secure login/logout system can be challenging considering the number of security threats out there. You can roll your own authentication using <a href="https://github.com/codahale/bcrypt-ruby">bcrypt</a> to securely store password hashes, but I wanted something with more functionality built in. That’s why I used the <a href="https://github.com/plataformatec/devise">Devise</a> gem which provides for the creation of its own <code class="highlighter-rouge">User</code> model and gives you additional tools like email confirmation should you desire them. Most importantly, it’s battle tested and commonly used to provide secure authentication for Rails applications.</p>
+<p>Setting up a secure login/logout system can be challenging considering the number of security threats out there. You can roll your own authentication using <a href="https://github.com/codahale/bcrypt-ruby">bcrypt</a> to securely store password hashes, but I wanted something with more functionality built in. That’s why I used the <a href="https://github.com/plataformatec/devise">Devise</a> gem which provides for the creation of its own <code>User</code> model and gives you additional tools like email confirmation should you desire them. Most importantly, it’s battle tested and commonly used to provide secure authentication for Rails applications.</p>
 
 <p>In addition, I used Devise to provide OAuth authentication for Facebook, so you can securely sign in with a Facebook account as well.</p>
 
@@ -375,11 +407,11 @@
 
 <p><strong>Models:</strong></p>
 
-<p>The first thing I worked on were the models that would represent the data necessary for the blog to work using Activerecord. This includes <code class="highlighter-rouge">Users</code> which would write and edit <code class="highlighter-rouge">Posts</code>, which would in turn have <code class="highlighter-rouge">Tags</code>. In addition, I used the model <code class="highlighter-rouge">PostTags</code> as well, but only as an intermediary for a join table to connect <code class="highlighter-rouge">Posts</code> and <code class="highlighter-rouge">Tags</code>. This was necessary because a <code class="highlighter-rouge">Post</code> has many <code class="highlighter-rouge">Tags</code>, and a <code class="highlighter-rouge">Tag</code> has many <code class="highlighter-rouge">Posts</code>, and any time there’s a mutual ‘has many’ relationship between models, a join table is needed.</p>
+<p>The first thing I worked on were the models that would represent the data necessary for the blog to work using Activerecord. This includes <code>Users</code> which would write and edit <code>Posts</code>, which would in turn have <code>Tags</code>. In addition, I used the model <code>PostTags</code> as well, but only as an intermediary for a join table to connect <code>Posts</code> and <code>Tags</code>. This was necessary because a <code>Post</code> has many <code>Tags</code>, and a <code>Tag</code> has many <code>Posts</code>, and any time there’s a mutual ‘has many’ relationship between models, a join table is needed.</p>
 
-<p>These associations provide a useful way to list different types of <code class="highlighter-rouge">Posts</code>. All <code class="highlighter-rouge">Posts</code> belong to a <code class="highlighter-rouge">User</code>, so you can easily list all of a <code class="highlighter-rouge">User</code>’s <code class="highlighter-rouge">Posts</code>, or all of a <code class="highlighter-rouge">Tag</code>’s <code class="highlighter-rouge">Posts</code> as well. Providing an easy way to organize information is critical to building a successful application, and ActiveRecord provides ample ways of doing just that.</p>
+<p>These associations provide a useful way to list different types of <code>Posts</code>. All <code>Posts</code> belong to a <code>User</code>, so you can easily list all of a <code>User</code>’s <code>Posts</code>, or all of a <code>Tag</code>’s <code>Posts</code> as well. Providing an easy way to organize information is critical to building a successful application, and ActiveRecord provides ample ways of doing just that.</p>
 
-<p><em>The <code class="highlighter-rouge">Post</code> model code:</em></p>
+<p><em>The <code>Post</code> model code:</em></p>
 
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
   <span class="n">belongs_to</span> <span class="ss">:user</span>
@@ -399,7 +431,7 @@
 
 <p><strong>Controllers:</strong></p>
 
-<p>Unlike a framework like Rails, Sinatra has a unified router and controller. I used a separate controller for each model which helped organize all the different routes and actions. The <code class="highlighter-rouge">Users</code> controller focuses on signing up and logging in <code class="highlighter-rouge">Users</code>. The <code class="highlighter-rouge">Posts</code> controller deals with the majority of the application’s functionality, namely the creation, editting, and deletion of <code class="highlighter-rouge">Posts</code> as well as <code class="highlighter-rouge">Tags</code> (since <code class="highlighter-rouge">Tags</code> are created in the same page as <code class="highlighter-rouge">Posts</code>). Finally, the <code class="highlighter-rouge">Tags</code> and application  controllers focus on a few utility tasks. As a whole, the controllers work together to facilitate the functionality of the website and process all the data.</p>
+<p>Unlike a framework like Rails, Sinatra has a unified router and controller. I used a separate controller for each model which helped organize all the different routes and actions. The <code>Users</code> controller focuses on signing up and logging in <code>Users</code>. The <code>Posts</code> controller deals with the majority of the application’s functionality, namely the creation, editting, and deletion of <code>Posts</code> as well as <code>Tags</code> (since <code>Tags</code> are created in the same page as <code>Posts</code>). Finally, the <code>Tags</code> and application  controllers focus on a few utility tasks. As a whole, the controllers work together to facilitate the functionality of the website and process all the data.</p>
 
 <p><em>An route/action to render the new post creation form:</em></p>
 
@@ -414,7 +446,7 @@
 
 <p><strong>Views:</strong></p>
 
-<p>Just like Rails, Sinatra uses <code class="highlighter-rouge">ERB</code> files (Embedded Ruby) to dynamically generate html web pages and serve requested content. The views correspond to the routes/actions in the associated controllers, so there are views for showing a user page, displaying a login form, and so on. Using Bootstrap for basic frontend styling helps make the application look at least palatable (as opposed to hideous unstyled html). It may be a bit superficial, but it helps the application look like a complete thought.</p>
+<p>Just like Rails, Sinatra uses <code>ERB</code> files (Embedded Ruby) to dynamically generate html web pages and serve requested content. The views correspond to the routes/actions in the associated controllers, so there are views for showing a user page, displaying a login form, and so on. Using Bootstrap for basic frontend styling helps make the application look at least palatable (as opposed to hideous unstyled html). It may be a bit superficial, but it helps the application look like a complete thought.</p>
 
 <p><em>The ERB code to display all the posts for a tag:</em></p>
 
@@ -456,15 +488,15 @@
     
       <p>In my process of learning Ruby, I’ve been working on a CLI gem that I’ll discuss here. My goal was to create a command line interface that could retrieve a list of the currently top selling games at the <a href="http://store.steampowered.com/">Steam Store</a>. Upon retrieving the list, the user would then be able to select a game and get more detailed information.</p>
 
-<p>The original intention was to organize the project through three classes: a <code class="highlighter-rouge">Scraper</code>, <code class="highlighter-rouge">Game</code>, and <code class="highlighter-rouge">CLI</code>. The Scraper would be responsible for scraping the data from the Steam website. The <code class="highlighter-rouge">Game</code> class would be used to instantiate objects for each game based on data retrieved by the <code class="highlighter-rouge">Scraper</code>. The <code class="highlighter-rouge">CLI</code> would then be used to tie the other classes together and create an interface for the user to interact with this data. In execution, most of this would go according to plan, but there would be some changes necessary.</p>
+<p>The original intention was to organize the project through three classes: a <code>Scraper</code>, <code>Game</code>, and <code>CLI</code>. The Scraper would be responsible for scraping the data from the Steam website. The <code>Game</code> class would be used to instantiate objects for each game based on data retrieved by the <code>Scraper</code>. The <code>CLI</code> would then be used to tie the other classes together and create an interface for the user to interact with this data. In execution, most of this would go according to plan, but there would be some changes necessary.</p>
 
-<p>I initially used Nokogiri for the <code class="highlighter-rouge">Scraper</code> class, then manually navigated through the CSS selectors on the Steam Store frontpage as well as the individual game pages. It was a tedious process, but worked well enough to acquire the necessary data. However, two major roadblocks soon arose:</p>
+<p>I initially used Nokogiri for the <code>Scraper</code> class, then manually navigated through the CSS selectors on the Steam Store frontpage as well as the individual game pages. It was a tedious process, but worked well enough to acquire the necessary data. However, two major roadblocks soon arose:</p>
 
 <p>1) For certain games, the Steam Store would put up an age verification page before allowing the user to continue to the game page, and when using Open-URI to access the page, it would be blocked. I looked into ways of getting around the age verification and it involved creating a cookie, but that was out of scope of what I wanted to accomplish with the project.</p>
 
-<p>2) As soon as I finished the <code class="highlighter-rouge">Scraper</code> methods, the Steam Store changed its entire website and CSS structure for its holiday sale, and rewriting the methods temporarily only to revert to the old methods when the sale was over seemed tedious and inefficient.</p>
+<p>2) As soon as I finished the <code>Scraper</code> methods, the Steam Store changed its entire website and CSS structure for its holiday sale, and rewriting the methods temporarily only to revert to the old methods when the sale was over seemed tedious and inefficient.</p>
 
-<p>So after doing some research, I was able to find a better way: leveraging the Steam Storefront API. I created a new class, <code class="highlighter-rouge">SteamAPIHandler</code>, to acquire the JSON data and parse it, using the data to create <code class="highlighter-rouge">Game</code> objects that could then interact with the <code class="highlighter-rouge">CLI</code>. This allowed me access to a much larger amount of data and proved to be much more efficient as well. For example, here’s an old <code class="highlighter-rouge">Scraper</code> method:</p>
+<p>So after doing some research, I was able to find a better way: leveraging the Steam Storefront API. I created a new class, <code>SteamAPIHandler</code>, to acquire the JSON data and parse it, using the data to create <code>Game</code> objects that could then interact with the <code>CLI</code>. This allowed me access to a much larger amount of data and proved to be much more efficient as well. For example, here’s an old <code>Scraper</code> method:</p>
 
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">scrape_top_sellers</span><span class="p">(</span><span class="n">store_url</span><span class="p">)</span>
   <span class="n">return_array</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#empty array that will contain the game hashes to return at the end of the method</span>
@@ -492,7 +524,7 @@
   <span class="n">return_array</span>
 <span class="k">end</span></code></pre></figure>
 
-<p>…compared to a new <code class="highlighter-rouge">SteamAPIHandler</code> method that accomplishes the same thing:</p>
+<p>…compared to a new <code>SteamAPIHandler</code> method that accomplishes the same thing:</p>
 
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">get_top_sellers</span>
   <span class="n">doc</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"http://store.steampowered.com/api/featuredcategories/?cc=US"</span><span class="p">)</span> <span class="c1">#uses Open-URI to get the JSON file, ?cc=US for US currency</span>
@@ -500,7 +532,7 @@
   <span class="n">data_hash</span><span class="p">[</span><span class="s2">"top_sellers"</span><span class="p">][</span><span class="s2">"items"</span><span class="p">]</span> <span class="c1">#selects desired part of hash</span>
 <span class="k">end</span></code></pre></figure>
 
-<p>In practice, the <code class="highlighter-rouge">CLI</code>, upon loading, uses the <code class="highlighter-rouge">SteamAPIHandler</code> to acquire the top sellers and create <code class="highlighter-rouge">Game</code> objects from the data. It prints out the information on the screen, then, when the user selects a game to get more information on, the <code class="highlighter-rouge">CLI</code> uses the <code class="highlighter-rouge">SteamAPIHandler</code> to acquire additional data and print it out. I had a method that acquired the additional information as soon as the <code class="highlighter-rouge">CLI</code> loaded, but it caused additional load time as it had to make ten queries to the API in succession, as opposed to one at a time where the load time is much less noticeable.</p>
+<p>In practice, the <code>CLI</code>, upon loading, uses the <code>SteamAPIHandler</code> to acquire the top sellers and create <code>Game</code> objects from the data. It prints out the information on the screen, then, when the user selects a game to get more information on, the <code>CLI</code> uses the <code>SteamAPIHandler</code> to acquire additional data and print it out. I had a method that acquired the additional information as soon as the <code>CLI</code> loaded, but it caused additional load time as it had to make ten queries to the API in succession, as opposed to one at a time where the load time is much less noticeable.</p>
 
 <p>Overall, it was a good learning experience and I accomplished what I had set out to do. You can see the source code for this project <a href="https://github.com/MitulMistry/steam-top-sellers-cli-gem">here on Github.</a></p>
 

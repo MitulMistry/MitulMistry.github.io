@@ -198,23 +198,23 @@
 
 <p><strong>Models</strong></p>
 
-<p>I started by mapping out the models and migrations. Using the <code class="highlighter-rouge">rails generate resource</code> command, you can use Rails to generate a model, database migration for that model, and a controller, and I used it to get a head start. My models were as follows:</p>
+<p>I started by mapping out the models and migrations. Using the <code>rails generate resource</code> command, you can use Rails to generate a model, database migration for that model, and a controller, and I used it to get a head start. My models were as follows:</p>
 
 <ul>
-  <li><code class="highlighter-rouge">User</code> - Generated using the Devise gem for authentication.</li>
-  <li><code class="highlighter-rouge">Story</code> - Belongs to a <code class="highlighter-rouge">User</code>.</li>
-  <li><code class="highlighter-rouge">Chapter</code> - Belongs to a <code class="highlighter-rouge">Story</code>.</li>
-  <li><code class="highlighter-rouge">Character</code> - Has many <code class="highlighter-rouge">Chapters</code> through a join table and vice versa, belongs to a <code class="highlighter-rouge">User</code>.</li>
-  <li><code class="highlighter-rouge">Audience</code> - Has many <code class="highlighter-rouge">Stories</code> through a join table and vice versa.</li>
-  <li><code class="highlighter-rouge">Genre</code> - Has many <code class="highlighter-rouge">Stories</code> through a join table and vice versa.</li>
-  <li><code class="highlighter-rouge">Comment</code> - Belongs to both a <code class="highlighter-rouge">User</code> and a <code class="highlighter-rouge">Story</code>.</li>
+  <li><code>User</code> - Generated using the Devise gem for authentication.</li>
+  <li><code>Story</code> - Belongs to a <code>User</code>.</li>
+  <li><code>Chapter</code> - Belongs to a <code>Story</code>.</li>
+  <li><code>Character</code> - Has many <code>Chapters</code> through a join table and vice versa, belongs to a <code>User</code>.</li>
+  <li><code>Audience</code> - Has many <code>Stories</code> through a join table and vice versa.</li>
+  <li><code>Genre</code> - Has many <code>Stories</code> through a join table and vice versa.</li>
+  <li><code>Comment</code> - Belongs to both a <code>User</code> and a <code>Story</code>.</li>
 </ul>
 
-<p>With these models, I was able to set up the associations necessary to do things like show all the <code class="highlighter-rouge">Stories</code> of a <code class="highlighter-rouge">User</code> or all the <code class="highlighter-rouge">Characters</code> in a <code class="highlighter-rouge">Story</code>. This also makes it easier for a user to explore the different connections of a writer’s work.</p>
+<p>With these models, I was able to set up the associations necessary to do things like show all the <code>Stories</code> of a <code>User</code> or all the <code>Characters</code> in a <code>Story</code>. This also makes it easier for a user to explore the different connections of a writer’s work.</p>
 
 <p>These models have a variety of validations to ensure bad data isn’t entered into the system, as well as class and instance methods to give the models additional functionality beyond being mere data containers.</p>
 
-<p><em>The <code class="highlighter-rouge">Story</code> model:</em></p>
+<p><em>The <code>Story</code> model:</em></p>
 
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Story</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
   <span class="n">belongs_to</span> <span class="ss">:user</span>
@@ -240,11 +240,11 @@
 
 <p><strong>Routes and Controllers</strong></p>
 
-<p>Unlike Sinatra, Rails has a separate router from its controllers and uses it to map the routes to actions in those controllers. My routes were mostly resources for the above mentioned models, with a few nested resources to do things like the find all the <code class="highlighter-rouge">Characters</code> of a particular <code class="highlighter-rouge">User</code>.</p>
+<p>Unlike Sinatra, Rails has a separate router from its controllers and uses it to map the routes to actions in those controllers. My routes were mostly resources for the above mentioned models, with a few nested resources to do things like the find all the <code>Characters</code> of a particular <code>User</code>.</p>
 
 <p><em><a href="https://github.com/MitulMistry/rails-storyplan/blob/master/config/routes.rb">See the routes file here.</a></em></p>
 
-<p>As far as controllers are concerned, I used one controller per model with a few miscellaneous controllers thrown in as well to handle other tasks. This is basically a CRUD (Create, Read, Update, Delete) application, so many of the controllers handle similar tasks. So for example, the <code class="highlighter-rouge">Stories</code> controller handles serving all the stories for the stories index, showing a particular story, serving a form for a new story or editing an old one, processing the creation and update of a story based on input from the form, and destroying a story as well. These correspond to <a href="http://guides.rubyonrails.org/routing.html">RESTful routes</a> (Representational State Transfer): Index, Show, New, Create, Edit, Update, Destroy. This is simply a paradigm to keep things consistent across different web applications and is an example of Rails’s philosophy of convention over configuration.</p>
+<p>As far as controllers are concerned, I used one controller per model with a few miscellaneous controllers thrown in as well to handle other tasks. This is basically a CRUD (Create, Read, Update, Delete) application, so many of the controllers handle similar tasks. So for example, the <code>Stories</code> controller handles serving all the stories for the stories index, showing a particular story, serving a form for a new story or editing an old one, processing the creation and update of a story based on input from the form, and destroying a story as well. These correspond to <a href="http://guides.rubyonrails.org/routing.html">RESTful routes</a> (Representational State Transfer): Index, Show, New, Create, Edit, Update, Destroy. This is simply a paradigm to keep things consistent across different web applications and is an example of Rails’s philosophy of convention over configuration.</p>
 
 <p>There are other levels of complexity involved, such as authorization (making sure the user creating or updating a story has permission to do so) or white-listing the data received (using <a href="http://edgeguides.rubyonrails.org/action_controller_overview.html#strong-parameters">strong parameters</a>) from the form so no improper data is forcibly entered.</p>
 
@@ -288,7 +288,7 @@
 
 <p><strong>Authentication</strong></p>
 
-<p>Setting up a secure login/logout system can be challenging considering the number of security threats out there. You can roll your own authentication using <a href="https://github.com/codahale/bcrypt-ruby">bcrypt</a> to securely store password hashes, but I wanted something with more functionality built in. That’s why I used the <a href="https://github.com/plataformatec/devise">Devise</a> gem which provides for the creation of its own <code class="highlighter-rouge">User</code> model and gives you additional tools like email confirmation should you desire them. Most importantly, it’s battle tested and commonly used to provide secure authentication for Rails applications.</p>
+<p>Setting up a secure login/logout system can be challenging considering the number of security threats out there. You can roll your own authentication using <a href="https://github.com/codahale/bcrypt-ruby">bcrypt</a> to securely store password hashes, but I wanted something with more functionality built in. That’s why I used the <a href="https://github.com/plataformatec/devise">Devise</a> gem which provides for the creation of its own <code>User</code> model and gives you additional tools like email confirmation should you desire them. Most importantly, it’s battle tested and commonly used to provide secure authentication for Rails applications.</p>
 
 <p>In addition, I used Devise to provide OAuth authentication for Facebook, so you can securely sign in with a Facebook account as well.</p>
 
@@ -349,20 +349,20 @@
       <a href="/ruby/sinatra/sinatra-project/" class="read-more-btn">Read More</a>
     </div><!-- /.read-more-header -->
     <div class="read-more-content">
-      <h3><a href="/general/learning-development/" title="Why I decided to learn software development">Why I decided to learn software development</a></h3>
-      <p>Making the decision to learn a hugely difficult skillset is not something to be taken lightly. This is especially true when it requires i...&hellip; <a href="/general/learning-development/">Continue reading</a></p>
+      <h3><a href="/general/github-remotes/" title="Github Remotes">Github Remotes</a></h3>
+      <p>Earlier in my education when I was coding in `C++`, I was using `Subversion` for version control (specifically [TortoiseSVN][tortoise-svn...&hellip; <a href="/general/github-remotes/">Continue reading</a></p>
     </div><!-- /.read-more-content -->
   
   <div class="read-more-list">
     
       <div class="list-item">
-        <h4><a href="/ruby/sinatra/sinatra-project/" title="Sinatra Project - Simple Blog">Sinatra Project - Simple Blog</a></h4>
-        <span>Published on February 24, 2016</span>
+        <h4><a href="/general/learning-development/" title="Why I decided to learn software development">Why I decided to learn software development</a></h4>
+        <span>Published on May 12, 2016</span>
       </div><!-- /.list-item -->
     
       <div class="list-item">
-        <h4><a href="/ruby/steam-cli-gem/" title="Steam Top Sellers CLI Gem">Steam Top Sellers CLI Gem</a></h4>
-        <span>Published on January 13, 2016</span>
+        <h4><a href="/ruby/sinatra/sinatra-project/" title="Sinatra Project - Simple Blog">Sinatra Project - Simple Blog</a></h4>
+        <span>Published on February 24, 2016</span>
       </div><!-- /.list-item -->
     
   </div><!-- /.read-more-list -->
