@@ -191,6 +191,62 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2016-05-20T06:30:00-05:00"><a href="/ruby/ruby-self/">May 20, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/ruby/ruby-self/" rel="bookmark" title="Ruby Object's Self" itemprop="url">Ruby Object's Self</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    
+      <p>My first experience with object oriented programming came with <code>Java</code> while I was coding in high school. I never learned Java properly, and it wasn’t until working with <code>C++</code> later on that I got a better understanding of the OOP paradigm.</p>
+
+<p>In Ruby, OOP is implemented in a relatively straightforward way. Classes are defined with the keyword <code>class</code>, which seems unremarkable until you start defining classes in <code>JavaScript</code>. A class serves as a blueprint for your future objects, which you then create instances of, or instantiate, to use in your program.</p>
+
+<p>Here’s some sample ruby code defining a song class.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Song</span>
+  <span class="kp">attr_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:artist</span><span class="p">,</span> <span class="ss">:genre</span>
+  <span class="vc">@@all</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#class variable</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="n">artist</span><span class="o">=</span><span class="kp">nil</span><span class="p">,</span> <span class="n">genre</span><span class="o">=</span><span class="kp">nil</span><span class="p">)</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">name</span> <span class="o">=</span> <span class="nb">name</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">artist</span> <span class="o">=</span> <span class="n">artist</span> <span class="k">if</span> <span class="n">artist</span> <span class="o">!=</span> <span class="kp">nil</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">genre</span> <span class="o">=</span> <span class="n">genre</span> <span class="k">if</span> <span class="n">genre</span> <span class="o">!=</span> <span class="kp">nil</span>
+    <span class="vc">@@all</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">all</span>
+    <span class="vc">@@all</span> <span class="c1">#Implicitly returns class array</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>The attribute accessors define and give read/write access to instance variables - variables that are tied to each instance of the class. But in the initialize method, they’re referred to by the keyword <code>self</code>. <code>self</code> is simply a way to refer to the instance itself. So for the actual song object that is created, <code>self.name</code> refers to that specific song’s name.</p>
+
+<p>When <code>self</code> is being pushed onto the @@all class array, self is being used by itself to push that whole object onto the array.</p>
+
+<p><code>self</code> is also used to define class methods, methods that don’t aren’t a part of instances but the class itself. For example, self.all returns the @@all class array.</p>
+
+<p>The idea of self-referential objects can be tricky if you’re just starting to learn OOP, but it’s necessary in order to build objects that can access their own data.</p>
+
+<p>You can read more about <code>self</code> in the <a href="http://ruby-doc.org/docs/keywords/1.9/Object.html#method-i-self">Ruby docs</a>.</p>
+
+
+    
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2016-05-19T17:50:00-05:00"><a href="/general/github-remotes/">May 19, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
       
       <span class="entry-reading-time">
@@ -210,7 +266,7 @@
 
 <p>For most of my efforts learning web development, I’ve been using <code>Github</code>. It’s the go-to destination for uploading, revisioning, and sharing code. A <code>remote</code> on <code>Github</code> is just a repository stored on their servers. You code locally on your machine - or your cloud IDE - and push code from your local repo to your <code>remote</code>. Because I’ve been coding in multiple development environments, this has made keeping code consistent relatively easy.</p>
 
-<p>Earlier when I was using SVN, I didn’t create multiple branches to develop different feature sets without breaking the master, something I do now when using <code>Git</code>. I’ve come to find that both systems offer great functionality, but your own practices for managing your code will ultimately make the most difference.</p>
+<p>Earlier when I was using SVN, I didn’t create multiple branches to develop different feature sets without breaking the master, something I try to do now when using <code>Git</code>. I’ve come to find that both systems offer great functionality, but your own practices for managing your code will ultimately make the most difference.</p>
 
 <p>You can take a look at my repos <a href="https://github.com/MitulMistry">here on Github.</a></p>
 
@@ -467,81 +523,40 @@
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
-<article class="hentry">
-  <header>
+
+
+<div class="pagination">
+  <ul class="inline-list">
     
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2016-01-13T16:20:00-06:00"><a href="/ruby/steam-cli-gem/">January 13, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~3 minutes
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="/ruby/steam-cli-gem/" rel="bookmark" title="Steam Top Sellers CLI Gem" itemprop="url">Steam Top Sellers CLI Gem</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    
-      <p>In my process of learning Ruby, I’ve been working on a CLI gem that I’ll discuss here. My goal was to create a command line interface that could retrieve a list of the currently top selling games at the <a href="http://store.steampowered.com/">Steam Store</a>. Upon retrieving the list, the user would then be able to select a game and get more detailed information.</p>
-
-<p>The original intention was to organize the project through three classes: a <code>Scraper</code>, <code>Game</code>, and <code>CLI</code>. The Scraper would be responsible for scraping the data from the Steam website. The <code>Game</code> class would be used to instantiate objects for each game based on data retrieved by the <code>Scraper</code>. The <code>CLI</code> would then be used to tie the other classes together and create an interface for the user to interact with this data. In execution, most of this would go according to plan, but there would be some changes necessary.</p>
-
-<p>I initially used Nokogiri for the <code>Scraper</code> class, then manually navigated through the CSS selectors on the Steam Store frontpage as well as the individual game pages. It was a tedious process, but worked well enough to acquire the necessary data. However, two major roadblocks soon arose:</p>
-
-<p>1) For certain games, the Steam Store would put up an age verification page before allowing the user to continue to the game page, and when using Open-URI to access the page, it would be blocked. I looked into ways of getting around the age verification and it involved creating a cookie, but that was out of scope of what I wanted to accomplish with the project.</p>
-
-<p>2) As soon as I finished the <code>Scraper</code> methods, the Steam Store changed its entire website and CSS structure for its holiday sale, and rewriting the methods temporarily only to revert to the old methods when the sale was over seemed tedious and inefficient.</p>
-
-<p>So after doing some research, I was able to find a better way: leveraging the Steam Storefront API. I created a new class, <code>SteamAPIHandler</code>, to acquire the JSON data and parse it, using the data to create <code>Game</code> objects that could then interact with the <code>CLI</code>. This allowed me access to a much larger amount of data and proved to be much more efficient as well. For example, here’s an old <code>Scraper</code> method:</p>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">scrape_top_sellers</span><span class="p">(</span><span class="n">store_url</span><span class="p">)</span>
-  <span class="n">return_array</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#empty array that will contain the game hashes to return at the end of the method</span>
-
-  <span class="c1">#OPEN URL</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="no">Nokogiri</span><span class="o">::</span><span class="no">HTML</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">store_url</span><span class="p">))</span> <span class="c1">#uses open-uri to open the url, then uses Nokogiri to parse in the html which we will then use to scrape data</span>
-
-  <span class="c1">#PARSE PAGE FOR DATA</span>
-  <span class="n">doc</span><span class="p">.</span><span class="nf">css</span><span class="p">(</span><span class="s2">"div.tab_content#tab_topsellers_content div.tab_item"</span><span class="p">).</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span> <span class="c1">#iterates over each game listing on the site, and gets name, location, and url</span>
-    <span class="n">return_array</span> <span class="o">&lt;&lt;</span> <span class="p">{</span> <span class="c1">#pushes a hash of game data onto the array</span>
-      <span class="ss">title: </span><span class="n">item</span><span class="p">.</span><span class="nf">css</span><span class="p">(</span><span class="s2">"div.tab_item_name"</span><span class="p">).</span><span class="nf">text</span><span class="p">,</span> <span class="c1">#uses css to select the appropriate data</span>
-      <span class="ss">price: </span><span class="n">item</span><span class="p">.</span><span class="nf">css</span><span class="p">(</span><span class="s2">"div.discount_final_price"</span><span class="p">).</span><span class="nf">text</span><span class="p">,</span>
-      <span class="ss">genres: </span><span class="n">item</span><span class="p">.</span><span class="nf">css</span><span class="p">(</span><span class="s2">"div.tab_item_top_tags"</span><span class="p">).</span><span class="nf">text</span><span class="p">,</span>
-      <span class="ss">url: </span><span class="n">item</span><span class="p">.</span><span class="nf">css</span><span class="p">(</span><span class="s2">"a.tab_item_overlay"</span><span class="p">).</span><span class="nf">collect</span><span class="p">{</span> <span class="o">|</span><span class="n">link</span><span class="o">|</span> <span class="n">link</span><span class="p">[</span><span class="s1">'href'</span><span class="p">]</span> <span class="p">}.</span><span class="nf">join</span><span class="p">,</span>
-      <span class="p">}</span>
-  <span class="k">end</span>
-
-  <span class="n">return_array</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="ss">:url</span><span class="p">].</span><span class="nf">split</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span> <span class="c1">#splits the link into individual elements between the /s</span>
-    <span class="n">x</span><span class="p">.</span><span class="nf">pop</span> <span class="c1">#gets rid of the ?info at the end of the link</span>
-    <span class="n">i</span><span class="p">[</span><span class="ss">:steam_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="nf">last</span> <span class="c1">#sets the steam id to the end element of the link</span>
-    <span class="n">i</span><span class="p">[</span><span class="ss">:url</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span> <span class="c1">#joins the url and saves it without the ?info</span>
-  <span class="k">end</span>
-
-  <span class="n">return_array</span>
-<span class="k">end</span></code></pre></figure>
-
-<p>…compared to a new <code>SteamAPIHandler</code> method that accomplishes the same thing:</p>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">get_top_sellers</span>
-  <span class="n">doc</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"http://store.steampowered.com/api/featuredcategories/?cc=US"</span><span class="p">)</span> <span class="c1">#uses Open-URI to get the JSON file, ?cc=US for US currency</span>
-  <span class="n">data_hash</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span> <span class="c1">#loads the JSON data</span>
-  <span class="n">data_hash</span><span class="p">[</span><span class="s2">"top_sellers"</span><span class="p">][</span><span class="s2">"items"</span><span class="p">]</span> <span class="c1">#selects desired part of hash</span>
-<span class="k">end</span></code></pre></figure>
-
-<p>In practice, the <code>CLI</code>, upon loading, uses the <code>SteamAPIHandler</code> to acquire the top sellers and create <code>Game</code> objects from the data. It prints out the information on the screen, then, when the user selects a game to get more information on, the <code>CLI</code> uses the <code>SteamAPIHandler</code> to acquire additional data and print it out. I had a method that acquired the additional information as soon as the <code>CLI</code> loaded, but it caused additional load time as it had to make ten queries to the API in succession, as opposed to one at a time where the load time is much less noticeable.</p>
-
-<p>Overall, it was a good learning experience and I accomplished what I had set out to do. You can see the source code for this project <a href="https://github.com/MitulMistry/steam-top-sellers-cli-gem">here on Github.</a></p>
-
 
     
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
+    
+      <li><strong class="current-page">1</strong></li>
+    
 
+    
+    
 
+    
+    
+    
+
+    
+
+    
+    
+
+    
+      <li><a href="/page2/">2</a></li>
+    
+
+    
+    
+      <li><a href="/page2/" class="btn">Next</a></li>
+    
+  </ul>
+</div>
 
   
 <div class="read-more">

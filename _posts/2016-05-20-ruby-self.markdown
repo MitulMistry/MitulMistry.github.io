@@ -1,0 +1,42 @@
+---
+layout: post
+title:  "Ruby Object's Self"
+date:   2016-05-20 11:30:00
+categories: ruby
+---
+
+My first experience with object oriented programming came with `Java` while I was coding in high school. I never learned Java properly, and it wasn't until working with `C++` later on that I got a better understanding of the OOP paradigm.
+
+In Ruby, OOP is implemented in a relatively straightforward way. Classes are defined with the keyword `class`, which seems unremarkable until you start defining classes in `JavaScript`. A class serves as a blueprint for your future objects, which you then create instances of, or instantiate, to use in your program.
+
+Here's some sample ruby code defining a song class.
+
+{% highlight ruby %}
+class Song
+  attr_accessor :name, :artist, :genre
+  @@all = [] #class variable
+
+  def initialize(name, artist=nil, genre=nil)
+    self.name = name
+    self.artist = artist if artist != nil
+    self.genre = genre if genre != nil
+    @@all << self
+  end
+
+  def self.all
+    @@all #Implicitly returns class array
+  end
+end
+{% endhighlight %}
+
+The attribute accessors define and give read/write access to instance variables - variables that are tied to each instance of the class. But in the initialize method, they're referred to by the keyword `self`. `self` is simply a way to refer to the instance itself. So for the actual song object that is created, `self.name` refers to that specific song's name.
+
+When `self` is being pushed onto the @@all class array, self is being used by itself to push that whole object onto the array.
+
+`self` is also used to define class methods, methods that don't aren't a part of instances but the class itself. For example, self.all returns the @@all class array.
+
+The idea of self-referential objects can be tricky if you're just starting to learn OOP, but it's necessary in order to build objects that can access their own data.
+
+You can read more about `self` in the [Ruby docs][ruby-docs].
+
+[ruby-docs]: http://ruby-doc.org/docs/keywords/1.9/Object.html#method-i-self

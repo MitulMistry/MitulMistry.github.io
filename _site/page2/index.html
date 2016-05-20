@@ -5,8 +5,8 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Welcome to the Neo-HPSTR Blog &#8211; Mitul Mistry - Tech Blog</title>
-<meta name="description" content="Describe this nonsense.">
+<title>Mitul Mistry, Full-Stack Developer &#8211; Mitul Mistry - Tech Blog</title>
+<meta name="description" content="The technical blog of Mitul Mistry.">
 <meta name="keywords" content="Jekyll, theme, themes, responsive, blog, modern">
 
 <!-- Twitter Cards -->
@@ -17,11 +17,11 @@
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Welcome to the Neo-HPSTR Blog">
-<meta property="og:description" content="Describe this nonsense.">
+<meta property="og:title" content="Mitul Mistry, Full-Stack Developer">
+<meta property="og:description" content="The technical blog of Mitul Mistry.">
 <meta property="og:url" content="/page2/">
 <meta property="og:site_name" content="Mitul Mistry - Tech Blog">
-<meta property="og:image" content="/images/images/logo_mm.png">
+<meta property="og:image" content="/images/images/logo_mm2.png">
 
 
 
@@ -78,7 +78,7 @@
       <li class="header-item-title">
         <a href="/">
           
-            <img class="logo" src="/images/logo_mm.png" alt="Mitul Mistry - Tech Blog">
+            <img class="logo" src="/images/logo_mm2.png" alt="Mitul Mistry - Tech Blog">
           
           <a href="/" class="title"> Mitul Mistry - Tech Blog</a>
         </a>
@@ -92,10 +92,10 @@
             <ul class="header-submenu">
               
                 
-                  <li class="sub-item"><a href="/categories/#image">image</a></li>
+                  <li class="sub-item"><a href="/categories/#general">general</a></li>
               
                 
-                  <li class="sub-item"><a href="/categories/#intro">intro</a></li>
+                  <li class="sub-item"><a href="/categories/#rails">rails</a></li>
               
                 
                   <li class="sub-item"><a href="/categories/#ruby">ruby</a></li>
@@ -131,7 +131,7 @@
 <div class="entry-header">
   <div class="header-title">
     <div class="header-title-wrap">
-      <h1>Welcome to the Neo-HPSTR Blog</h1>
+      <h1>Mitul Mistry, Full-Stack Developer</h1>
       
         <h2><span class="entry-date"><time>&nbsp;</time></span></h2>
       
@@ -162,10 +162,10 @@
           <ul>
             
               
-                <li><a href="/categories/#image">image</a></li>
+                <li><a href="/categories/#general">general</a></li>
             
               
-                <li><a href="/categories/#intro">intro</a></li>
+                <li><a href="/categories/#rails">rails</a></li>
             
               
                 <li><a href="/categories/#ruby">ruby</a></li>
@@ -191,80 +191,71 @@
   <header>
     
     <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2013-08-16T00:00:00-05:00"><a href="/intro/code-highlighting-post/">August 16, 2013</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
+      <span class="entry-date date published updated"><time datetime="2016-01-13T16:20:00-06:00"><a href="/ruby/steam-cli-gem/">January 13, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
       
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
         
-        Reading time ~1 minute
+        Reading time ~3 minutes
       </span><!-- /.entry-reading-time -->
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="/intro/code-highlighting-post/" rel="bookmark" title="Syntax Highlighting Post" itemprop="url">Syntax Highlighting Post</a></h1>
+      <h1 class="entry-title"><a href="/ruby/steam-cli-gem/" rel="bookmark" title="Steam Top Sellers CLI Gem" itemprop="url">Steam Top Sellers CLI Gem</a></h1>
     
   </header>
   <div class="entry-content">
     
-      <p>Syntax highlighting is a feature that displays source code, in different colors and fonts according to the category of terms. This feature facilitates writing in a structured language such as a programming language or a markup language as both structures and syntax errors are visually distinct. Highlighting does not affect the meaning of the text itself; it is intended only for human readers.<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></p>
+      <p>In my process of learning Ruby, I’ve been working on a CLI gem that I’ll discuss here. My goal was to create a command line interface that could retrieve a list of the currently top selling games at the <a href="http://store.steampowered.com/">Steam Store</a>. Upon retrieving the list, the user would then be able to select a game and get more detailed information.</p>
 
-<h3 id="rouge-code-blocks">Rouge Code Blocks</h3>
+<p>The original intention was to organize the project through three classes: a <code>Scraper</code>, <code>Game</code>, and <code>CLI</code>. The Scraper would be responsible for scraping the data from the Steam website. The <code>Game</code> class would be used to instantiate objects for each game based on data retrieved by the <code>Scraper</code>. The <code>CLI</code> would then be used to tie the other classes together and create an interface for the user to interact with this data. In execution, most of this would go according to plan, but there would be some changes necessary.</p>
 
-<p>To modify styling and highlight colors edit <code class="highlighter-rouge">/_sass/_rouge.scss</code>.</p>
+<p>I initially used Nokogiri for the <code>Scraper</code> class, then manually navigated through the CSS selectors on the Steam Store frontpage as well as the individual game pages. It was a tedious process, but worked well enough to acquire the necessary data. However, two major roadblocks soon arose:</p>
 
-<figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="nf">#container</span> <span class="p">{</span>
-    <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span>
-    <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span> <span class="m">-240px</span> <span class="m">0</span> <span class="m">0</span><span class="p">;</span>
-    <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
-<span class="p">}</span></code></pre></figure>
+<p>1) For certain games, the Steam Store would put up an age verification page before allowing the user to continue to the game page, and when using Open-URI to access the page, it would be blocked. I looked into ways of getting around the age verification and it involved creating a cookie, but that was out of scope of what I wanted to accomplish with the project.</p>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;nav</span> <span class="na">class=</span><span class="s">"pagination"</span> <span class="na">role=</span><span class="s">"navigation"</span><span class="nt">&gt;</span>
-    {% if page.previous %}
-        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ site.url }}{{ page.previous.url }}"</span> <span class="na">class=</span><span class="s">"btn"</span> <span class="na">title=</span><span class="s">"{{ page.previous.title }}"</span><span class="nt">&gt;</span>Previous article<span class="nt">&lt;/a&gt;</span>
-    {% endif %}
-    {% if page.next %}
-        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ site.url }}{{ page.next.url }}"</span> <span class="na">class=</span><span class="s">"btn"</span> <span class="na">title=</span><span class="s">"{{ page.next.title }}"</span><span class="nt">&gt;</span>Next article<span class="nt">&lt;/a&gt;</span>
-    {% endif %}
-<span class="nt">&lt;/nav&gt;</span><span class="c">&lt;!-- /.pagination --&gt;</span></code></pre></figure>
+<p>2) As soon as I finished the <code>Scraper</code> methods, the Steam Store changed its entire website and CSS structure for its holiday sale, and rewriting the methods temporarily only to revert to the old methods when the sale was over seemed tedious and inefficient.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">module</span> <span class="nn">Jekyll</span>
-  <span class="k">class</span> <span class="nc">TagIndex</span> <span class="o">&lt;</span> <span class="no">Page</span>
-    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">site</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">dir</span><span class="p">,</span> <span class="n">tag</span><span class="p">)</span>
-      <span class="vi">@site</span> <span class="o">=</span> <span class="n">site</span>
-      <span class="vi">@base</span> <span class="o">=</span> <span class="n">base</span>
-      <span class="vi">@dir</span> <span class="o">=</span> <span class="n">dir</span>
-      <span class="vi">@name</span> <span class="o">=</span> <span class="s1">'index.html'</span>
-      <span class="nb">self</span><span class="p">.</span><span class="nf">process</span><span class="p">(</span><span class="vi">@name</span><span class="p">)</span>
-      <span class="nb">self</span><span class="p">.</span><span class="nf">read_yaml</span><span class="p">(</span><span class="no">File</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="s1">'_layouts'</span><span class="p">),</span> <span class="s1">'tag_index.html'</span><span class="p">)</span>
-      <span class="nb">self</span><span class="p">.</span><span class="nf">data</span><span class="p">[</span><span class="s1">'tag'</span><span class="p">]</span> <span class="o">=</span> <span class="n">tag</span>
-      <span class="n">tag_title_prefix</span> <span class="o">=</span> <span class="n">site</span><span class="p">.</span><span class="nf">config</span><span class="p">[</span><span class="s1">'tag_title_prefix'</span><span class="p">]</span> <span class="o">||</span> <span class="s1">'Tagged: '</span>
-      <span class="n">tag_title_suffix</span> <span class="o">=</span> <span class="n">site</span><span class="p">.</span><span class="nf">config</span><span class="p">[</span><span class="s1">'tag_title_suffix'</span><span class="p">]</span> <span class="o">||</span> <span class="s1">'&amp;#8211;'</span>
-      <span class="nb">self</span><span class="p">.</span><span class="nf">data</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"</span><span class="si">#{</span><span class="n">tag_title_prefix</span><span class="si">}#{</span><span class="n">tag</span><span class="si">}</span><span class="s2">"</span>
-      <span class="nb">self</span><span class="p">.</span><span class="nf">data</span><span class="p">[</span><span class="s1">'description'</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"An archive of posts tagged </span><span class="si">#{</span><span class="n">tag</span><span class="si">}</span><span class="s2">."</span>
-    <span class="k">end</span>
+<p>So after doing some research, I was able to find a better way: leveraging the Steam Storefront API. I created a new class, <code>SteamAPIHandler</code>, to acquire the JSON data and parse it, using the data to create <code>Game</code> objects that could then interact with the <code>CLI</code>. This allowed me access to a much larger amount of data and proved to be much more efficient as well. For example, here’s an old <code>Scraper</code> method:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">scrape_top_sellers</span><span class="p">(</span><span class="n">store_url</span><span class="p">)</span>
+  <span class="n">return_array</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#empty array that will contain the game hashes to return at the end of the method</span>
+
+  <span class="c1">#OPEN URL</span>
+  <span class="n">doc</span> <span class="o">=</span> <span class="no">Nokogiri</span><span class="o">::</span><span class="no">HTML</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">store_url</span><span class="p">))</span> <span class="c1">#uses open-uri to open the url, then uses Nokogiri to parse in the html which we will then use to scrape data</span>
+
+  <span class="c1">#PARSE PAGE FOR DATA</span>
+  <span class="n">doc</span><span class="p">.</span><span class="nf">css</span><span class="p">(</span><span class="s2">"div.tab_content#tab_topsellers_content div.tab_item"</span><span class="p">).</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span> <span class="c1">#iterates over each game listing on the site, and gets name, location, and url</span>
+    <span class="n">return_array</span> <span class="o">&lt;&lt;</span> <span class="p">{</span> <span class="c1">#pushes a hash of game data onto the array</span>
+      <span class="ss">title: </span><span class="n">item</span><span class="p">.</span><span class="nf">css</span><span class="p">(</span><span class="s2">"div.tab_item_name"</span><span class="p">).</span><span class="nf">text</span><span class="p">,</span> <span class="c1">#uses css to select the appropriate data</span>
+      <span class="ss">price: </span><span class="n">item</span><span class="p">.</span><span class="nf">css</span><span class="p">(</span><span class="s2">"div.discount_final_price"</span><span class="p">).</span><span class="nf">text</span><span class="p">,</span>
+      <span class="ss">genres: </span><span class="n">item</span><span class="p">.</span><span class="nf">css</span><span class="p">(</span><span class="s2">"div.tab_item_top_tags"</span><span class="p">).</span><span class="nf">text</span><span class="p">,</span>
+      <span class="ss">url: </span><span class="n">item</span><span class="p">.</span><span class="nf">css</span><span class="p">(</span><span class="s2">"a.tab_item_overlay"</span><span class="p">).</span><span class="nf">collect</span><span class="p">{</span> <span class="o">|</span><span class="n">link</span><span class="o">|</span> <span class="n">link</span><span class="p">[</span><span class="s1">'href'</span><span class="p">]</span> <span class="p">}.</span><span class="nf">join</span><span class="p">,</span>
+      <span class="p">}</span>
   <span class="k">end</span>
+
+  <span class="n">return_array</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="ss">:url</span><span class="p">].</span><span class="nf">split</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span> <span class="c1">#splits the link into individual elements between the /s</span>
+    <span class="n">x</span><span class="p">.</span><span class="nf">pop</span> <span class="c1">#gets rid of the ?info at the end of the link</span>
+    <span class="n">i</span><span class="p">[</span><span class="ss">:steam_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="nf">last</span> <span class="c1">#sets the steam id to the end element of the link</span>
+    <span class="n">i</span><span class="p">[</span><span class="ss">:url</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span> <span class="c1">#joins the url and saves it without the ?info</span>
+  <span class="k">end</span>
+
+  <span class="n">return_array</span>
 <span class="k">end</span></code></pre></figure>
 
-<h3 id="standard-code-block">Standard Code Block</h3>
+<p>…compared to a new <code>SteamAPIHandler</code> method that accomplishes the same thing:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;nav class="pagination" role="navigation"&gt;
-    {% if page.previous %}
-        &lt;a href="{{ site.url }}{{ page.previous.url }}" class="btn" title="{{ page.previous.title }}"&gt;Previous article&lt;/a&gt;
-    {% endif %}
-    {% if page.next %}
-        &lt;a href="{{ site.url }}{{ page.next.url }}" class="btn" title="{{ page.next.title }}"&gt;Next article&lt;/a&gt;
-    {% endif %}
-&lt;/nav&gt;&lt;!-- /.pagination --&gt;
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">get_top_sellers</span>
+  <span class="n">doc</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"http://store.steampowered.com/api/featuredcategories/?cc=US"</span><span class="p">)</span> <span class="c1">#uses Open-URI to get the JSON file, ?cc=US for US currency</span>
+  <span class="n">data_hash</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span> <span class="c1">#loads the JSON data</span>
+  <span class="n">data_hash</span><span class="p">[</span><span class="s2">"top_sellers"</span><span class="p">][</span><span class="s2">"items"</span><span class="p">]</span> <span class="c1">#selects desired part of hash</span>
+<span class="k">end</span></code></pre></figure>
 
-<div class="footnotes">
-  <ol>
-    <li id="fn:1">
-      <p><a href="http://en.wikipedia.org/wiki/Syntax_highlighting">http://en.wikipedia.org/wiki/Syntax_highlighting</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
+<p>In practice, the <code>CLI</code>, upon loading, uses the <code>SteamAPIHandler</code> to acquire the top sellers and create <code>Game</code> objects from the data. It prints out the information on the screen, then, when the user selects a game to get more information on, the <code>CLI</code> uses the <code>SteamAPIHandler</code> to acquire additional data and print it out. I had a method that acquired the additional information as soon as the <code>CLI</code> loaded, but it caused additional load time as it had to make ten queries to the API in succession, as opposed to one at a time where the load time is much less noticeable.</p>
+
+<p>Overall, it was a good learning experience and I accomplished what I had set out to do. You can see the source code for this project <a href="https://github.com/MitulMistry/steam-top-sellers-cli-gem">here on Github.</a></p>
+
 
     
   </div><!-- /.entry-content -->
@@ -307,6 +298,36 @@
   </ul>
 </div>
 
+  
+<div class="read-more">
+  <div class="read-more-header">
+    <a href="http://mitulmistry.github.io/" class="read-more-btn">About the Author</a>
+  </div><!-- /.read-more-header -->
+  <div class="read-more-content author-info">
+    <h3>Mitul Mistry</h3>
+    <div class="author-container">
+      <img class="author-img" src="/images/avatar_mm.jpg" alt="Mitul Mistry" />
+      <div class="author-bio">I’m Mitul Mistry, a full-stack developer and designer. Contact me here: MitulMistryDev@gmail.com</div>
+    </div>
+    <div class="author-share">
+      <ul class="list-inline social-buttons">
+        
+          <li><a href="https://github.com/MitulMistry" target="_blank"><i class="fa fa-github fa-fw"></i></a></li>
+        
+          <li><a href="https://linkedin.com/in/mitulmistry" target="_blank"><i class="fa fa-linkedin fa-fw"></i></a></li>
+        
+      </ul>
+      
+        <a aria-label="Follow @MitulMistry on GitHub" data-style="mega" href="https://github.com/MitulMistry" class="github-button">Follow @MitulMistry</a>
+      
+      <br>
+      
+        <a href="https://twitter.com/mmystic" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @mmystic</a>
+      
+    </div>
+  </div>
+</div>
+
 
 </div><!-- /#main -->
 
@@ -330,7 +351,7 @@
 
 <div class="footer-wrapper">
   <footer role="contentinfo">
-    <span>&copy; 2016 Mitul Mistry. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="http://github.com/aron-bordin/neo-hpstr-jekyll-theme" rel="nofollow">Neo-HPSTR Theme</a>.</span>
+    <span>&copy; 2016 Mitul Mistry</span>
 
   </footer>
 </div><!-- /.footer-wrapper -->
