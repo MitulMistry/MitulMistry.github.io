@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "jQuery Rails App"
-date:   2016-06-01 15:30:00
+date:   2016-06-01 16:45:00
 categories: javascript rails
 ---
 
