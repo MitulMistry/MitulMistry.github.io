@@ -5,17 +5,17 @@ date:   2016-06-01 15:30:00
 categories: javascript rails
 ---
 
-With `Rails`, I've been working on a lot on dealing with the back end through `ActiveRecord` and dealing with Rails templates and [form helpers][forms]. However, modern web applications focus on spontaneous interaction, meaning single page apps with no page reloads. There are a variety of front end frameworks - like [Angular][angular], which I will be working with later - that many of the websites we use every day are built with. However, it's possible to create interactive applications solely with [jQuery][jquery] - a `JavaScript` library that most websites leverage in one way or another.
+With `Rails`, I've been working a lot on dealing with the back end through `ActiveRecord` and using Rails templates with [form helpers][forms]. However, modern web applications focus on spontaneous interaction, meaning single page apps with no page reloads. There are a variety of front end frameworks - like [Angular][angular], which I will be working with later - that many of the websites we use every day are built with. However, it's possible to create interactive applications solely with [jQuery][jquery] - a `JavaScript` library that most websites leverage in one way or another.
 
 For this project, I wanted to create a simple note taking application kind of like Google Keep where the user can create and display notes without reloading the page. This creates a smoother, more natural user experience that I achieved with a `jQuery` front end.
 
 **Rails Back End**
 
-Before focus on user interaction, I organized the back end using `Rails` controllers and models. I used [Devise][devise] to set up a user model and authentication since notes wouldn't be public - they needed to be limited to an individual user. After that, I used `rails generate resource` to generate the files for notes and tags. The controllers are set up similarly to those in my [last Rails project][rails-project], with the exception of needing to account for the `AJAX` requests that would be coming from the `jQuery` front end.
+Before focusing on user interaction, I organized the back end using `Rails` controllers and models. I used [Devise][devise] to set up a user model and authentication since notes wouldn't be public - they needed to be limited to an individual user. After that, I used `rails generate resource` to generate the files for notes and tags. The controllers are set up similarly to those in my [last Rails project][rails-project], with the exception of needing to account for the `AJAX` requests that would be coming from the `jQuery` front end.
 
 `AJAX` stands for Asynchronous JavaScript and XML, but most of the time it's used with `JavaScript` as XML has become deprecated in favor of `JSON` - [JavaScript Object Notation][json].
 
-Here is an example of and action in the notes controller handling both `HTML` and `JSON` requests:
+Here is an example of an action in the notes controller handling both `HTML` and `JSON` requests:
 
 {% highlight ruby %}
 def show
@@ -29,7 +29,7 @@ end
 
 With `respond_to`, we're able to handle requests for different formats. If we have a link that makes an `HTML` request for a note, we render the note template. However, if we get a request for `JSON`, we render the note in serialized `JSON` format.
 
-What is serialization and how does `Rails` do it? There are a variety of ways, but I used [ActiveModel Serializers][activemodel-serializers] which implicitly turns @note into `JSON` data.
+What is serialization and how does `Rails` do it? There are a variety of ways, but I used [ActiveModel Serializers][activemodel-serializers] which implicitly turns `@note` into `JSON` data.
 
 You can take a look at my controllers [here][controllers]. Once the back end is set up, we can move on.
 
@@ -62,9 +62,9 @@ function attachListeners(){
 }
 {% endhighlight %}
 
-`event.preventDefault()` is necessary in order to prevent the default behavior of the form, which is to submit and reload the page. Anything with a `$` is shorthand for `jQuery`, so it's invoking a `jQuery` object or function. `var name = $('#tag_name').val();` gets the tag name value from the text input of the form sets it to a variable. It validates it client side with a custom Validator class, and if the data passes, it processes the request.
+`event.preventDefault()` is necessary in order to prevent the default behavior of the form, which is to submit and reload the page. Anything with a `$` is shorthand for `jQuery`, so it's invoking a `jQuery` object or function. `var name = $('#tag_name').val()` gets the tag name value from the text input of the form and sets it to a variable. It validates it client side with a custom Validator class and if the data passes, it processes the request.
 
-`var values = $(this).serialize();` serializes the data in the form via `jQuery` and prepares it to be sent. `var posting = $.post('/tags', values);` makes a `jQuery` POST request to the tags controller with the data from the form that has been serialized. Once the posting is finished, we set a `.done` callback to clear the form input field and then call the `loadTags()` function.
+`var values = $(this).serialize()` serializes the data in the form via `jQuery` and prepares it to be sent. `var posting = $.post('/tags', values)` makes a `jQuery` POST request to the tags controller with the data from the form that has been serialized. Once the posting is finished, we set a `.done` callback to clear the form input field and then call the `loadTags()` function.
 
 {% highlight javascript %}
 function loadTags(){

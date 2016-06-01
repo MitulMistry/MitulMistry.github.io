@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "jQuery Rails App",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/javascript/rails/jquery-rails-app/",
+      "date"     : "2016-06-01 10:30:00 -0500"
+    } ,
+  
+    {
       "title"    : "Rails Forms",
       "category" : "",
       "tags"     : "",

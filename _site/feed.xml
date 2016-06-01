@@ -4,13 +4,110 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-06-01T12:23:52-05:00</updated>
+<updated>2016-06-01T16:45:50-05:00</updated>
 <id>/</id>
 <author>
   <name>Mitul Mistry</name>
   <uri>/</uri>
   <email>MitulMistryDev@gmail.com</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[jQuery Rails App]]></title>
+ <link rel="alternate" type="text/html" href="/javascript/rails/jquery-rails-app/" />
+  <id>/javascript/rails/jquery-rails-app</id>
+  <published>2016-06-01T10:30:00-05:00</published>
+  <updated>2016-06-01T10:30:00-05:00</updated>
+  <author>
+    <name>Mitul Mistry</name>
+    <uri></uri>
+    <email>MitulMistryDev@gmail.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;With &lt;code&gt;Rails&lt;/code&gt;, I’ve been working a lot on dealing with the back end through &lt;code&gt;ActiveRecord&lt;/code&gt; and using Rails templates with &lt;a href=&quot;http://mitulmistry.github.io/ruby/rails/rails-forms/&quot;&gt;form helpers&lt;/a&gt;. However, modern web applications focus on spontaneous interaction, meaning single page apps with no page reloads. There are a variety of front end frameworks - like &lt;a href=&quot;https://angularjs.org/&quot;&gt;Angular&lt;/a&gt;, which I will be working with later - that many of the websites we use every day are built with. However, it’s possible to create interactive applications solely with &lt;a href=&quot;https://jquery.com/&quot;&gt;jQuery&lt;/a&gt; - a &lt;code&gt;JavaScript&lt;/code&gt; library that most websites leverage in one way or another.&lt;/p&gt;
+
+&lt;p&gt;For this project, I wanted to create a simple note taking application kind of like Google Keep where the user can create and display notes without reloading the page. This creates a smoother, more natural user experience that I achieved with a &lt;code&gt;jQuery&lt;/code&gt; front end.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Rails Back End&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Before focusing on user interaction, I organized the back end using &lt;code&gt;Rails&lt;/code&gt; controllers and models. I used &lt;a href=&quot;https://github.com/plataformatec/devise&quot;&gt;Devise&lt;/a&gt; to set up a user model and authentication since notes wouldn’t be public - they needed to be limited to an individual user. After that, I used &lt;code&gt;rails generate resource&lt;/code&gt; to generate the files for notes and tags. The controllers are set up similarly to those in my &lt;a href=&quot;http://mitulmistry.github.io/ruby/rails/rails-project/&quot;&gt;last Rails project&lt;/a&gt;, with the exception of needing to account for the &lt;code&gt;AJAX&lt;/code&gt; requests that would be coming from the &lt;code&gt;jQuery&lt;/code&gt; front end.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;AJAX&lt;/code&gt; stands for Asynchronous JavaScript and XML, but most of the time it’s used with &lt;code&gt;JavaScript&lt;/code&gt; as XML has become deprecated in favor of &lt;code&gt;JSON&lt;/code&gt; - &lt;a href=&quot;https://en.wikipedia.org/wiki/JSON&quot;&gt;JavaScript Object Notation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here is an example of an action in the notes controller handling both &lt;code&gt;HTML&lt;/code&gt; and &lt;code&gt;JSON&lt;/code&gt; requests:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;show&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@note&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Note&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;respond_to&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+   &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;html&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:show&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+   &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;json&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;json: &lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@note&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+ &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;With &lt;code&gt;respond_to&lt;/code&gt;, we’re able to handle requests for different formats. If we have a link that makes an &lt;code&gt;HTML&lt;/code&gt; request for a note, we render the note template. However, if we get a request for &lt;code&gt;JSON&lt;/code&gt;, we render the note in serialized &lt;code&gt;JSON&lt;/code&gt; format.&lt;/p&gt;
+
+&lt;p&gt;What is serialization and how does &lt;code&gt;Rails&lt;/code&gt; do it? There are a variety of ways, but I used &lt;a href=&quot;https://github.com/rails-api/active_model_serializers&quot;&gt;ActiveModel Serializers&lt;/a&gt; which implicitly turns &lt;code&gt;@note&lt;/code&gt; into &lt;code&gt;JSON&lt;/code&gt; data.&lt;/p&gt;
+
+&lt;p&gt;You can take a look at my controllers &lt;a href=&quot;https://github.com/MitulMistry/post-it/tree/master/app/controllers&quot;&gt;here&lt;/a&gt;. Once the back end is set up, we can move on.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;jQuery Front End&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;There’s a lot of code that went into seemingly basic functionality such as creating new notes, displaying notes based on a tag, and pagination without reloading. I’ll go over some of it briefly.&lt;/p&gt;
+
+&lt;p&gt;This portion of code attaches an event listener to the new tag form and processes the request to create a new form:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;attachListeners&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;//create new tag&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;form#new_tag&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;submit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;preventDefault&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//prevent form from submitting the default way and reloading page&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;#tag_name&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;val&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;validator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;validateTag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;values&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;serialize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;posting&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;/tags&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;values&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+      &lt;span class=&quot;nx&quot;&gt;posting&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;form #tag_name&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;val&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//clear form input&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;loadTags&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;.........&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code&gt;event.preventDefault()&lt;/code&gt; is necessary in order to prevent the default behavior of the form, which is to submit and reload the page. Anything with a &lt;code&gt;$&lt;/code&gt; is shorthand for &lt;code&gt;jQuery&lt;/code&gt;, so it’s invoking a &lt;code&gt;jQuery&lt;/code&gt; object or function. &lt;code&gt;var name = $(&#39;#tag_name&#39;).val()&lt;/code&gt; gets the tag name value from the text input of the form and sets it to a variable. It validates it client side with a custom Validator class and if the data passes, it processes the request.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;var values = $(this).serialize()&lt;/code&gt; serializes the data in the form via &lt;code&gt;jQuery&lt;/code&gt; and prepares it to be sent. &lt;code&gt;var posting = $.post(&#39;/tags&#39;, values)&lt;/code&gt; makes a &lt;code&gt;jQuery&lt;/code&gt; POST request to the tags controller with the data from the form that has been serialized. Once the posting is finished, we set a &lt;code&gt;.done&lt;/code&gt; callback to clear the form input field and then call the &lt;code&gt;loadTags()&lt;/code&gt; function.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;loadTags&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getJSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;/tags&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;success&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tags&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;div#tags&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//clear tags&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;div#tags&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;generateTagLink&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]));&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;addTagListeners&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Here, we make a &lt;code&gt;jQuery&lt;/code&gt; &lt;code&gt;.getJSON&lt;/code&gt; request to ask for &lt;code&gt;JSON&lt;/code&gt; data from our tags controller. Since we set it up with a &lt;code&gt;respond_to&lt;/code&gt; earlier, the controller uses &lt;code&gt;ActiveModel Serializers&lt;/code&gt; to send the tag model as serialized &lt;code&gt;JSON&lt;/code&gt; data to &lt;code&gt;jQuery&lt;/code&gt;. Yes, this is a lot of serialization back and forth, but it’s necessary if we want two way &lt;code&gt;AJAX&lt;/code&gt; communication between our front and back ends.&lt;/p&gt;
+
+&lt;p&gt;We get our tags as &lt;code&gt;JSON&lt;/code&gt; data and iterate through it to generate the &lt;code&gt;HTML&lt;/code&gt; necessary to display each tag. From there, we call the &lt;code&gt;addTagListeners()&lt;/code&gt; function to add click events to each tag, so when we click on a tag it will then make another &lt;code&gt;AJAX&lt;/code&gt; request to get all the notes associated with the clicked tag.&lt;/p&gt;
+
+&lt;p&gt;There’s a lot more to it, but this gives a good sense of the basics of the project. You can take a look at the &lt;code&gt;JavaScript&lt;/code&gt; portion of the project &lt;a href=&quot;https://github.com/MitulMistry/post-it/tree/master/app/assets/javascripts&quot;&gt;here&lt;/a&gt; and explore some of the additional functionality yourself.&lt;/p&gt;
+
+&lt;p&gt;You can see the source code for the whole project &lt;a href=&quot;https://github.com/MitulMistry/post-it&quot;&gt;here on Github&lt;/a&gt;.&lt;/p&gt;
+
+
+    &lt;p&gt;&lt;a href=&quot;/javascript/rails/jquery-rails-app/&quot;&gt;jQuery Rails App&lt;/a&gt; was originally published by Mitul Mistry at &lt;a href=&quot;&quot;&gt;Mitul Mistry - Tech Blog&lt;/a&gt; on June 01, 2016.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
@@ -27,7 +124,7 @@
   <content type="html">
     &lt;p&gt;To me, forms in web applications feel antiquated. There are better ways to get data from a user, such as getting access to a user’s other accounts (like Twitter or Facebook) via &lt;a href=&quot;https://github.com/intridea/omniauth&quot;&gt;OAuth&lt;/a&gt; and populating data from there, but that’s not always an option. For now, we still have to input data manually and that means we need to use forms.&lt;/p&gt;
 
-&lt;p&gt;Forms are obnoxious. You have to pick out which input types are best for your scenario (text, radio buttons, dropdown lists, etc.). You need to style it with &lt;code&gt;CSS&lt;/code&gt; so it looks presentable You need to define a route for the form to submit data to the backend. You have to deal with data validations and handle scenarios where users input unacceptable data. And  you have to deal with a host of other miscellaneous issues that come with such complex interaction.&lt;/p&gt;
+&lt;p&gt;Forms are obnoxious. You have to pick out which input types are best for your scenario (text, radio buttons, dropdown lists, etc.). You need to style it with &lt;code&gt;CSS&lt;/code&gt; so it looks presentable You need to define a route for the form to submit data to the back end. You have to deal with data validations and handle scenarios where users input unacceptable data. And  you have to deal with a host of other miscellaneous issues that come with such complex interaction.&lt;/p&gt;
 
 &lt;p&gt;Here’s a sample &lt;code&gt;HTML&lt;/code&gt; form:&lt;/p&gt;
 
@@ -67,7 +164,7 @@
 
 &lt;p&gt;Just with a few simple lines of &lt;code&gt;ERB&lt;/code&gt;, we’re able to create a fully realized form. It has an action and method already defined, as well as an authenticity token which is used to help prevent &lt;a href=&quot;https://en.wikipedia.org/wiki/Cross-site_request_forgery&quot;&gt;cross-site request forgeries&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;However, &lt;code&gt;form_tag&lt;/code&gt; is limited, specifically when it comes to dealing with forms directly related to backend &lt;code&gt;models&lt;/code&gt;. If you want a different action method (such as wanting to reuse the same form for creating and editing a model), you have to specify it manually. It also won’t populate the form with data that’s already there. That’s where &lt;code&gt;form_for&lt;/code&gt; comes in.&lt;/p&gt;
+&lt;p&gt;However, &lt;code&gt;form_tag&lt;/code&gt; is limited, specifically when it comes to dealing with forms directly related to back end &lt;code&gt;models&lt;/code&gt;. If you want a different action method (such as wanting to reuse the same form for creating and editing a model), you have to specify it manually. It also won’t populate the form with data that’s already there. That’s where &lt;code&gt;form_for&lt;/code&gt; comes in.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;form_for&lt;/strong&gt;&lt;/p&gt;
 
@@ -98,7 +195,7 @@
   &lt;span class=&quot;vi&quot;&gt;@post&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Of course now we need to wire these forms up with &lt;code&gt;controllers&lt;/code&gt; in the backend to actually process the data, but that’s a topic for another day.&lt;/p&gt;
+&lt;p&gt;Of course now we need to wire these forms up with &lt;code&gt;controllers&lt;/code&gt; in the back end to actually process the data, but that’s a topic for another day.&lt;/p&gt;
 
 &lt;p&gt;You can read more about Rails forms in the &lt;a href=&quot;http://guides.rubyonrails.org/form_helpers.html&quot;&gt;Rails Guides&lt;/a&gt;.&lt;/p&gt;
 
