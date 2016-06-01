@@ -1,0 +1,383 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Rails Forms &#8211; Mitul Mistry - Tech Blog</title>
+<meta name="description" content="The technical blog of Mitul Mistry.">
+<meta name="keywords" content="">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@mmystic">
+<meta name="twitter:creator" content="@mmystic">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rails Forms">
+<meta property="og:description" content="The technical blog of Mitul Mistry.">
+<meta property="og:url" content="/ruby/rails/rails-forms/">
+<meta property="og:site_name" content="Mitul Mistry - Tech Blog">
+<meta property="og:image" content="/images/images/logo_mm2.png">
+
+
+
+
+
+<link rel="canonical" href="/ruby/rails/rails-forms/">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Mitul Mistry - Tech Blog Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/jquery.mmenu.all.css">
+<link rel="stylesheet" href="/assets/css/jquery.floating-social-share.min.css">
+<!-- Webfonts -->
+<link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script type="text/javascript" src="/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144x144-precomposed.png">
+
+
+
+
+</head>
+
+<body id="post" >
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+
+
+<div class="header-menu header-menu-top">
+    <ul class="header-item-container">
+      <li class="header-item-title header-toggle "><a href="#menu"><h2><i class="fa fa-bars"></i></h2></a></li>
+      <li class="header-item-title">
+        <a href="/">
+          
+            <img class="logo" src="/images/logo_mm2.png" alt="Mitul Mistry - Tech Blog">
+          
+          <a href="/" class="title"> Mitul Mistry - Tech Blog</a>
+        </a>
+      </li>
+      
+        
+        
+
+        
+          <li class="header-item "><a href="/categories"><h3>Categories</h3></a>
+            <ul class="header-submenu">
+              
+                
+                  <li class="sub-item"><a href="/categories/#general">general</a></li>
+              
+                
+                  <li class="sub-item"><a href="/categories/#rails">rails</a></li>
+              
+                
+                  <li class="sub-item"><a href="/categories/#ruby">ruby</a></li>
+              
+                
+                  <li class="sub-item"><a href="/categories/#sinatra">sinatra</a></li>
+              
+            </ul>
+          </li>
+        
+      
+        
+        
+
+        
+            
+                <li class="header-item "><a href="/about"><h3>About</h3></a></li>
+            
+        
+      
+        
+        
+
+        
+            
+                <li class="header-item "><a href="/"><h3>Home</h3></a></li>
+            
+        
+      
+      <li class="header-item"><a href="/search"><h3><i class="fa fa-search"></i></h3></a></li>
+    </ul>
+  </div>
+<div class="entry-header">
+  <div class="header-title">
+    <div class="header-title-wrap">
+      <h1>Rails Forms</h1>
+      
+        <h2><span class="entry-date date published updated"><time datetime="2016-06-01T07:15:00-05:00">June 01, 2016</time></span></h2>
+      
+
+      
+        <p class="entry-reading-time">
+          <i class="fa fa-clock-o"></i>
+          
+          Reading time ~2 minutes
+        </p><!-- /.entry-reading-time -->
+      
+    </div><!-- /.header-title-wrap -->
+  </div><!-- /.header-title -->
+</div><!-- /.entry-header -->
+
+
+<nav id="menu" style="display: none">
+  <ul>
+    
+      
+        <li><a href="/"><h3>Home</h3></a></li>
+      
+    
+      
+        <li><a href="/about"><h3>About</h3></a></li>
+      
+    
+      
+        <li><a href="/categories"><h3>Categories</h3></a>
+          <ul>
+            
+              
+                <li><a href="/categories/#general">general</a></li>
+            
+              
+                <li><a href="/categories/#rails">rails</a></li>
+            
+              
+                <li><a href="/categories/#ruby">ruby</a></li>
+            
+              
+                <li><a href="/categories/#sinatra">sinatra</a></li>
+            
+          </ul>
+        </li>
+      
+    
+  </ul>
+</nav>
+
+
+  <a href="https://twitter.com/mmystic" class="btn btn-info button-twitter" data-show-count="false" data-size="large"><i class="fa fa-twitter"></i> <span> | Follow @mmystic</span></a>
+
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    <div class="entry-content">
+        
+      <h1 class="post-title entry-title">Rails Forms</h1>
+      <p>To me, forms in web applications feel antiquated. There are better ways to get data from a user, such as getting access to a user’s other accounts (like Twitter or Facebook) via <a href="https://github.com/intridea/omniauth">OAuth</a> and populating data from there, but that’s not always an option. For now, we still have to input data manually and that means we need to use forms.</p>
+
+<p>Forms are obnoxious. You have to pick out which input types are best for your scenario (text, radio buttons, dropdown lists, etc.). You need to style it with <code>CSS</code> so it looks presentable You need to define a route for the form to submit data to the backend. You have to deal with data validations and handle scenarios where users input unacceptable data. And  you have to deal with a host of other miscellaneous issues that come with such complex interaction.</p>
+
+<p>Here’s a sample <code>HTML</code> form:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"users"</span> <span class="na">method=</span><span class="s">"post"</span> <span class="na">accept-charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;fieldset&gt;</span>
+    First name:<span class="nt">&lt;br&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"firstname"</span><span class="nt">&gt;&lt;br&gt;</span>
+    Last name:<span class="nt">&lt;br&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"lastname"</span><span class="nt">&gt;&lt;br&gt;&lt;br&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">value=</span><span class="s">"Submit"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/fieldset&gt;</span>
+<span class="nt">&lt;/form&gt;</span></code></pre></figure>
+
+<p>Fortunately, <code>Rails</code> can help you generate forms using a few different tools which we’ll look at here.</p>
+
+<p><strong>form_tag</strong></p>
+
+<p><code>form_tag</code> is a Rails form helper used to help you build a basic form.</p>
+
+<p>Here’s a sample <code>form_tag</code> form:</p>
+
+<figure class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="cp">&lt;%=</span> <span class="n">form_tag</span><span class="p">(</span><span class="s2">"/users"</span><span class="p">)</span> <span class="k">do</span> <span class="cp">%&gt;</span>
+  Name: <span class="cp">&lt;%=</span> <span class="n">text_field_tag</span> <span class="s2">"name"</span> <span class="cp">%&gt;</span><span class="nt">&lt;br&gt;</span>
+  Email: <span class="cp">&lt;%=</span> <span class="n">text_field_tag</span> <span class="s2">"email"</span> <span class="cp">%&gt;</span>
+  <span class="cp">&lt;%=</span> <span class="n">submit_tag</span> <span class="s2">"Create User"</span> <span class="cp">%&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span></code></pre></figure>
+
+<p>The actual <code>HTML</code> that’s produced will look like this:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"/users"</span> <span class="na">accept-charset=</span><span class="s">"UTF-8"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"utf8"</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">value=</span><span class="s">"&amp;#x2713;"</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"authenticity_token"</span> <span class="na">value=</span><span class="s">"TKTzvQF+atT/XHG/7h48xKVdXvILdiPj83XQhn2mWBNNhvv0Oh5YfAl2LM3DlHsQjbMOFVsYEyOwj+rPaSk3Bw=="</span> <span class="nt">/&gt;</span>
+ Name: <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"name"</span> <span class="na">id=</span><span class="s">"name"</span> <span class="nt">/&gt;&lt;br</span> <span class="nt">/&gt;</span>
+ Email: <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"email"</span> <span class="na">id=</span><span class="s">"email"</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">name=</span><span class="s">"commit"</span> <span class="na">value=</span><span class="s">"Create User"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/form&gt;</span></code></pre></figure>
+
+<p>Just with a few simple lines of <code>ERB</code>, we’re able to create a fully realized form. It has an action and method already defined, as well as an authenticity token which is used to help prevent <a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery">cross-site request forgeries</a>.</p>
+
+<p>However, <code>form_tag</code> is limited, specifically when it comes to dealing with forms directly related to backend <code>models</code>. If you want a different action method (such as wanting to reuse the same form for creating and editing a model), you have to specify it manually. It also won’t populate the form with data that’s already there. That’s where <code>form_for</code> comes in.</p>
+
+<p><strong>form_for</strong></p>
+
+<p><code>form_for</code> is like <code>form_tag</code> in that it helps you generate a form with <code>ERB</code> tags in a view template. However, <code>form_for</code> directly connects with a <code>model</code> in your Rails application and makes it easy to allow the creation of new <code>model</code> instances in your database.</p>
+
+<p>Here’s a sample form_for form:</p>
+
+<figure class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="cp">&lt;%=</span> <span class="n">form_for</span> <span class="vi">@post</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="cp">%&gt;</span>
+ <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">text_field</span> <span class="ss">:title</span> <span class="cp">%&gt;</span>
+ <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">text_area</span> <span class="ss">:content</span> <span class="cp">%&gt;</span>
+ <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">submit</span> <span class="cp">%&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span></code></pre></figure>
+
+<p>This creates the following <code>HTML</code>:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">class=</span><span class="s">"edit_post"</span> <span class="na">id=</span><span class="s">"edit_post"</span> <span class="na">action=</span><span class="s">"/posts/1"</span> <span class="na">accept-charset=</span><span class="s">"UTF-8"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"utf8"</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">value=</span><span class="s">"&amp;#x2713;"</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"_method"</span> <span class="na">value=</span><span class="s">"patch"</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"authenticity_token"</span> <span class="na">value=</span><span class="s">"nRPP2OqVKB00/Cr+8EvHfYrb5sAkZRtr8f6dzBaJAI+cMceR0fUatcLWd4zdwYCpojW2J3QLK6uyBKeFAgZvmw=="</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"post[title]"</span> <span class="na">id=</span><span class="s">"post_title"</span> <span class="na">value=</span><span class="s">"Existing Post Title"</span><span class="nt">/&gt;</span>
+ <span class="nt">&lt;textarea</span> <span class="na">name=</span><span class="s">"post[content]"</span> <span class="na">id=</span><span class="s">"post_content"</span><span class="nt">&gt;</span>Existing Post Content<span class="nt">&lt;/textarea&gt;</span>
+ <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">name=</span><span class="s">"commit"</span> <span class="na">value=</span><span class="s">"Update Post"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/form&gt;</span></code></pre></figure>
+
+<p>This is something that we can reuse for a create and an edit form, and it will populate data in the form automatically if there’s data there. The thing to remember here is that <code>form_for</code> needs an instance of the model to use which has to be provided from the <code>controller</code>. So for example:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">new</span>
+  <span class="vi">@post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">new</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Of course now we need to wire these forms up with <code>controllers</code> in the backend to actually process the data, but that’s a topic for another day.</p>
+
+<p>You can read more about Rails forms in the <a href="http://guides.rubyonrails.org/form_helpers.html">Rails Guides</a>.</p>
+
+
+      <footer class="entry-meta">
+        <span class="entry-tags"></span>
+        
+        <span class="author vcard"><span class="fn">Mitul Mistry</span></span>
+        <div class="social-share">
+  <ul class="socialcount socialcount-small inline-list">
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=/ruby/rails/rails-forms/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=/ruby/rails/rails-forms/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=/ruby/rails/rails-forms/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
+  </ul>
+</div><!-- /.social-share -->
+
+      </footer>
+    </div><!-- /.entry-content -->
+    <div class="read-more">
+  <div class="read-more-header">
+    <a href="http://mitulmistry.github.io/" class="read-more-btn">About the Author</a>
+  </div><!-- /.read-more-header -->
+  <div class="read-more-content author-info">
+    <h3>Mitul Mistry</h3>
+    <div class="author-container">
+      <img class="author-img" src="/images/avatar_mm.jpg" alt="Mitul Mistry" />
+      <div class="author-bio">I’m Mitul Mistry, a full-stack developer and designer. Contact me here: MitulMistryDev@gmail.com</div>
+    </div>
+    <div class="author-share">
+      <ul class="list-inline social-buttons">
+        
+          <li><a href="https://github.com/MitulMistry" target="_blank"><i class="fa fa-github fa-fw"></i></a></li>
+        
+          <li><a href="https://linkedin.com/in/mitulmistry" target="_blank"><i class="fa fa-linkedin fa-fw"></i></a></li>
+        
+      </ul>
+      
+        <a aria-label="Follow @MitulMistry on GitHub" data-style="mega" href="https://github.com/MitulMistry" class="github-button">Follow @MitulMistry</a>
+      
+      <br>
+      
+        <a href="https://twitter.com/mmystic" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @mmystic</a>
+      
+    </div>
+  </div>
+</div>
+
+    
+    <div class="read-more">
+  
+    <div class="read-more-header">
+      <a href="/ruby/ruby-self/" class="read-more-btn">Read More</a>
+    </div><!-- /.read-more-header -->
+    <div class="read-more-content">
+      <h3><a href="/ruby/ruby-self/" title="Ruby Object's Self">Ruby Object's Self</a></h3>
+      <p>My first experience with object oriented programming came with Java while I was coding in high school. I never learned Java properly, and...&hellip; <a href="/ruby/ruby-self/">Continue reading</a></p>
+    </div><!-- /.read-more-content -->
+  
+  <div class="read-more-list">
+    
+      <div class="list-item">
+        <h4><a href="/general/github-remotes/" title="Github Remotes">Github Remotes</a></h4>
+        <span>Published on May 19, 2016</span>
+      </div><!-- /.list-item -->
+    
+      <div class="list-item">
+        <h4><a href="/general/learning-development/" title="Why I decided to learn software development">Why I decided to learn software development</a></h4>
+        <span>Published on May 12, 2016</span>
+      </div><!-- /.list-item -->
+    
+  </div><!-- /.read-more-list -->
+</div><!-- /.read-more -->
+  </article>
+</div><!-- /#main -->
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script type="text/javascript" src="/assets/js/scripts.min.js"></script>
+<script type="text/javascript" async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+<script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+
+
+<!-- Asynchronous Google Analytics snippet -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-6842596-6', 'auto');
+  ga('require', 'linkid', 'linkid.js');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    sharing();
+</script>
+
+
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2016 Mitul Mistry</span>
+
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+</body>
+</html>

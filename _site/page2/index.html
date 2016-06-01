@@ -191,6 +191,91 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2016-02-24T10:00:00-06:00"><a href="/ruby/sinatra/sinatra-project/">February 24, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~2 minutes
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/ruby/sinatra/sinatra-project/" rel="bookmark" title="Sinatra Project - Simple Blog" itemprop="url">Sinatra Project - Simple Blog</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    
+      <p>After learning the basics of Ruby and ORMs, I’ve been working on a project leveraging the Sinatra development framework. Along with Activerecord, I’ve used it to build a simple blogging application and I will describe the process of developing it here.</p>
+
+<p>The project uses basic Model View Controller architecture. It has a few simple models that interact with various routes in the controller which then composes and serves the different blog pages through the views.</p>
+
+<p><strong>Models:</strong></p>
+
+<p>The first thing I worked on were the models that would represent the data necessary for the blog to work using Activerecord. This includes <code>Users</code> which would write and edit <code>Posts</code>, which would in turn have <code>Tags</code>. In addition, I used the model <code>PostTags</code> as well, but only as an intermediary for a join table to connect <code>Posts</code> and <code>Tags</code>. This was necessary because a <code>Post</code> has many <code>Tags</code>, and a <code>Tag</code> has many <code>Posts</code>, and any time there’s a mutual ‘has many’ relationship between models, a join table is needed.</p>
+
+<p>These associations provide a useful way to list different types of <code>Posts</code>. All <code>Posts</code> belong to a <code>User</code>, so you can easily list all of a <code>User</code>’s <code>Posts</code>, or all of a <code>Tag</code>’s <code>Posts</code> as well. Providing an easy way to organize information is critical to building a successful application, and ActiveRecord provides ample ways of doing just that.</p>
+
+<p><em>The <code>Post</code> model code:</em></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">belongs_to</span> <span class="ss">:user</span>
+  <span class="n">has_many</span> <span class="ss">:post_tags</span>
+  <span class="n">has_many</span> <span class="ss">:tags</span><span class="p">,</span> <span class="ss">through: :post_tags</span>
+
+  <span class="kp">extend</span> <span class="no">FindBySlug</span>
+
+  <span class="k">def</span> <span class="nf">slug</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">title</span><span class="p">.</span><span class="nf">downcase</span><span class="p">.</span><span class="nf">gsub</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span> <span class="s2">"-"</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">readable_date</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">created_at</span><span class="p">.</span><span class="nf">strftime</span><span class="p">(</span><span class="s2">"%b %d, %Y"</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p><strong>Controllers:</strong></p>
+
+<p>Unlike a framework like Rails, Sinatra has a unified router and controller. I used a separate controller for each model which helped organize all the different routes and actions. The <code>Users</code> controller focuses on signing up and logging in <code>Users</code>. The <code>Posts</code> controller deals with the majority of the application’s functionality, namely the creation, editting, and deletion of <code>Posts</code> as well as <code>Tags</code> (since <code>Tags</code> are created in the same page as <code>Posts</code>). Finally, the <code>Tags</code> and application  controllers focus on a few utility tasks. As a whole, the controllers work together to facilitate the functionality of the website and process all the data.</p>
+
+<p><em>An route/action to render the new post creation form:</em></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">get</span> <span class="s1">'/posts/new'</span> <span class="k">do</span>
+  <span class="k">if</span> <span class="n">logged_in?</span>
+    <span class="vi">@tags</span> <span class="o">=</span> <span class="no">Tag</span><span class="p">.</span><span class="nf">all</span>
+    <span class="n">erb</span> <span class="ss">:'posts/new'</span>
+  <span class="k">else</span>
+    <span class="n">redirect</span> <span class="n">to</span> <span class="s1">'/users/login'</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p><strong>Views:</strong></p>
+
+<p>Just like Rails, Sinatra uses <code>ERB</code> files (Embedded Ruby) to dynamically generate html web pages and serve requested content. The views correspond to the routes/actions in the associated controllers, so there are views for showing a user page, displaying a login form, and so on. Using Bootstrap for basic frontend styling helps make the application look at least palatable (as opposed to hideous unstyled html). It may be a bit superficial, but it helps the application look like a complete thought.</p>
+
+<p><em>The ERB code to display all the posts for a tag:</em></p>
+
+<figure class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="nt">&lt;h2&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@tag</span><span class="p">.</span><span class="nf">name</span> <span class="cp">%&gt;</span><span class="nt">&lt;/h2&gt;</span>
+<span class="cp">&lt;%</span> <span class="vi">@tag</span><span class="p">.</span><span class="nf">posts</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">post</span><span class="o">|</span> <span class="cp">%&gt;</span>
+  <span class="nt">&lt;h3&gt;&lt;a</span> <span class="na">href=</span><span class="s">"/posts/</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">slug</span> <span class="cp">%&gt;</span><span class="s">"</span><span class="nt">&gt;</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">title</span> <span class="cp">%&gt;</span><span class="nt">&lt;/a&gt;&lt;/h3&gt;</span>
+  <span class="nt">&lt;h4&gt;</span>By: <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/users/</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">user</span><span class="p">.</span><span class="nf">slug</span> <span class="cp">%&gt;</span><span class="s">"</span><span class="nt">&gt;</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">user</span><span class="p">.</span><span class="nf">username</span> <span class="cp">%&gt;</span><span class="nt">&lt;/a&gt;&lt;/h4&gt;</span>
+  <span class="nt">&lt;p&gt;&lt;strong&gt;</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">readable_date</span> <span class="cp">%&gt;</span><span class="nt">&lt;/strong&gt;&lt;/p&gt;</span>
+  <span class="nt">&lt;p&gt;</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">content</span> <span class="cp">%&gt;</span><span class="nt">&lt;/p&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span></code></pre></figure>
+
+<p>In conclusion, the project took longer than I expected due to the necessary refactoring to deal with things like processing the form data during post creation and editting as well all the individual gears necessary for even a simple web project like this involving a back end. It was certainly an educational experience and a good step towards learning to build professional grade applications.</p>
+
+<p>You can find the source code for this project <a href="https://github.com/MitulMistry/sinatra-simple-blog">here on Github.</a></p>
+
+
+    
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2016-01-13T16:20:00-06:00"><a href="/ruby/steam-cli-gem/">January 13, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
       
       <span class="entry-reading-time">
@@ -338,6 +423,18 @@
 <script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
 
+
+<!-- Asynchronous Google Analytics snippet -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-6842596-6', 'auto');
+  ga('require', 'linkid', 'linkid.js');
+  ga('send', 'pageview');
+</script>
 
 
 
