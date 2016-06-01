@@ -7,7 +7,7 @@ categories: ruby rails
 
 To me, forms in web applications feel antiquated. There are better ways to get data from a user, such as getting access to a user's other accounts (like Twitter or Facebook) via [OAuth][oauth] and populating data from there, but that's not always an option. For now, we still have to input data manually and that means we need to use forms.
 
-Forms are obnoxious. You have to pick out which input types are best for your scenario (text, radio buttons, dropdown lists, etc.). You need to style it with `CSS` so it looks presentable You need to define a route for the form to submit data to the backend. You have to deal with data validations and handle scenarios where users input unacceptable data. And  you have to deal with a host of other miscellaneous issues that come with such complex interaction.
+Forms are obnoxious. You have to pick out which input types are best for your scenario (text, radio buttons, dropdown lists, etc.). You need to style it with `CSS` so it looks presentable You need to define a route for the form to submit data to the back end. You have to deal with data validations and handle scenarios where users input unacceptable data. And  you have to deal with a host of other miscellaneous issues that come with such complex interaction.
 
 Here's a sample `HTML` form:
 
@@ -52,7 +52,7 @@ The actual `HTML` that's produced will look like this:
 
 Just with a few simple lines of `ERB`, we're able to create a fully realized form. It has an action and method already defined, as well as an authenticity token which is used to help prevent [cross-site request forgeries][csrf].
 
-However, `form_tag` is limited, specifically when it comes to dealing with forms directly related to backend `models`. If you want a different action method (such as wanting to reuse the same form for creating and editing a model), you have to specify it manually. It also won't populate the form with data that's already there. That's where `form_for` comes in.
+However, `form_tag` is limited, specifically when it comes to dealing with forms directly related to back end `models`. If you want a different action method (such as wanting to reuse the same form for creating and editing a model), you have to specify it manually. It also won't populate the form with data that's already there. That's where `form_for` comes in.
 
 **form_for**
 
@@ -87,7 +87,7 @@ def new
 end
 {% endhighlight %}
 
-Of course now we need to wire these forms up with `controllers` in the backend to actually process the data, but that's a topic for another day.
+Of course now we need to wire these forms up with `controllers` in the back end to actually process the data, but that's a topic for another day.
 
 You can read more about Rails forms in the [Rails Guides][rails-guides].
 
