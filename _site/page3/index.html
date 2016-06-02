@@ -5,8 +5,8 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Welcome to the Neo-HPSTR Blog &#8211; Mitul Mistry - Tech Blog</title>
-<meta name="description" content="Describe this nonsense.">
+<title>Mitul Mistry, Full-Stack Developer &#8211; Mitul Mistry - Tech Blog</title>
+<meta name="description" content="The technical blog of Mitul Mistry.">
 <meta name="keywords" content="Jekyll, theme, themes, responsive, blog, modern">
 
 <!-- Twitter Cards -->
@@ -17,11 +17,11 @@
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Welcome to the Neo-HPSTR Blog">
-<meta property="og:description" content="Describe this nonsense.">
+<meta property="og:title" content="Mitul Mistry, Full-Stack Developer">
+<meta property="og:description" content="The technical blog of Mitul Mistry.">
 <meta property="og:url" content="/page3/">
 <meta property="og:site_name" content="Mitul Mistry - Tech Blog">
-<meta property="og:image" content="/images/images/logo_mm.png">
+<meta property="og:image" content="/images/images/logo_mm2.png">
 
 
 
@@ -78,7 +78,7 @@
       <li class="header-item-title">
         <a href="/">
           
-            <img class="logo" src="/images/logo_mm.png" alt="Mitul Mistry - Tech Blog">
+            <img class="logo" src="/images/logo_mm2.png" alt="Mitul Mistry - Tech Blog">
           
           <a href="/" class="title"> Mitul Mistry - Tech Blog</a>
         </a>
@@ -92,16 +92,19 @@
             <ul class="header-submenu">
               
                 
-                  <li class="sub-item"><a href="/categories/#image">image</a></li>
+                  <li class="sub-item"><a href="/categories/#angular">angular</a></li>
               
                 
-                  <li class="sub-item"><a href="/categories/#intro">intro</a></li>
+                  <li class="sub-item"><a href="/categories/#general">general</a></li>
+              
+                
+                  <li class="sub-item"><a href="/categories/#javascript">javascript</a></li>
+              
+                
+                  <li class="sub-item"><a href="/categories/#rails">rails</a></li>
               
                 
                   <li class="sub-item"><a href="/categories/#ruby">ruby</a></li>
-              
-                
-                  <li class="sub-item"><a href="/categories/#sample">sample</a></li>
               
                 
                   <li class="sub-item"><a href="/categories/#sinatra">sinatra</a></li>
@@ -134,7 +137,7 @@
 <div class="entry-header">
   <div class="header-title">
     <div class="header-title-wrap">
-      <h1>Welcome to the Neo-HPSTR Blog</h1>
+      <h1>Mitul Mistry, Full-Stack Developer</h1>
       
         <h2><span class="entry-date"><time>&nbsp;</time></span></h2>
       
@@ -165,16 +168,19 @@
           <ul>
             
               
-                <li><a href="/categories/#image">image</a></li>
+                <li><a href="/categories/#angular">angular</a></li>
             
               
-                <li><a href="/categories/#intro">intro</a></li>
+                <li><a href="/categories/#general">general</a></li>
+            
+              
+                <li><a href="/categories/#javascript">javascript</a></li>
+            
+              
+                <li><a href="/categories/#rails">rails</a></li>
             
               
                 <li><a href="/categories/#ruby">ruby</a></li>
-            
-              
-                <li><a href="/categories/#sample">sample</a></li>
             
               
                 <li><a href="/categories/#sinatra">sinatra</a></li>
@@ -197,7 +203,7 @@
   <header>
     
     <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2012-05-22T00:00:00-05:00"><a href="/intro/readability-post/">May 22, 2012</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
+      <span class="entry-date date published updated"><time datetime="2016-01-13T16:20:00-06:00"><a href="/ruby/steam-cli-gem/">January 13, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
       
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
@@ -207,51 +213,61 @@
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="/intro/readability-post/" rel="bookmark" title="Testing Readability with a Bunch of Text" itemprop="url">Testing Readability with a Bunch of Text</a></h1>
+      <h1 class="entry-title"><a href="/ruby/steam-cli-gem/" rel="bookmark" title="Steam Top Sellers CLI Gem" itemprop="url">Steam Top Sellers CLI Gem</a></h1>
     
   </header>
   <div class="entry-content">
     
-      <p>Portland in <code class="highlighter-rouge">shoreditch Vice, labore typewriter pariatur hoodie fap sartorial Austin.</code> Pinterest literally occupy Schlitz forage. Odio ad blue bottle vinyl, 90’s narwhal commodo bitters pour-over nostrud. Ugh est hashtag in, fingerstache adipisicing laboris esse Pinterest shabby chic Portland. Shoreditch bicycle rights anim, flexitarian laboris put a bird on it vinyl cupidatat narwhal. Hashtag artisan skateboard, flannel Bushwick nesciunt salvia aute fixie do plaid post-ironic dolor McSweeney’s. Cliche pour-over chambray nulla four loko skateboard sapiente hashtag.</p>
+      <p>In my process of learning Ruby, I’ve been working on a CLI gem that I’ll discuss here. My goal was to create a command line interface that could retrieve a list of the currently top selling games at the <a href="http://store.steampowered.com/">Steam Store</a>. Upon retrieving the list, the user would then be able to select a game and get more detailed information.</p>
 
-<p>Vero laborum commodo occupy. Semiotics voluptate mumblecore pug. Cosby sweater ullamco quinoa ennui assumenda, sapiente occupy delectus lo-fi. Ea fashion axe Marfa cillum aliquip. Retro Bushwick keytar cliche. Before they sold out sustainable gastropub Marfa readymade, ethical Williamsburg skateboard brunch qui consectetur gentrify semiotics. Mustache cillum irony, fingerstache magna pour-over keffiyeh tousled selfies.</p>
+<p>The original intention was to organize the project through three classes: a <code>Scraper</code>, <code>Game</code>, and <code>CLI</code>. The Scraper would be responsible for scraping the data from the Steam website. The <code>Game</code> class would be used to instantiate objects for each game based on data retrieved by the <code>Scraper</code>. The <code>CLI</code> would then be used to tie the other classes together and create an interface for the user to interact with this data. In execution, most of this would go according to plan, but there would be some changes necessary.</p>
 
-<h2 id="cupidatat-90s-lo-fi-authentic-try-hard">Cupidatat 90’s lo-fi authentic try-hard</h2>
+<p>I initially used Nokogiri for the <code>Scraper</code> class, then manually navigated through the CSS selectors on the Steam Store frontpage as well as the individual game pages. It was a tedious process, but worked well enough to acquire the necessary data. However, two major roadblocks soon arose:</p>
 
-<p>In pug Portland incididunt mlkshk put a bird on it vinyl quinoa. Terry Richardson shabby chic +1, scenester Tonx excepteur tempor fugiat voluptate fingerstache aliquip nisi next level. Farm-to-table hashtag Truffaut, Odd Future ex meggings gentrify single-origin coffee try-hard 90’s.</p>
+<p>1) For certain games, the Steam Store would put up an age verification page before allowing the user to continue to the game page, and when using Open-URI to access the page, it would be blocked. I looked into ways of getting around the age verification and it involved creating a cookie, but that was out of scope of what I wanted to accomplish with the project.</p>
 
-<ul>
-  <li>Sartorial hoodie</li>
-  <li>Labore viral forage</li>
-  <li>Tote bag selvage</li>
-  <li>DIY exercitation et id ugh tumblr church-key</li>
-</ul>
+<p>2) As soon as I finished the <code>Scraper</code> methods, the Steam Store changed its entire website and CSS structure for its holiday sale, and rewriting the methods temporarily only to revert to the old methods when the sale was over seemed tedious and inefficient.</p>
 
-<p>Incididunt umami sriracha, ethical fugiat VHS ex assumenda yr irure direct trade. Marfa Truffaut bicycle rights, kitsch placeat Etsy kogi asymmetrical. Beard locavore flexitarian, kitsch photo booth hoodie plaid ethical readymade leggings yr.</p>
+<p>So after doing some research, I was able to find a better way: leveraging the Steam Storefront API. I created a new class, <code>SteamAPIHandler</code>, to acquire the JSON data and parse it, using the data to create <code>Game</code> objects that could then interact with the <code>CLI</code>. This allowed me access to a much larger amount of data and proved to be much more efficient as well. For example, here’s an old <code>Scraper</code> method:</p>
 
-<p>Aesthetic odio dolore, meggings disrupt qui readymade stumptown brunch Terry Richardson pour-over gluten-free. Banksy american apparel in selfies, biodiesel flexitarian organic meh wolf quinoa gentrify banjo kogi. Readymade tofu ex, scenester dolor umami fingerstache occaecat fashion axe Carles jean shorts minim. Keffiyeh fashion axe nisi Godard mlkshk dolore. Lomo you probably haven’t heard of them eu non, Odd Future Truffaut pug keytar meggings McSweeney’s Pinterest cred. Etsy literally aute esse, eu bicycle rights qui meggings fanny pack. Gentrify leggings pug flannel duis.</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">scrape_top_sellers</span><span class="p">(</span><span class="n">store_url</span><span class="p">)</span>
+  <span class="n">return_array</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#empty array that will contain the game hashes to return at the end of the method</span>
 
-<h2 id="forage-occaecat-cardigan-qui">Forage occaecat cardigan qui</h2>
+  <span class="c1">#OPEN URL</span>
+  <span class="n">doc</span> <span class="o">=</span> <span class="no">Nokogiri</span><span class="o">::</span><span class="no">HTML</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">store_url</span><span class="p">))</span> <span class="c1">#uses open-uri to open the url, then uses Nokogiri to parse in the html which we will then use to scrape data</span>
 
-<p>Fashion axe hella gastropub lo-fi kogi 90’s aliquip +1 veniam delectus tousled. Cred sriracha locavore gastropub kale chips, iPhone mollit sartorial. Anim dolore 8-bit, pork belly dolor photo booth aute flannel small batch. Dolor disrupt ennui, tattooed whatever salvia Banksy sartorial roof party selfies raw denim sint meh pour-over. Ennui eu cardigan sint, gentrify iPhone cornhole.</p>
+  <span class="c1">#PARSE PAGE FOR DATA</span>
+  <span class="n">doc</span><span class="p">.</span><span class="nf">css</span><span class="p">(</span><span class="s2">"div.tab_content#tab_topsellers_content div.tab_item"</span><span class="p">).</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span> <span class="c1">#iterates over each game listing on the site, and gets name, location, and url</span>
+    <span class="n">return_array</span> <span class="o">&lt;&lt;</span> <span class="p">{</span> <span class="c1">#pushes a hash of game data onto the array</span>
+      <span class="ss">title: </span><span class="n">item</span><span class="p">.</span><span class="nf">css</span><span class="p">(</span><span class="s2">"div.tab_item_name"</span><span class="p">).</span><span class="nf">text</span><span class="p">,</span> <span class="c1">#uses css to select the appropriate data</span>
+      <span class="ss">price: </span><span class="n">item</span><span class="p">.</span><span class="nf">css</span><span class="p">(</span><span class="s2">"div.discount_final_price"</span><span class="p">).</span><span class="nf">text</span><span class="p">,</span>
+      <span class="ss">genres: </span><span class="n">item</span><span class="p">.</span><span class="nf">css</span><span class="p">(</span><span class="s2">"div.tab_item_top_tags"</span><span class="p">).</span><span class="nf">text</span><span class="p">,</span>
+      <span class="ss">url: </span><span class="n">item</span><span class="p">.</span><span class="nf">css</span><span class="p">(</span><span class="s2">"a.tab_item_overlay"</span><span class="p">).</span><span class="nf">collect</span><span class="p">{</span> <span class="o">|</span><span class="n">link</span><span class="o">|</span> <span class="n">link</span><span class="p">[</span><span class="s1">'href'</span><span class="p">]</span> <span class="p">}.</span><span class="nf">join</span><span class="p">,</span>
+      <span class="p">}</span>
+  <span class="k">end</span>
 
-<blockquote>
-  <p>Whatever velit occaecat quis deserunt gastropub, leggings elit tousled roof party 3 wolf moon kogi pug blue bottle ea. Fashion axe shabby chic Austin quinoa pickled laborum bitters next level, disrupt deep v accusamus non fingerstache.</p>
-</blockquote>
+  <span class="n">return_array</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="ss">:url</span><span class="p">].</span><span class="nf">split</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span> <span class="c1">#splits the link into individual elements between the /s</span>
+    <span class="n">x</span><span class="p">.</span><span class="nf">pop</span> <span class="c1">#gets rid of the ?info at the end of the link</span>
+    <span class="n">i</span><span class="p">[</span><span class="ss">:steam_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="nf">last</span> <span class="c1">#sets the steam id to the end element of the link</span>
+    <span class="n">i</span><span class="p">[</span><span class="ss">:url</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span> <span class="c1">#joins the url and saves it without the ?info</span>
+  <span class="k">end</span>
 
-<p>Tote bag asymmetrical elit sunt. Occaecat authentic Marfa, hella McSweeney’s next level irure veniam master cleanse. Sed hoodie letterpress artisan wolf leggings, 3 wolf moon commodo ullamco. Anim occupy ea labore Terry Richardson. Tofu ex master cleanse in whatever pitchfork banh mi, occupy fugiat fanny pack Austin authentic. Magna fugiat 3 wolf moon, labore McSweeney’s sustainable vero consectetur. Gluten-free disrupt enim, aesthetic fugiat jean shorts trust fund keffiyeh magna try-hard.</p>
+  <span class="n">return_array</span>
+<span class="k">end</span></code></pre></figure>
 
-<h2 id="hoodie-duis">Hoodie Duis</h2>
+<p>…compared to a new <code>SteamAPIHandler</code> method that accomplishes the same thing:</p>
 
-<p>Actually salvia consectetur, hoodie duis lomo YOLO sunt sriracha. Aute pop-up brunch farm-to-table odio, salvia irure occaecat. Sriracha small batch literally skateboard. Echo Park nihil hoodie, aliquip forage artisan laboris. Trust fund reprehenderit nulla locavore. Stumptown raw denim kitsch, keffiyeh nulla twee dreamcatcher fanny pack ullamco 90’s pop-up est culpa farm-to-table. Selfies 8-bit do pug odio.</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">get_top_sellers</span>
+  <span class="n">doc</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"http://store.steampowered.com/api/featuredcategories/?cc=US"</span><span class="p">)</span> <span class="c1">#uses Open-URI to get the JSON file, ?cc=US for US currency</span>
+  <span class="n">data_hash</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span> <span class="c1">#loads the JSON data</span>
+  <span class="n">data_hash</span><span class="p">[</span><span class="s2">"top_sellers"</span><span class="p">][</span><span class="s2">"items"</span><span class="p">]</span> <span class="c1">#selects desired part of hash</span>
+<span class="k">end</span></code></pre></figure>
 
-<h3 id="thundercats-ho">Thundercats Ho!</h3>
+<p>In practice, the <code>CLI</code>, upon loading, uses the <code>SteamAPIHandler</code> to acquire the top sellers and create <code>Game</code> objects from the data. It prints out the information on the screen, then, when the user selects a game to get more information on, the <code>CLI</code> uses the <code>SteamAPIHandler</code> to acquire additional data and print it out. I had a method that acquired the additional information as soon as the <code>CLI</code> loaded, but it caused additional load time as it had to make ten queries to the API in succession, as opposed to one at a time where the load time is much less noticeable.</p>
 
-<p>Fingerstache thundercats Williamsburg, deep v scenester Banksy ennui vinyl selfies mollit biodiesel duis odio pop-up. Banksy 3 wolf moon try-hard, sapiente enim stumptown deep v ad letterpress. Squid beard brunch, exercitation raw denim yr sint direct trade. Raw denim narwhal id, flannel DIY McSweeney’s seitan. Letterpress artisan bespoke accusamus, meggings laboris consequat Truffaut qui in seitan. Sustainable cornhole Schlitz, twee Cosby sweater banh mi deep v forage letterpress flannel whatever keffiyeh. Sartorial cred irure, semiotics ethical sed blue bottle nihil letterpress.</p>
+<p>Overall, it was a good learning experience and I accomplished what I had set out to do. You can see the source code for this project <a href="https://github.com/MitulMistry/steam-top-sellers-cli-gem">here on Github.</a></p>
 
-<p>Occupy et selvage squid, pug brunch blog nesciunt hashtag mumblecore skateboard yr kogi. Ugh small batch swag four loko. Fap post-ironic qui tote bag farm-to-table american apparel scenester keffiyeh vero, swag non pour-over gentrify authentic pitchfork. Schlitz scenester lo-fi voluptate, tote bag irony bicycle rights pariatur vero Vice freegan wayfarers exercitation nisi shoreditch. Chambray tofu vero sed. Street art swag literally leggings, Cosby sweater mixtape PBR lomo Banksy non in pitchfork ennui McSweeney’s selfies. Odd Future Banksy non authentic.</p>
-
-<p>Aliquip enim artisan dolor post-ironic. Pug tote bag Marfa, deserunt pour-over Portland wolf eu odio intelligentsia american apparel ugh ea. Sunt viral et, 3 wolf moon gastropub pug id. Id fashion axe est typewriter, mlkshk Portland art party aute brunch. Sint pork belly Cosby sweater, deep v mumblecore kitsch american apparel. Try-hard direct trade tumblr sint skateboard. Adipisicing bitters excepteur biodiesel, pickled gastropub aute veniam.</p>
 
     
   </div><!-- /.entry-content -->
@@ -301,6 +317,36 @@
   </ul>
 </div>
 
+  
+<div class="read-more">
+  <div class="read-more-header">
+    <a href="http://mitulmistry.github.io/" class="read-more-btn">About the Author</a>
+  </div><!-- /.read-more-header -->
+  <div class="read-more-content author-info">
+    <h3>Mitul Mistry</h3>
+    <div class="author-container">
+      <img class="author-img" src="/images/avatar_mm.jpg" alt="Mitul Mistry" />
+      <div class="author-bio">I’m Mitul Mistry, a full-stack developer and designer. Contact me here: MitulMistryDev@gmail.com</div>
+    </div>
+    <div class="author-share">
+      <ul class="list-inline social-buttons">
+        
+          <li><a href="https://github.com/MitulMistry" target="_blank"><i class="fa fa-github fa-fw"></i></a></li>
+        
+          <li><a href="https://linkedin.com/in/mitulmistry" target="_blank"><i class="fa fa-linkedin fa-fw"></i></a></li>
+        
+      </ul>
+      
+        <a aria-label="Follow @MitulMistry on GitHub" data-style="mega" href="https://github.com/MitulMistry" class="github-button">Follow @MitulMistry</a>
+      
+      <br>
+      
+        <a href="https://twitter.com/mmystic" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @mmystic</a>
+      
+    </div>
+  </div>
+</div>
+
 
 </div><!-- /#main -->
 
@@ -311,6 +357,18 @@
 <script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
 
+
+<!-- Asynchronous Google Analytics snippet -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-6842596-6', 'auto');
+  ga('require', 'linkid', 'linkid.js');
+  ga('send', 'pageview');
+</script>
 
 
 
@@ -324,7 +382,7 @@
 
 <div class="footer-wrapper">
   <footer role="contentinfo">
-    <span>&copy; 2016 Mitul Mistry. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="http://github.com/aron-bordin/neo-hpstr-jekyll-theme" rel="nofollow">Neo-HPSTR Theme</a>.</span>
+    <span>&copy; 2016 Mitul Mistry</span>
 
   </footer>
 </div><!-- /.footer-wrapper -->

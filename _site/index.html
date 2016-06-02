@@ -203,6 +203,77 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2016-06-02T11:00:00-05:00"><a href="/ruby/rails/building-apis/">June 02, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~2 minutes
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/ruby/rails/building-apis/" rel="bookmark" title="Building APIs" itemprop="url">Building APIs</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    
+      <p>There’s a lot of data out there on the Internet. We can access the data that other providers make available by consuming their <code>APIs</code>. An <code>API</code> - or application protocol interface - is a way to serve and access data. Accessing data from other sources allows you to use their data to build on their services, provide additional functionality, and use their data in new and inventive ways. This is an external <code>API</code>.</p>
+
+<p>However, internal <code>APIs</code> are just as common. This makes data more accessible to our own application and associated services, something that’s especially useful when using <code>AJAX</code> and <code>JavaScript</code> frameworks. Building an <code>API</code> in Rails is often a straightforward process, especially when the model is simple, since Rails has tools to make the data available in different formats.</p>
+
+<p><strong>JSON</strong></p>
+
+<p>Data available through <code>APIs</code>, internal or external, often comes in the form of <a href="https://en.wikipedia.org/wiki/JSON">JSON</a>, or JavaScript Object Notation. It’s a standard format used for efficient readability - both for developers and parsers. To create an <code>API</code> in Rails, all we have to do is take the data from a model and serialize it - or turn it into <code>JSON</code> data. We can do that using the <code>.to_json</code> method.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># posts_controller.rb</span>
+<span class="c1"># ...</span>
+ <span class="k">def</span> <span class="nf">post_data</span>
+   <span class="n">post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+   <span class="n">render</span> <span class="ss">json: </span><span class="n">post</span><span class="p">.</span><span class="nf">to_json</span>
+ <span class="k">end</span></code></pre></figure>
+
+<p>Here, Rails takes the post and converts it to <code>JSON</code> to be served. We can serve different formats using <code>respond_to</code>. We can also limit the data we’re serving and include associations as well.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># posts_controller</span>
+<span class="c1"># ...</span>
+ <span class="k">def</span> <span class="nf">show</span>
+   <span class="vi">@post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+   <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+     <span class="nb">format</span><span class="p">.</span><span class="nf">html</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">:show</span> <span class="p">}</span>
+     <span class="nb">format</span><span class="p">.</span><span class="nf">json</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">json: </span><span class="vi">@post</span><span class="p">.</span><span class="nf">to_json</span><span class="p">(</span><span class="ss">only: </span><span class="p">[</span><span class="ss">:title</span><span class="p">,</span> <span class="ss">:description</span><span class="p">,</span> <span class="ss">:id</span><span class="p">],</span>
+                             <span class="ss">include: </span><span class="p">[</span><span class="ss">author: </span><span class="p">{</span> <span class="ss">only: </span><span class="p">[</span><span class="ss">:name</span><span class="p">]}])</span> <span class="p">}</span>
+   <span class="k">end</span>
+ <span class="k">end</span></code></pre></figure>
+
+<p>However, as things get more complicated, we might want to find a cleaner way. We can instead use <a href="https://github.com/rails-api/active_model_serializers">ActiveModel Serializers</a>. You include and install the gem, run <code>rails g serializer &lt;model name&gt;</code>, and modify the attributes in the new serializer class file. Then, when we respond with <code>JSON</code> data, it serializes the model implicitly.</p>
+
+<p>So now you can just do:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># posts_controller.rb</span>
+<span class="c1"># ...</span>
+<span class="k">def</span> <span class="nf">show</span>
+   <span class="vi">@post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+   <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+     <span class="nb">format</span><span class="p">.</span><span class="nf">html</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">:show</span> <span class="p">}</span>
+     <span class="nb">format</span><span class="p">.</span><span class="nf">json</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">json: </span><span class="vi">@post</span><span class="p">}</span>
+   <span class="k">end</span>
+ <span class="k">end</span>
+ </code></pre></figure>
+
+<p>Now when you build a JavaScript front end that wants to make dynamic <code>AJAX</code> requests without reloading, you can do that by accessing these serializer-enabled controller actions.</p>
+
+<p>You can read more about Rails ActiveModel Serializers in the <a href="http://guides.rubyonrails.org/active_model_basics.html#serialization">Rails Guides</a>.</p>
+
+
+    
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2016-06-02T09:30:00-05:00"><a href="/javascript/angular/intro-to-angular/">June 02, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
       
       <span class="entry-reading-time">
@@ -522,62 +593,6 @@
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2016-05-20T06:30:00-05:00"><a href="/ruby/ruby-self/">May 20, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/ruby/ruby-self/" rel="bookmark" title="Ruby Object's Self" itemprop="url">Ruby Object's Self</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    
-      <p>My first experience with object oriented programming came with <code>Java</code> while I was coding in high school. I never learned Java properly, and it wasn’t until working with <code>C++</code> later on that I got a better understanding of the OOP paradigm.</p>
-
-<p>In Ruby, OOP is implemented in a relatively straightforward way. Classes are defined with the keyword <code>class</code>, which seems unremarkable until you start defining classes in <code>JavaScript</code>. A class serves as a blueprint for your future objects, which you then create instances of, or instantiate, to use in your program.</p>
-
-<p>Here’s some sample ruby code defining a song class.</p>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Song</span>
-  <span class="kp">attr_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:artist</span><span class="p">,</span> <span class="ss">:genre</span>
-  <span class="vc">@@all</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#class variable</span>
-
-  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="n">artist</span><span class="o">=</span><span class="kp">nil</span><span class="p">,</span> <span class="n">genre</span><span class="o">=</span><span class="kp">nil</span><span class="p">)</span>
-    <span class="nb">self</span><span class="p">.</span><span class="nf">name</span> <span class="o">=</span> <span class="nb">name</span>
-    <span class="nb">self</span><span class="p">.</span><span class="nf">artist</span> <span class="o">=</span> <span class="n">artist</span> <span class="k">if</span> <span class="n">artist</span> <span class="o">!=</span> <span class="kp">nil</span>
-    <span class="nb">self</span><span class="p">.</span><span class="nf">genre</span> <span class="o">=</span> <span class="n">genre</span> <span class="k">if</span> <span class="n">genre</span> <span class="o">!=</span> <span class="kp">nil</span>
-    <span class="vc">@@all</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
-  <span class="k">end</span>
-
-  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">all</span>
-    <span class="vc">@@all</span> <span class="c1">#Implicitly returns class array</span>
-  <span class="k">end</span>
-<span class="k">end</span></code></pre></figure>
-
-<p>The attribute accessors define and give read/write access to instance variables - variables that are tied to each instance of the class. But in the initialize method, they’re referred to by the keyword <code>self</code>. <code>self</code> is simply a way to refer to the instance itself. So for the actual song object that is created, <code>self.name</code> refers to that specific song’s name.</p>
-
-<p>When <code>self</code> is being pushed onto the @@all class array, self is being used by itself to push that whole object onto the array.</p>
-
-<p><code>self</code> is also used to define class methods, methods that don’t aren’t a part of instances but the class itself. For example, self.all returns the @@all class array.</p>
-
-<p>The idea of self-referential objects can be tricky if you’re just starting to learn OOP, but it’s necessary in order to build objects that can access their own data.</p>
-
-<p>You can read more about <code>self</code> in the <a href="http://ruby-doc.org/docs/keywords/1.9/Object.html#method-i-self">Ruby docs</a>.</p>
-
-
-    
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
 
 
 <div class="pagination">
@@ -598,12 +613,19 @@
     
 
     
+      
+        
+        
+        
+        <li><a href="/page2/">2</a></li>
+      
+    
 
     
     
 
     
-      <li><a href="/page2/">2</a></li>
+      <li><a href="/page3/">3</a></li>
     
 
     

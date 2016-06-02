@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Sinatra Project - Simple Blog &#8211; Mitul Mistry - Tech Blog</title>
+<title>Building APIs &#8211; Mitul Mistry - Tech Blog</title>
 <meta name="description" content="The technical blog of Mitul Mistry.">
 <meta name="keywords" content="">
 
@@ -17,9 +17,9 @@
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sinatra Project - Simple Blog">
+<meta property="og:title" content="Building APIs">
 <meta property="og:description" content="The technical blog of Mitul Mistry.">
-<meta property="og:url" content="/ruby/sinatra/sinatra-project/">
+<meta property="og:url" content="/ruby/rails/building-apis/">
 <meta property="og:site_name" content="Mitul Mistry - Tech Blog">
 <meta property="og:image" content="/images/images/logo_mm2.png">
 
@@ -27,7 +27,7 @@
 
 
 
-<link rel="canonical" href="/ruby/sinatra/sinatra-project/">
+<link rel="canonical" href="/ruby/rails/building-apis/">
 <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Mitul Mistry - Tech Blog Feed">
 
 <!-- http://t.co/dKP3o1e -->
@@ -137,9 +137,9 @@
 <div class="entry-header">
   <div class="header-title">
     <div class="header-title-wrap">
-      <h1>Sinatra Project - Simple Blog</h1>
+      <h1>Building APIs</h1>
       
-        <h2><span class="entry-date date published updated"><time datetime="2016-02-24T10:00:00-06:00">February 24, 2016</time></span></h2>
+        <h2><span class="entry-date date published updated"><time datetime="2016-06-02T11:00:00-05:00">June 02, 2016</time></span></h2>
       
 
       
@@ -203,67 +203,53 @@
   <article class="hentry">
     <div class="entry-content">
         
-      <h1 class="post-title entry-title">Sinatra Project - Simple Blog</h1>
-      <p>After learning the basics of Ruby and ORMs, I’ve been working on a project leveraging the Sinatra development framework. Along with Activerecord, I’ve used it to build a simple blogging application and I will describe the process of developing it here.</p>
+      <h1 class="post-title entry-title">Building APIs</h1>
+      <p>There’s a lot of data out there on the Internet. We can access the data that other providers make available by consuming their <code>APIs</code>. An <code>API</code> - or application protocol interface - is a way to serve and access data. Accessing data from other sources allows you to use their data to build on their services, provide additional functionality, and use their data in new and inventive ways. This is an external <code>API</code>.</p>
 
-<p>The project uses basic Model View Controller architecture. It has a few simple models that interact with various routes in the controller which then composes and serves the different blog pages through the views.</p>
+<p>However, internal <code>APIs</code> are just as common. This makes data more accessible to our own application and associated services, something that’s especially useful when using <code>AJAX</code> and <code>JavaScript</code> frameworks. Building an <code>API</code> in Rails is often a straightforward process, especially when the model is simple, since Rails has tools to make the data available in different formats.</p>
 
-<p><strong>Models:</strong></p>
+<p><strong>JSON</strong></p>
 
-<p>The first thing I worked on were the models that would represent the data necessary for the blog to work using Activerecord. This includes <code>Users</code> which would write and edit <code>Posts</code>, which would in turn have <code>Tags</code>. In addition, I used the model <code>PostTags</code> as well, but only as an intermediary for a join table to connect <code>Posts</code> and <code>Tags</code>. This was necessary because a <code>Post</code> has many <code>Tags</code>, and a <code>Tag</code> has many <code>Posts</code>, and any time there’s a mutual ‘has many’ relationship between models, a join table is needed.</p>
+<p>Data available through <code>APIs</code>, internal or external, often comes in the form of <a href="https://en.wikipedia.org/wiki/JSON">JSON</a>, or JavaScript Object Notation. It’s a standard format used for efficient readability - both for developers and parsers. To create an <code>API</code> in Rails, all we have to do is take the data from a model and serialize it - or turn it into <code>JSON</code> data. We can do that using the <code>.to_json</code> method.</p>
 
-<p>These associations provide a useful way to list different types of <code>Posts</code>. All <code>Posts</code> belong to a <code>User</code>, so you can easily list all of a <code>User</code>’s <code>Posts</code>, or all of a <code>Tag</code>’s <code>Posts</code> as well. Providing an easy way to organize information is critical to building a successful application, and ActiveRecord provides ample ways of doing just that.</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># posts_controller.rb</span>
+<span class="c1"># ...</span>
+ <span class="k">def</span> <span class="nf">post_data</span>
+   <span class="n">post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+   <span class="n">render</span> <span class="ss">json: </span><span class="n">post</span><span class="p">.</span><span class="nf">to_json</span>
+ <span class="k">end</span></code></pre></figure>
 
-<p><em>The <code>Post</code> model code:</em></p>
+<p>Here, Rails takes the post and converts it to <code>JSON</code> to be served. We can serve different formats using <code>respond_to</code>. We can also limit the data we’re serving and include associations as well.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-  <span class="n">belongs_to</span> <span class="ss">:user</span>
-  <span class="n">has_many</span> <span class="ss">:post_tags</span>
-  <span class="n">has_many</span> <span class="ss">:tags</span><span class="p">,</span> <span class="ss">through: :post_tags</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># posts_controller</span>
+<span class="c1"># ...</span>
+ <span class="k">def</span> <span class="nf">show</span>
+   <span class="vi">@post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+   <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+     <span class="nb">format</span><span class="p">.</span><span class="nf">html</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">:show</span> <span class="p">}</span>
+     <span class="nb">format</span><span class="p">.</span><span class="nf">json</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">json: </span><span class="vi">@post</span><span class="p">.</span><span class="nf">to_json</span><span class="p">(</span><span class="ss">only: </span><span class="p">[</span><span class="ss">:title</span><span class="p">,</span> <span class="ss">:description</span><span class="p">,</span> <span class="ss">:id</span><span class="p">],</span>
+                             <span class="ss">include: </span><span class="p">[</span><span class="ss">author: </span><span class="p">{</span> <span class="ss">only: </span><span class="p">[</span><span class="ss">:name</span><span class="p">]}])</span> <span class="p">}</span>
+   <span class="k">end</span>
+ <span class="k">end</span></code></pre></figure>
 
-  <span class="kp">extend</span> <span class="no">FindBySlug</span>
+<p>However, as things get more complicated, we might want to find a cleaner way. We can instead use <a href="https://github.com/rails-api/active_model_serializers">ActiveModel Serializers</a>. You include and install the gem, run <code>rails g serializer &lt;model name&gt;</code>, and modify the attributes in the new serializer class file. Then, when we respond with <code>JSON</code> data, it serializes the model implicitly.</p>
 
-  <span class="k">def</span> <span class="nf">slug</span>
-    <span class="nb">self</span><span class="p">.</span><span class="nf">title</span><span class="p">.</span><span class="nf">downcase</span><span class="p">.</span><span class="nf">gsub</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span> <span class="s2">"-"</span><span class="p">)</span>
-  <span class="k">end</span>
+<p>So now you can just do:</p>
 
-  <span class="k">def</span> <span class="nf">readable_date</span>
-    <span class="nb">self</span><span class="p">.</span><span class="nf">created_at</span><span class="p">.</span><span class="nf">strftime</span><span class="p">(</span><span class="s2">"%b %d, %Y"</span><span class="p">)</span>
-  <span class="k">end</span>
-<span class="k">end</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># posts_controller.rb</span>
+<span class="c1"># ...</span>
+<span class="k">def</span> <span class="nf">show</span>
+   <span class="vi">@post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+   <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+     <span class="nb">format</span><span class="p">.</span><span class="nf">html</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">:show</span> <span class="p">}</span>
+     <span class="nb">format</span><span class="p">.</span><span class="nf">json</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">json: </span><span class="vi">@post</span><span class="p">}</span>
+   <span class="k">end</span>
+ <span class="k">end</span>
+ </code></pre></figure>
 
-<p><strong>Controllers:</strong></p>
+<p>Now when you build a JavaScript front end that wants to make dynamic <code>AJAX</code> requests without reloading, you can do that by accessing these serializer-enabled controller actions.</p>
 
-<p>Unlike a framework like Rails, Sinatra has a unified router and controller. I used a separate controller for each model which helped organize all the different routes and actions. The <code>Users</code> controller focuses on signing up and logging in <code>Users</code>. The <code>Posts</code> controller deals with the majority of the application’s functionality, namely the creation, editting, and deletion of <code>Posts</code> as well as <code>Tags</code> (since <code>Tags</code> are created in the same page as <code>Posts</code>). Finally, the <code>Tags</code> and application  controllers focus on a few utility tasks. As a whole, the controllers work together to facilitate the functionality of the website and process all the data.</p>
-
-<p><em>An route/action to render the new post creation form:</em></p>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">get</span> <span class="s1">'/posts/new'</span> <span class="k">do</span>
-  <span class="k">if</span> <span class="n">logged_in?</span>
-    <span class="vi">@tags</span> <span class="o">=</span> <span class="no">Tag</span><span class="p">.</span><span class="nf">all</span>
-    <span class="n">erb</span> <span class="ss">:'posts/new'</span>
-  <span class="k">else</span>
-    <span class="n">redirect</span> <span class="n">to</span> <span class="s1">'/users/login'</span>
-  <span class="k">end</span>
-<span class="k">end</span></code></pre></figure>
-
-<p><strong>Views:</strong></p>
-
-<p>Just like Rails, Sinatra uses <code>ERB</code> files (Embedded Ruby) to dynamically generate html web pages and serve requested content. The views correspond to the routes/actions in the associated controllers, so there are views for showing a user page, displaying a login form, and so on. Using Bootstrap for basic frontend styling helps make the application look at least palatable (as opposed to hideous unstyled html). It may be a bit superficial, but it helps the application look like a complete thought.</p>
-
-<p><em>The ERB code to display all the posts for a tag:</em></p>
-
-<figure class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="nt">&lt;h2&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@tag</span><span class="p">.</span><span class="nf">name</span> <span class="cp">%&gt;</span><span class="nt">&lt;/h2&gt;</span>
-<span class="cp">&lt;%</span> <span class="vi">@tag</span><span class="p">.</span><span class="nf">posts</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">post</span><span class="o">|</span> <span class="cp">%&gt;</span>
-  <span class="nt">&lt;h3&gt;&lt;a</span> <span class="na">href=</span><span class="s">"/posts/</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">slug</span> <span class="cp">%&gt;</span><span class="s">"</span><span class="nt">&gt;</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">title</span> <span class="cp">%&gt;</span><span class="nt">&lt;/a&gt;&lt;/h3&gt;</span>
-  <span class="nt">&lt;h4&gt;</span>By: <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/users/</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">user</span><span class="p">.</span><span class="nf">slug</span> <span class="cp">%&gt;</span><span class="s">"</span><span class="nt">&gt;</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">user</span><span class="p">.</span><span class="nf">username</span> <span class="cp">%&gt;</span><span class="nt">&lt;/a&gt;&lt;/h4&gt;</span>
-  <span class="nt">&lt;p&gt;&lt;strong&gt;</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">readable_date</span> <span class="cp">%&gt;</span><span class="nt">&lt;/strong&gt;&lt;/p&gt;</span>
-  <span class="nt">&lt;p&gt;</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">content</span> <span class="cp">%&gt;</span><span class="nt">&lt;/p&gt;</span>
-<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span></code></pre></figure>
-
-<p>In conclusion, the project took longer than I expected due to the necessary refactoring to deal with things like processing the form data during post creation and editting as well all the individual gears necessary for even a simple web project like this involving a back end. It was certainly an educational experience and a good step towards learning to build professional grade applications.</p>
-
-<p>You can find the source code for this project <a href="https://github.com/MitulMistry/sinatra-simple-blog">here on Github.</a></p>
+<p>You can read more about Rails ActiveModel Serializers in the <a href="http://guides.rubyonrails.org/active_model_basics.html#serialization">Rails Guides</a>.</p>
 
 
       <footer class="entry-meta">
@@ -272,9 +258,9 @@
         <span class="author vcard"><span class="fn">Mitul Mistry</span></span>
         <div class="social-share">
   <ul class="socialcount socialcount-small inline-list">
-    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=/ruby/sinatra/sinatra-project/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
-    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=/ruby/sinatra/sinatra-project/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
-    <li class="googleplus"><a href="https://plus.google.com/share?url=/ruby/sinatra/sinatra-project/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=/ruby/rails/building-apis/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=/ruby/rails/building-apis/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=/ruby/rails/building-apis/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
   </ul>
 </div><!-- /.social-share -->
 
@@ -313,23 +299,23 @@
     <div class="read-more">
   
     <div class="read-more-header">
-      <a href="/ruby/steam-cli-gem/" class="read-more-btn">Read More</a>
+      <a href="/javascript/angular/intro-to-angular/" class="read-more-btn">Read More</a>
     </div><!-- /.read-more-header -->
     <div class="read-more-content">
-      <h3><a href="/ruby/rails/building-apis/" title="Building APIs">Building APIs</a></h3>
-      <p>There's a lot of data out there on the Internet. We can access the data that other providers make available by consuming their `APIs`. An...&hellip; <a href="/ruby/rails/building-apis/">Continue reading</a></p>
+      <h3><a href="/javascript/angular/intro-to-angular/" title="Intro to Angular">Intro to Angular</a></h3>
+      <p>Using a combination of Rails templates and jQuery, we can create a decent interactive front end for our applications. But this process ca...&hellip; <a href="/javascript/angular/intro-to-angular/">Continue reading</a></p>
     </div><!-- /.read-more-content -->
   
   <div class="read-more-list">
     
       <div class="list-item">
-        <h4><a href="/javascript/angular/intro-to-angular/" title="Intro to Angular">Intro to Angular</a></h4>
+        <h4><a href="/ruby/rails/rails-sessions/" title="Rails Sessions">Rails Sessions</a></h4>
         <span>Published on June 02, 2016</span>
       </div><!-- /.list-item -->
     
       <div class="list-item">
-        <h4><a href="/ruby/rails/rails-sessions/" title="Rails Sessions">Rails Sessions</a></h4>
-        <span>Published on June 02, 2016</span>
+        <h4><a href="/javascript/rails/jquery-rails-app/" title="jQuery Rails App">jQuery Rails App</a></h4>
+        <span>Published on June 01, 2016</span>
       </div><!-- /.list-item -->
     
   </div><!-- /.read-more-list -->
