@@ -197,7 +197,82 @@
   <header>
     
     <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2016-06-01T10:30:00-05:00"><a href="/javascript/rails/jquery-rails-app/">June 01, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
+      <span class="entry-date date published updated"><time datetime="2016-06-02T07:15:00-05:00"><a href="/ruby/rails/rails-sessions/">June 02, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~2 minutes
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/ruby/rails/rails-sessions/" rel="bookmark" title="Rails Sessions" itemprop="url">Rails Sessions</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    
+      <p>When building a web application, usually we want some capacity for a user to create an account, login, and then interact with the site in a way that’s tied to their identity. If you login to Amazon, it loads up your cart with the items you selected earlier. If you login to Facebook, it loads your profile and your friends. This is something we take for granted - it’s something that’s always there and just “works.”</p>
+
+<p>But HTTP is stateless. Meaning, you send a request to the server, it sends you a response, and that interaction is done. The server doesn’t remember you solely based on the request. So how can we get the server to remember us so we don’t have to login with every request we send?</p>
+
+<p><strong>Cookies</strong></p>
+
+<p>A cookie is just a string that’s stored on your computer with information identifying you and your interaction with a specific site. When you make a request to the server, data is drawn from the cookie and put into the request header when it’s sent. This information gives the server a way to know that the request is coming from you.</p>
+
+<p>In Rails, you can use cookies via <code>sessions</code>. A <code>session</code> is a hash that you can use to store data for a particular interaction with a user. Rails serializes the data in this hash and turns it into a cookie.</p>
+
+<p>Here’s an example:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># set user_id</span>
+<span class="n">session</span><span class="p">[</span><span class="ss">:user_id</span><span class="p">]</span> <span class="o">=</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">id</span>
+
+<span class="c1"># load the user referenced in the session</span>
+<span class="vi">@user</span> <span class="o">=</span> <span class="n">session</span><span class="p">[</span><span class="ss">:user_id</span><span class="p">]</span></code></pre></figure>
+
+<p>Since the cookie is just a string, a user could theoretically manipulate the string before sending it back. To prevent this, Rails cryptographically signs the cookie to ensure it’s authentic and untampered with.</p>
+
+<p><strong>Authentication</strong></p>
+
+<p>So how would we make sure the user is logged in before serving any data? This could be a simple implementation using <code>session</code>:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">DocumentsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="n">before_action</span> <span class="ss">:require_login</span>
+
+  <span class="k">def</span> <span class="nf">show</span>
+    <span class="vi">@document</span> <span class="o">=</span> <span class="no">Document</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">index</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="vi">@document</span> <span class="o">=</span> <span class="no">Document</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">author_id: </span><span class="n">user_id</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">require_login</span>
+    <span class="k">return</span> <span class="n">head</span><span class="p">(</span><span class="ss">:forbidden</span><span class="p">)</span> <span class="k">unless</span> <span class="n">session</span><span class="p">.</span><span class="nf">include?</span> <span class="ss">:user_id</span>   
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Authentication is usually a complex process involving securely storing passwords, checking if the user entered the correct password, and it also entails dealing with new user registration and destroying your session by logging out. For me, I prefer not having to rewrite this boilerplate functionality for every project, so usually I just use the <a href="https://github.com/plataformatec/devise">Devise gem</a>.</p>
+
+<p>Once set up, it handles all of these issues and it’s quite heavily used and tested so you can rest assured that it’s secure. Once you understand the basics of how sessions and authentication work, we can outsource this functionality to a gem like Devise.</p>
+
+<p>You can read more about sessions in the <a href="http://guides.rubyonrails.org/security.html">Rails Guides</a>.</p>
+
+
+    
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2016-06-01T11:45:00-05:00"><a href="/javascript/rails/jquery-rails-app/">June 01, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
       
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
@@ -480,39 +555,6 @@
 
 <p>You can take a look at my repos <a href="https://github.com/MitulMistry">here on Github.</a></p>
 
-
-    
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2016-05-12T18:30:00-05:00"><a href="/general/learning-development/">May 12, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/general/learning-development/" rel="bookmark" title="Why I decided to learn software development" itemprop="url">Why I decided to learn software development</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    
-      <p>Making the decision to learn a hugely difficult skillset is not something to be taken lightly. This is especially true when it requires immense technical knowledge. So deciding to make a commitment to software development, for me, was a big deal.</p>
-
-<p>Previously, I had been working as an artist and designer. I loved art, but found the business side of creative work to be punishing and contrary to what made me passionate about art in the first place. As I spent years doing freelance jobs and checking job listings, the reality of the market eventually became clear. Artists were rarely in demand, but there were always openings for programmers.</p>
-
-<p>Software developers create products and facillitate services in ways that directly create value for users and employers. In contrast, the work that artists and designers do will always be more limited. In order to be relevant, you need skills that can actually solve people’s problems, and art just wasn’t enough of an answer.</p>
-
-<p>I had programmed before in the past - dealing with languages like <code>Visual Basic</code>, <code>Java</code>, and <code>C++</code>. I had enjoyed being able to create functional, interactive products, and solving problems in logical, algorithmic ways. It offered me a way to create more value for others and at a certain point, it became obvious that in order to achieve my goals, I needed to switch tracks.</p>
-
-<p>Since making that decision, I’ve made huge progress learning <code>Ruby</code>, <code>Rails</code>, <code>ActiveRecord</code>, <code>JavaScript</code>, and <code>Angular</code> as well. In a short period of time, I’ve developed a much more marketable skillset and I know that I’ll now be able to make more of an impact with what I’ve learned.</p>
 
     
   </div><!-- /.entry-content -->

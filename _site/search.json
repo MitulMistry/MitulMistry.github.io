@@ -1,11 +1,19 @@
 [
   
     {
+      "title"    : "Rails Sessions",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/ruby/rails/rails-sessions/",
+      "date"     : "2016-06-02 07:15:00 -0500"
+    } ,
+  
+    {
       "title"    : "jQuery Rails App",
       "category" : "",
       "tags"     : "",
       "url"      : "/javascript/rails/jquery-rails-app/",
-      "date"     : "2016-06-01 10:30:00 -0500"
+      "date"     : "2016-06-01 11:45:00 -0500"
     } ,
   
     {
