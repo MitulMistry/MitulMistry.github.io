@@ -92,6 +92,9 @@
             <ul class="header-submenu">
               
                 
+                  <li class="sub-item"><a href="/categories/#angular">angular</a></li>
+              
+                
                   <li class="sub-item"><a href="/categories/#general">general</a></li>
               
                 
@@ -165,6 +168,9 @@
           <ul>
             
               
+                <li><a href="/categories/#angular">angular</a></li>
+            
+              
                 <li><a href="/categories/#general">general</a></li>
             
               
@@ -193,6 +199,50 @@
 
 <div id="main" role="main">
   
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2016-06-02T09:30:00-05:00"><a href="/javascript/angular/intro-to-angular/">June 02, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/javascript/angular/intro-to-angular/" rel="bookmark" title="Intro to Angular" itemprop="url">Intro to Angular</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    
+      <p>Using a combination of Rails templates and <code>jQuery</code>, we can create a decent interactive front end for our applications. But this process can quickly become ugly and limited, devolving into a mess of <code>ERB</code> tags and <code>JavaScript</code> functions. This is one of the reasons for the evolution of front end frameworks, one of them being the Google backed <a href="https://angularjs.org/">Angular JS</a>.</p>
+
+<p>Angular exists to help developers build single-page applications. It provides structure and tools to help solve common problems without having to reinvent the wheel with every application.</p>
+
+<p>Without <code>JavaScript</code> and JS frameworks, everything is rendered on the server. For example, through the <code>MVC</code> paradigm of Rails, the controller renders a view and sends it back as a response. But if you want to make make small changes and see different results - such as adjusting the price range while shopping for a product - you would have to initiate a page reload with every request.</p>
+
+<p>With Angular, not only does it handle routing so you can load different pages without a page reload, it allows you to build dynamic views that react to your input spontaneously.</p>
+
+<p><strong>MVVM</strong></p>
+
+<p>While Rails utilizes the <code>MVC</code> paradigm - model, view controller - Angular utilizes <code>MVVM</code> - model, view, viewmodel. The controller is replaced with the viewmodel, which is responsible for all view logic.</p>
+
+<p><strong>Data Binding</strong></p>
+
+<p>In order to create views that are dynamic and respond to user input, the concept of data binding is employed. This means that data from one source - such as an input field - is bound to something else - like a text box - so it displays your text spontaneously, something that couldn’t really be done in Rails without <code>JavaScript</code>.</p>
+
+<p>In addition, two way data binding is used to keep data from a view synchronized with the data in a model. You can read more about data binding <a href="https://docs.angularjs.org/guide/databinding">here on the Angular docs</a>.</p>
+
+<p>Angular is an extensive framework with a lot of moving parts. You can delve deeper by taking a look at the <a href="https://docs.angularjs.org/guide/introduction">Angular documentation</a>.</p>
+
+
+    
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
 <article class="hentry">
   <header>
     
@@ -522,38 +572,6 @@
 <p>The idea of self-referential objects can be tricky if you’re just starting to learn OOP, but it’s necessary in order to build objects that can access their own data.</p>
 
 <p>You can read more about <code>self</code> in the <a href="http://ruby-doc.org/docs/keywords/1.9/Object.html#method-i-self">Ruby docs</a>.</p>
-
-
-    
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2016-05-19T17:50:00-05:00"><a href="/general/github-remotes/">May 19, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/general/github-remotes/" rel="bookmark" title="Github Remotes" itemprop="url">Github Remotes</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    
-      <p>Earlier in my education when I was coding in <code>C++</code>, I was using <code>Subversion</code> for version control (specifically <a href="https://tortoisesvn.net">TortoiseSVN</a>). <code>SVN</code> worked well enough, and in class we were able to share code for the different projects we were working on effectively. But since then, for better or worse, the world has moved on to <code>Git</code>. You can read about the differences on countless websites, like <a href="http://stackoverflow.com/questions/871/why-is-git-better-than-subversion">here</a>, so I won’t get into it.</p>
-
-<p>For most of my efforts learning web development, I’ve been using <code>Github</code>. It’s the go-to destination for uploading, revisioning, and sharing code. A <code>remote</code> on <code>Github</code> is just a repository stored on their servers. You code locally on your machine - or your cloud IDE - and push code from your local repo to your <code>remote</code>. Because I’ve been coding in multiple development environments, this has made keeping code consistent relatively easy.</p>
-
-<p>Earlier when I was using SVN, I didn’t create multiple branches to develop different feature sets without breaking the master, something I try to do now when using <code>Git</code>. I’ve come to find that both systems offer great functionality, but your own practices for managing your code will ultimately make the most difference.</p>
-
-<p>You can take a look at my repos <a href="https://github.com/MitulMistry">here on Github.</a></p>
 
 
     

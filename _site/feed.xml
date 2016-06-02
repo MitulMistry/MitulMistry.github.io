@@ -4,13 +4,51 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-06-02T11:41:11-05:00</updated>
+<updated>2016-06-02T14:35:14-05:00</updated>
 <id>/</id>
 <author>
   <name>Mitul Mistry</name>
   <uri>/</uri>
   <email>MitulMistryDev@gmail.com</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[Intro to Angular]]></title>
+ <link rel="alternate" type="text/html" href="/javascript/angular/intro-to-angular/" />
+  <id>/javascript/angular/intro-to-angular</id>
+  <published>2016-06-02T09:30:00-05:00</published>
+  <updated>2016-06-02T09:30:00-05:00</updated>
+  <author>
+    <name>Mitul Mistry</name>
+    <uri></uri>
+    <email>MitulMistryDev@gmail.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;Using a combination of Rails templates and &lt;code&gt;jQuery&lt;/code&gt;, we can create a decent interactive front end for our applications. But this process can quickly become ugly and limited, devolving into a mess of &lt;code&gt;ERB&lt;/code&gt; tags and &lt;code&gt;JavaScript&lt;/code&gt; functions. This is one of the reasons for the evolution of front end frameworks, one of them being the Google backed &lt;a href=&quot;https://angularjs.org/&quot;&gt;Angular JS&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Angular exists to help developers build single-page applications. It provides structure and tools to help solve common problems without having to reinvent the wheel with every application.&lt;/p&gt;
+
+&lt;p&gt;Without &lt;code&gt;JavaScript&lt;/code&gt; and JS frameworks, everything is rendered on the server. For example, through the &lt;code&gt;MVC&lt;/code&gt; paradigm of Rails, the controller renders a view and sends it back as a response. But if you want to make make small changes and see different results - such as adjusting the price range while shopping for a product - you would have to initiate a page reload with every request.&lt;/p&gt;
+
+&lt;p&gt;With Angular, not only does it handle routing so you can load different pages without a page reload, it allows you to build dynamic views that react to your input spontaneously.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;MVVM&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;While Rails utilizes the &lt;code&gt;MVC&lt;/code&gt; paradigm - model, view controller - Angular utilizes &lt;code&gt;MVVM&lt;/code&gt; - model, view, viewmodel. The controller is replaced with the viewmodel, which is responsible for all view logic.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Data Binding&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In order to create views that are dynamic and respond to user input, the concept of data binding is employed. This means that data from one source - such as an input field - is bound to something else - like a text box - so it displays your text spontaneously, something that couldn’t really be done in Rails without &lt;code&gt;JavaScript&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;In addition, two way data binding is used to keep data from a view synchronized with the data in a model. You can read more about data binding &lt;a href=&quot;https://docs.angularjs.org/guide/databinding&quot;&gt;here on the Angular docs&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Angular is an extensive framework with a lot of moving parts. You can delve deeper by taking a look at the &lt;a href=&quot;https://docs.angularjs.org/guide/introduction&quot;&gt;Angular documentation&lt;/a&gt;.&lt;/p&gt;
+
+
+    &lt;p&gt;&lt;a href=&quot;/javascript/angular/intro-to-angular/&quot;&gt;Intro to Angular&lt;/a&gt; was originally published by Mitul Mistry at &lt;a href=&quot;&quot;&gt;Mitul Mistry - Tech Blog&lt;/a&gt; on June 02, 2016.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>

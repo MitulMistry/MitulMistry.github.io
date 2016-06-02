@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "Intro to Angular",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/javascript/angular/intro-to-angular/",
+      "date"     : "2016-06-02 09:30:00 -0500"
+    } ,
+  
+    {
       "title"    : "Rails Sessions",
       "category" : "",
       "tags"     : "",

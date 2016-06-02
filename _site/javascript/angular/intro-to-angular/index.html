@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Why I decided to learn software development &#8211; Mitul Mistry - Tech Blog</title>
+<title>Intro to Angular &#8211; Mitul Mistry - Tech Blog</title>
 <meta name="description" content="The technical blog of Mitul Mistry.">
 <meta name="keywords" content="">
 
@@ -17,9 +17,9 @@
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Why I decided to learn software development">
+<meta property="og:title" content="Intro to Angular">
 <meta property="og:description" content="The technical blog of Mitul Mistry.">
-<meta property="og:url" content="/general/learning-development/">
+<meta property="og:url" content="/javascript/angular/intro-to-angular/">
 <meta property="og:site_name" content="Mitul Mistry - Tech Blog">
 <meta property="og:image" content="/images/images/logo_mm2.png">
 
@@ -27,7 +27,7 @@
 
 
 
-<link rel="canonical" href="/general/learning-development/">
+<link rel="canonical" href="/javascript/angular/intro-to-angular/">
 <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Mitul Mistry - Tech Blog Feed">
 
 <!-- http://t.co/dKP3o1e -->
@@ -137,9 +137,9 @@
 <div class="entry-header">
   <div class="header-title">
     <div class="header-title-wrap">
-      <h1>Why I decided to learn software development</h1>
+      <h1>Intro to Angular</h1>
       
-        <h2><span class="entry-date date published updated"><time datetime="2016-05-12T18:30:00-05:00">May 12, 2016</time></span></h2>
+        <h2><span class="entry-date date published updated"><time datetime="2016-06-02T09:30:00-05:00">June 02, 2016</time></span></h2>
       
 
       
@@ -203,16 +203,27 @@
   <article class="hentry">
     <div class="entry-content">
         
-      <h1 class="post-title entry-title">Why I decided to learn software development</h1>
-      <p>Making the decision to learn a hugely difficult skillset is not something to be taken lightly. This is especially true when it requires immense technical knowledge. So deciding to make a commitment to software development, for me, was a big deal.</p>
+      <h1 class="post-title entry-title">Intro to Angular</h1>
+      <p>Using a combination of Rails templates and <code>jQuery</code>, we can create a decent interactive front end for our applications. But this process can quickly become ugly and limited, devolving into a mess of <code>ERB</code> tags and <code>JavaScript</code> functions. This is one of the reasons for the evolution of front end frameworks, one of them being the Google backed <a href="https://angularjs.org/">Angular JS</a>.</p>
 
-<p>Previously, I had been working as an artist and designer. I loved art, but found the business side of creative work to be punishing and contrary to what made me passionate about art in the first place. As I spent years doing freelance jobs and checking job listings, the reality of the market eventually became clear. Artists were rarely in demand, but there were always openings for programmers.</p>
+<p>Angular exists to help developers build single-page applications. It provides structure and tools to help solve common problems without having to reinvent the wheel with every application.</p>
 
-<p>Software developers create products and facillitate services in ways that directly create value for users and employers. In contrast, the work that artists and designers do will always be more limited. In order to be relevant, you need skills that can actually solve people’s problems, and art just wasn’t enough of an answer.</p>
+<p>Without <code>JavaScript</code> and JS frameworks, everything is rendered on the server. For example, through the <code>MVC</code> paradigm of Rails, the controller renders a view and sends it back as a response. But if you want to make make small changes and see different results - such as adjusting the price range while shopping for a product - you would have to initiate a page reload with every request.</p>
 
-<p>I had programmed before in the past - dealing with languages like <code>Visual Basic</code>, <code>Java</code>, and <code>C++</code>. I had enjoyed being able to create functional, interactive products, and solving problems in logical, algorithmic ways. It offered me a way to create more value for others and at a certain point, it became obvious that in order to achieve my goals, I needed to switch tracks.</p>
+<p>With Angular, not only does it handle routing so you can load different pages without a page reload, it allows you to build dynamic views that react to your input spontaneously.</p>
 
-<p>Since making that decision, I’ve made huge progress learning <code>Ruby</code>, <code>Rails</code>, <code>ActiveRecord</code>, <code>JavaScript</code>, and <code>Angular</code> as well. In a short period of time, I’ve developed a much more marketable skillset and I know that I’ll now be able to make more of an impact with what I’ve learned.</p>
+<p><strong>MVVM</strong></p>
+
+<p>While Rails utilizes the <code>MVC</code> paradigm - model, view controller - Angular utilizes <code>MVVM</code> - model, view, viewmodel. The controller is replaced with the viewmodel, which is responsible for all view logic.</p>
+
+<p><strong>Data Binding</strong></p>
+
+<p>In order to create views that are dynamic and respond to user input, the concept of data binding is employed. This means that data from one source - such as an input field - is bound to something else - like a text box - so it displays your text spontaneously, something that couldn’t really be done in Rails without <code>JavaScript</code>.</p>
+
+<p>In addition, two way data binding is used to keep data from a view synchronized with the data in a model. You can read more about data binding <a href="https://docs.angularjs.org/guide/databinding">here on the Angular docs</a>.</p>
+
+<p>Angular is an extensive framework with a lot of moving parts. You can delve deeper by taking a look at the <a href="https://docs.angularjs.org/guide/introduction">Angular documentation</a>.</p>
+
 
       <footer class="entry-meta">
         <span class="entry-tags"></span>
@@ -220,9 +231,9 @@
         <span class="author vcard"><span class="fn">Mitul Mistry</span></span>
         <div class="social-share">
   <ul class="socialcount socialcount-small inline-list">
-    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=/general/learning-development/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
-    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=/general/learning-development/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
-    <li class="googleplus"><a href="https://plus.google.com/share?url=/general/learning-development/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=/javascript/angular/intro-to-angular/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=/javascript/angular/intro-to-angular/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=/javascript/angular/intro-to-angular/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
   </ul>
 </div><!-- /.social-share -->
 
@@ -261,22 +272,22 @@
     <div class="read-more">
   
     <div class="read-more-header">
-      <a href="/ruby/rails/rails-project/" class="read-more-btn">Read More</a>
+      <a href="/ruby/rails/rails-sessions/" class="read-more-btn">Read More</a>
     </div><!-- /.read-more-header -->
     <div class="read-more-content">
-      <h3><a href="/javascript/angular/intro-to-angular/" title="Intro to Angular">Intro to Angular</a></h3>
-      <p>Using a combination of Rails templates and `jQuery`, we can create a decent interactive front end for our applications. But this process ...&hellip; <a href="/javascript/angular/intro-to-angular/">Continue reading</a></p>
+      <h3><a href="/ruby/rails/rails-sessions/" title="Rails Sessions">Rails Sessions</a></h3>
+      <p>When building a web application, usually we want some capacity for a user to create an account, login, and then interact with the site in...&hellip; <a href="/ruby/rails/rails-sessions/">Continue reading</a></p>
     </div><!-- /.read-more-content -->
   
   <div class="read-more-list">
     
       <div class="list-item">
-        <h4><a href="/ruby/rails/rails-sessions/" title="Rails Sessions">Rails Sessions</a></h4>
-        <span>Published on June 02, 2016</span>
+        <h4><a href="/javascript/rails/jquery-rails-app/" title="jQuery Rails App">jQuery Rails App</a></h4>
+        <span>Published on June 01, 2016</span>
       </div><!-- /.list-item -->
     
       <div class="list-item">
-        <h4><a href="/javascript/rails/jquery-rails-app/" title="jQuery Rails App">jQuery Rails App</a></h4>
+        <h4><a href="/ruby/rails/rails-forms/" title="Rails Forms">Rails Forms</a></h4>
         <span>Published on June 01, 2016</span>
       </div><!-- /.list-item -->
     
