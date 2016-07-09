@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-07-09T13:30:30-05:00</updated>
+<updated>2016-07-09T15:32:44-05:00</updated>
 <id>/</id>
 <author>
   <name>Mitul Mistry</name>
@@ -41,10 +41,11 @@
 
 &lt;p&gt;&lt;strong&gt;Rails Back End&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;The back end is set up similarly to my &lt;a href=&quot;http://mitulmistry.github.io/javascript/rails/jquery-rails-app/&quot;&gt;last jQuery project&lt;/a&gt;, so I won’t go into it in depth.&lt;/p&gt;
+&lt;p&gt;The back end is set up similarly to my &lt;a href=&quot;http://mitulmistry.github.io/javascript/rails/jquery-rails-app/&quot;&gt;last jQuery project&lt;/a&gt;, so I won’t go into it in depth. There are several models including sketches and tags. The sketch model uses &lt;a href=&quot;https://github.com/thoughtbot/paperclip&quot;&gt;Paperclip&lt;/a&gt; to manage file attachments. It’s easy to set up file uploads for Paperclip with a &lt;code&gt;Rails&lt;/code&gt; form, but with &lt;code&gt;Angular&lt;/code&gt; we will have to set up a different solution - namely &lt;a href=&quot;https://github.com/danialfarid/ng-file-upload&quot;&gt;ngFileUpload&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;-Models, controllers - no real views since that will be handled by Angular
--Devise - use Angular Devise dependency through Bower&lt;/p&gt;
+&lt;p&gt;We’ll enable &lt;code&gt;AJAX&lt;/code&gt; functionality by setting up &lt;a href=&quot;https://github.com/rails-api/active_model_serializers&quot;&gt;Active Model Serializers&lt;/a&gt; for &lt;code&gt;JSON&lt;/code&gt; serialization of our models through our controller actions.&lt;/p&gt;
+
+&lt;p&gt;Authentication is handled with &lt;a href=&quot;https://github.com/plataformatec/devise&quot;&gt;Devise&lt;/a&gt;. Like Paperclip, it’s easy to sign in and register with Devise &lt;code&gt;Rails&lt;/code&gt; templates, however, we’ll again have to set up something different with &lt;code&gt;Angular&lt;/code&gt;, using &lt;a href=&quot;https://github.com/cloudspace/angular_devise&quot;&gt;angular-devise&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Angular Front End&lt;/strong&gt;&lt;/p&gt;
 

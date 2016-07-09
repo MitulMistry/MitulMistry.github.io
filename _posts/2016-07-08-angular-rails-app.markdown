@@ -21,10 +21,12 @@ You can take a look at my Bower dependencies in my [bower.json file here][gh-bow
 
 **Rails Back End**
 
-The back end is set up similarly to my [last jQuery project][jquery-project], so I won't go into it in depth. 
+The back end is set up similarly to my [last jQuery project][jquery-project], so I won't go into it in depth. There are several models including sketches and tags. The sketch model uses [Paperclip][paperclip] to manage file attachments. It's easy to set up file uploads for Paperclip with a `Rails` form, but with `Angular` we will have to set up a different solution - namely [ngFileUpload][ngFileUpload].
 
--Models, controllers - no real views since that will be handled by Angular
--Devise - use Angular Devise dependency through Bower
+We'll enable `AJAX` functionality by setting up [Active Model Serializers][active-model-serializers] for `JSON` serialization of our models through our controller actions.
+
+Authentication is handled with [Devise][devise]. Like Paperclip, it's easy to sign in and register with Devise `Rails` templates, however, we'll again have to set up something different with `Angular`, using [angular-devise][angular-devise].
+
 
 **Angular Front End**
 
@@ -38,4 +40,9 @@ You can see the source code for the project [here on Github][github-repo].
 [angular-rails-templates]: https://github.com/pitr/angular-rails-templates
 [gh-bower-json]: https://github.com/MitulMistry/sketchbook/blob/master/bower.json
 [gh-app-js]: https://github.com/MitulMistry/sketchbook/blob/master/app/assets/javascripts/angular-app/app.js
+[paperclip]: https://github.com/thoughtbot/paperclip
+[ngFileUpload]: https://github.com/danialfarid/ng-file-upload
+[active-model-serializers]: https://github.com/rails-api/active_model_serializers
+[devise]: https://github.com/plataformatec/devise
+[angular-devise]: https://github.com/cloudspace/angular_devise
 [github-repo]: https://github.com/MitulMistry/sketchbook

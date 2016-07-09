@@ -146,7 +146,7 @@
         <p class="entry-reading-time">
           <i class="fa fa-clock-o"></i>
           
-          Reading time ~1 minute
+          Reading time ~2 minutes
         </p><!-- /.entry-reading-time -->
       
     </div><!-- /.header-title-wrap -->
@@ -220,10 +220,11 @@
 
 <p><strong>Rails Back End</strong></p>
 
-<p>The back end is set up similarly to my <a href="http://mitulmistry.github.io/javascript/rails/jquery-rails-app/">last jQuery project</a>, so I won’t go into it in depth.</p>
+<p>The back end is set up similarly to my <a href="http://mitulmistry.github.io/javascript/rails/jquery-rails-app/">last jQuery project</a>, so I won’t go into it in depth. There are several models including sketches and tags. The sketch model uses <a href="https://github.com/thoughtbot/paperclip">Paperclip</a> to manage file attachments. It’s easy to set up file uploads for Paperclip with a <code>Rails</code> form, but with <code>Angular</code> we will have to set up a different solution - namely <a href="https://github.com/danialfarid/ng-file-upload">ngFileUpload</a>.</p>
 
-<p>-Models, controllers - no real views since that will be handled by Angular
--Devise - use Angular Devise dependency through Bower</p>
+<p>We’ll enable <code>AJAX</code> functionality by setting up <a href="https://github.com/rails-api/active_model_serializers">Active Model Serializers</a> for <code>JSON</code> serialization of our models through our controller actions.</p>
+
+<p>Authentication is handled with <a href="https://github.com/plataformatec/devise">Devise</a>. Like Paperclip, it’s easy to sign in and register with Devise <code>Rails</code> templates, however, we’ll again have to set up something different with <code>Angular</code>, using <a href="https://github.com/cloudspace/angular_devise">angular-devise</a>.</p>
 
 <p><strong>Angular Front End</strong></p>
 
