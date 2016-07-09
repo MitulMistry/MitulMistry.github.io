@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Intro to Angular &#8211; Mitul Mistry - Tech Blog</title>
+<title>Angular Rails App &#8211; Mitul Mistry - Tech Blog</title>
 <meta name="description" content="The technical blog of Mitul Mistry.">
 <meta name="keywords" content="">
 
@@ -17,9 +17,9 @@
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Intro to Angular">
+<meta property="og:title" content="Angular Rails App">
 <meta property="og:description" content="The technical blog of Mitul Mistry.">
-<meta property="og:url" content="/javascript/angular/intro-to-angular/">
+<meta property="og:url" content="/javascript/rails/angular-rails-app/">
 <meta property="og:site_name" content="Mitul Mistry - Tech Blog">
 <meta property="og:image" content="/images/images/logo_mm2.png">
 
@@ -27,7 +27,7 @@
 
 
 
-<link rel="canonical" href="/javascript/angular/intro-to-angular/">
+<link rel="canonical" href="/javascript/rails/angular-rails-app/">
 <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Mitul Mistry - Tech Blog Feed">
 
 <!-- http://t.co/dKP3o1e -->
@@ -137,9 +137,9 @@
 <div class="entry-header">
   <div class="header-title">
     <div class="header-title-wrap">
-      <h1>Intro to Angular</h1>
+      <h1>Angular Rails App</h1>
       
-        <h2><span class="entry-date date published updated"><time datetime="2016-06-02T09:30:00-05:00">June 02, 2016</time></span></h2>
+        <h2><span class="entry-date date published updated"><time datetime="2016-07-08T11:00:00-05:00">July 08, 2016</time></span></h2>
       
 
       
@@ -203,26 +203,31 @@
   <article class="hentry">
     <div class="entry-content">
         
-      <h1 class="post-title entry-title">Intro to Angular</h1>
-      <p>Using a combination of Rails templates and <code>jQuery</code>, we can create a decent interactive front end for our applications. But this process can quickly become ugly and limited, devolving into a mess of <code>ERB</code> tags and <code>JavaScript</code> functions. This is one of the reasons for the evolution of front end frameworks, one of them being the Google backed <a href="https://angularjs.org/">Angular JS</a>.</p>
+      <h1 class="post-title entry-title">Angular Rails App</h1>
+      <p><code>Rails</code> templates are powerful and give us an easy way to build a front end that integrates with our back end. However, <code>Rails</code> templates are also limited. They are largely static, meaning they are rendered by the controller before being sent as a response to the user. But that means a hard page reload in your browser, and that makes it more difficult to make applications that operate seamlessly like many modern websites such as Facebook or Twitter.</p>
 
-<p>Angular exists to help developers build single-page applications. It provides structure and tools to help solve common problems without having to reinvent the wheel with every application.</p>
+<p>As seen in one of my <a href="http://mitulmistry.github.io/javascript/rails/jquery-rails-app/">past projects</a>, we can use <code>jQuery</code> to build a single-page application that makes requests asynchronously with <code>AJAX</code>. However, it quickly gets complicated and hard to maintain, organize, and develop. There are many JavaScript front end frameworks that have risen over the last several years. For this project, I used <a href="https://angularjs.org/">Angular</a> to build an application for uploading and sharing sketches.</p>
 
-<p>Without <code>JavaScript</code> and JS frameworks, everything is rendered on the server. For example, through the <code>MVC</code> paradigm of Rails, the controller renders a view and sends it back as a response. But if you want to make make small changes and see different results - such as adjusting the price range while shopping for a product - you would have to initiate a page reload with every request.</p>
+<p><strong>Integrating Angular With Rails</strong></p>
 
-<p>With Angular, not only does it handle routing so you can load different pages without a page reload, it allows you to build dynamic views that react to your input spontaneously.</p>
+<p><code>Angular</code> and <code>Rails</code> aren’t really designed to work together, so building an application integrating both together requires some finagling. In order to get the functionality we want, we need to manage both front end and back end dependencies. Back end dependencies are easy to manage: we just use gems in our gemfile and install with Bundler. However, front end dependencies are a bit trickier. There are many front end, Angular related gems we could use, but there aren’t gems for everything. So instead, we can use <a href="https://bower.io/">Bower</a>.</p>
 
-<p><strong>MVVM</strong></p>
+<p>First, we install <a href="https://bower.io/">Bower</a> by running <code>npm install -g bower</code>. Then we isntall <a href="https://github.com/rharriso/bower-rails">bower-rails gem</a> through our gemfile. We specify our front end dependencies in a bower.json file. After that, we run <code>rake bower:install</code>, and our dependencies will be installed (the default directory being vendor/assets/bower_components). We then have to specify the dependencies in the javascript manifest file (app/assets/javascripts/application.js) to incorporate them in the asset pipeline.</p>
 
-<p>While Rails utilizes the <code>MVC</code> paradigm - model, view controller - Angular utilizes <code>MVVM</code> - model, view, viewmodel. The controller is replaced with the viewmodel, which is responsible for all view logic.</p>
+<p>Another gem we can use is <a href="https://github.com/pitr/angular-rails-templates">angular-rails-templates</a> to incorporate our <code>Angular</code> templates into the <code>Rails</code> asset pipeline.</p>
 
-<p><strong>Data Binding</strong></p>
+<p>You can take a look at my Bower dependencies in my <a href="https://github.com/MitulMistry/sketchbook/blob/master/bower.json">bower.json file here</a> as well as the <a href="https://github.com/MitulMistry/sketchbook/blob/master/app/assets/javascripts/angular-app/app.js">app.js file</a> explaining them.</p>
 
-<p>In order to create views that are dynamic and respond to user input, the concept of data binding is employed. This means that data from one source - such as an input field - is bound to something else - like a text box - so it displays your text spontaneously, something that couldn’t really be done in Rails without <code>JavaScript</code>.</p>
+<p><strong>Rails Back End</strong></p>
 
-<p>In addition, two way data binding is used to keep data from a view synchronized with the data in a model. You can read more about data binding <a href="https://docs.angularjs.org/guide/databinding">here on the Angular docs</a>.</p>
+<p>The back end is set up similarly to my <a href="http://mitulmistry.github.io/javascript/rails/jquery-rails-app/">last jQuery project</a>, so I won’t go into it in depth.</p>
 
-<p>Angular is an extensive framework with a lot of moving parts. You can delve deeper by taking a look at the <a href="https://docs.angularjs.org/guide/introduction">Angular documentation</a>.</p>
+<p>-Models, controllers - no real views since that will be handled by Angular
+-Devise - use Angular Devise dependency through Bower</p>
+
+<p><strong>Angular Front End</strong></p>
+
+<p>You can see the source code for the project <a href="https://github.com/MitulMistry/sketchbook">here on Github</a>.</p>
 
 
       <footer class="entry-meta">
@@ -231,9 +236,9 @@
         <span class="author vcard"><span class="fn">Mitul Mistry</span></span>
         <div class="social-share">
   <ul class="socialcount socialcount-small inline-list">
-    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=/javascript/angular/intro-to-angular/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
-    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=/javascript/angular/intro-to-angular/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
-    <li class="googleplus"><a href="https://plus.google.com/share?url=/javascript/angular/intro-to-angular/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=/javascript/rails/angular-rails-app/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=/javascript/rails/angular-rails-app/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=/javascript/rails/angular-rails-app/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
   </ul>
 </div><!-- /.social-share -->
 
@@ -272,17 +277,17 @@
     <div class="read-more">
   
     <div class="read-more-header">
-      <a href="/ruby/rails/rails-sessions/" class="read-more-btn">Read More</a>
+      <a href="/ruby/rails/building-apis/" class="read-more-btn">Read More</a>
     </div><!-- /.read-more-header -->
     <div class="read-more-content">
-      <h3><a href="/javascript/rails/angular-rails-app/" title="Angular Rails App">Angular Rails App</a></h3>
-      <p>`Rails` templates are powerful and give us an easy way to build a front end that integrates with our back end. However, `Rails` templates...&hellip; <a href="/javascript/rails/angular-rails-app/">Continue reading</a></p>
+      <h3><a href="/ruby/rails/building-apis/" title="Building APIs">Building APIs</a></h3>
+      <p>There’s a lot of data out there on the Internet. We can access the data that other providers make available by consuming their APIs. An A...&hellip; <a href="/ruby/rails/building-apis/">Continue reading</a></p>
     </div><!-- /.read-more-content -->
   
   <div class="read-more-list">
     
       <div class="list-item">
-        <h4><a href="/ruby/rails/building-apis/" title="Building APIs">Building APIs</a></h4>
+        <h4><a href="/javascript/angular/intro-to-angular/" title="Intro to Angular">Intro to Angular</a></h4>
         <span>Published on June 02, 2016</span>
       </div><!-- /.list-item -->
     

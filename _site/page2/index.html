@@ -203,6 +203,107 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2016-06-01T07:15:00-05:00"><a href="/ruby/rails/rails-forms/">June 01, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~2 minutes
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/ruby/rails/rails-forms/" rel="bookmark" title="Rails Forms" itemprop="url">Rails Forms</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    
+      <p>To me, forms in web applications feel antiquated. There are better ways to get data from a user, such as getting access to a user’s other accounts (like Twitter or Facebook) via <a href="https://github.com/intridea/omniauth">OAuth</a> and populating data from there, but that’s not always an option. For now, we still have to input data manually and that means we need to use forms.</p>
+
+<p>Forms are obnoxious. You have to pick out which input types are best for your scenario (text, radio buttons, dropdown lists, etc.). You need to style it with <code>CSS</code> so it looks presentable You need to define a route for the form to submit data to the back end. You have to deal with data validations and handle scenarios where users input unacceptable data. And  you have to deal with a host of other miscellaneous issues that come with such complex interaction.</p>
+
+<p>Here’s a sample <code>HTML</code> form:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"users"</span> <span class="na">method=</span><span class="s">"post"</span> <span class="na">accept-charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;fieldset&gt;</span>
+    First name:<span class="nt">&lt;br&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"firstname"</span><span class="nt">&gt;&lt;br&gt;</span>
+    Last name:<span class="nt">&lt;br&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"lastname"</span><span class="nt">&gt;&lt;br&gt;&lt;br&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">value=</span><span class="s">"Submit"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/fieldset&gt;</span>
+<span class="nt">&lt;/form&gt;</span></code></pre></figure>
+
+<p>Fortunately, <code>Rails</code> can help you generate forms using a few different tools which we’ll look at here.</p>
+
+<p><strong>form_tag</strong></p>
+
+<p><code>form_tag</code> is a Rails form helper used to help you build a basic form.</p>
+
+<p>Here’s a sample <code>form_tag</code> form:</p>
+
+<figure class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="cp">&lt;%=</span> <span class="n">form_tag</span><span class="p">(</span><span class="s2">"/users"</span><span class="p">)</span> <span class="k">do</span> <span class="cp">%&gt;</span>
+  Name: <span class="cp">&lt;%=</span> <span class="n">text_field_tag</span> <span class="s2">"name"</span> <span class="cp">%&gt;</span><span class="nt">&lt;br&gt;</span>
+  Email: <span class="cp">&lt;%=</span> <span class="n">text_field_tag</span> <span class="s2">"email"</span> <span class="cp">%&gt;</span>
+  <span class="cp">&lt;%=</span> <span class="n">submit_tag</span> <span class="s2">"Create User"</span> <span class="cp">%&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span></code></pre></figure>
+
+<p>The actual <code>HTML</code> that’s produced will look like this:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"/users"</span> <span class="na">accept-charset=</span><span class="s">"UTF-8"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"utf8"</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">value=</span><span class="s">"&amp;#x2713;"</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"authenticity_token"</span> <span class="na">value=</span><span class="s">"TKTzvQF+atT/XHG/7h48xKVdXvILdiPj83XQhn2mWBNNhvv0Oh5YfAl2LM3DlHsQjbMOFVsYEyOwj+rPaSk3Bw=="</span> <span class="nt">/&gt;</span>
+ Name: <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"name"</span> <span class="na">id=</span><span class="s">"name"</span> <span class="nt">/&gt;&lt;br</span> <span class="nt">/&gt;</span>
+ Email: <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"email"</span> <span class="na">id=</span><span class="s">"email"</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">name=</span><span class="s">"commit"</span> <span class="na">value=</span><span class="s">"Create User"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/form&gt;</span></code></pre></figure>
+
+<p>Just with a few simple lines of <code>ERB</code>, we’re able to create a fully realized form. It has an action and method already defined, as well as an authenticity token which is used to help prevent <a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery">cross-site request forgeries</a>.</p>
+
+<p>However, <code>form_tag</code> is limited, specifically when it comes to dealing with forms directly related to back end <code>models</code>. If you want a different action method (such as wanting to reuse the same form for creating and editing a model), you have to specify it manually. It also won’t populate the form with data that’s already there. That’s where <code>form_for</code> comes in.</p>
+
+<p><strong>form_for</strong></p>
+
+<p><code>form_for</code> is like <code>form_tag</code> in that it helps you generate a form with <code>ERB</code> tags in a view template. However, <code>form_for</code> directly connects with a <code>model</code> in your Rails application and makes it easy to allow the creation of new <code>model</code> instances in your database.</p>
+
+<p>Here’s a sample form_for form:</p>
+
+<figure class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="cp">&lt;%=</span> <span class="n">form_for</span> <span class="vi">@post</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="cp">%&gt;</span>
+ <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">text_field</span> <span class="ss">:title</span> <span class="cp">%&gt;</span>
+ <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">text_area</span> <span class="ss">:content</span> <span class="cp">%&gt;</span>
+ <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">submit</span> <span class="cp">%&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span></code></pre></figure>
+
+<p>This creates the following <code>HTML</code>:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">class=</span><span class="s">"edit_post"</span> <span class="na">id=</span><span class="s">"edit_post"</span> <span class="na">action=</span><span class="s">"/posts/1"</span> <span class="na">accept-charset=</span><span class="s">"UTF-8"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"utf8"</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">value=</span><span class="s">"&amp;#x2713;"</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"_method"</span> <span class="na">value=</span><span class="s">"patch"</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"authenticity_token"</span> <span class="na">value=</span><span class="s">"nRPP2OqVKB00/Cr+8EvHfYrb5sAkZRtr8f6dzBaJAI+cMceR0fUatcLWd4zdwYCpojW2J3QLK6uyBKeFAgZvmw=="</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"post[title]"</span> <span class="na">id=</span><span class="s">"post_title"</span> <span class="na">value=</span><span class="s">"Existing Post Title"</span><span class="nt">/&gt;</span>
+ <span class="nt">&lt;textarea</span> <span class="na">name=</span><span class="s">"post[content]"</span> <span class="na">id=</span><span class="s">"post_content"</span><span class="nt">&gt;</span>Existing Post Content<span class="nt">&lt;/textarea&gt;</span>
+ <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">name=</span><span class="s">"commit"</span> <span class="na">value=</span><span class="s">"Update Post"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/form&gt;</span></code></pre></figure>
+
+<p>This is something that we can reuse for a create and an edit form, and it will populate data in the form automatically if there’s data there. The thing to remember here is that <code>form_for</code> needs an instance of the model to use which has to be provided from the <code>controller</code>. So for example:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">new</span>
+  <span class="vi">@post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">new</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Of course now we need to wire these forms up with <code>controllers</code> in the back end to actually process the data, but that’s a topic for another day.</p>
+
+<p>You can read more about Rails forms in the <a href="http://guides.rubyonrails.org/form_helpers.html">Rails Guides</a>.</p>
+
+
+    
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2016-05-20T06:30:00-05:00"><a href="/ruby/ruby-self/">May 20, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
       
       <span class="entry-reading-time">
@@ -444,91 +545,6 @@
 <p>Overall, this is just a small overview of what turned out to be a relatively complex project. There’s a lot more functionality I’d like to build eventually to make this more of a viable tool for writers, including building more of a front end, but for now it serves its purpose.</p>
 
 <p>You can find the source code for this project <a href="https://github.com/MitulMistry/rails-storyplan">here on Github.</a></p>
-
-
-    
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2016-02-24T10:00:00-06:00"><a href="/ruby/sinatra/sinatra-project/">February 24, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~2 minutes
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/ruby/sinatra/sinatra-project/" rel="bookmark" title="Sinatra Project - Simple Blog" itemprop="url">Sinatra Project - Simple Blog</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    
-      <p>After learning the basics of Ruby and ORMs, I’ve been working on a project leveraging the Sinatra development framework. Along with Activerecord, I’ve used it to build a simple blogging application and I will describe the process of developing it here.</p>
-
-<p>The project uses basic Model View Controller architecture. It has a few simple models that interact with various routes in the controller which then composes and serves the different blog pages through the views.</p>
-
-<p><strong>Models:</strong></p>
-
-<p>The first thing I worked on were the models that would represent the data necessary for the blog to work using Activerecord. This includes <code>Users</code> which would write and edit <code>Posts</code>, which would in turn have <code>Tags</code>. In addition, I used the model <code>PostTags</code> as well, but only as an intermediary for a join table to connect <code>Posts</code> and <code>Tags</code>. This was necessary because a <code>Post</code> has many <code>Tags</code>, and a <code>Tag</code> has many <code>Posts</code>, and any time there’s a mutual ‘has many’ relationship between models, a join table is needed.</p>
-
-<p>These associations provide a useful way to list different types of <code>Posts</code>. All <code>Posts</code> belong to a <code>User</code>, so you can easily list all of a <code>User</code>’s <code>Posts</code>, or all of a <code>Tag</code>’s <code>Posts</code> as well. Providing an easy way to organize information is critical to building a successful application, and ActiveRecord provides ample ways of doing just that.</p>
-
-<p><em>The <code>Post</code> model code:</em></p>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-  <span class="n">belongs_to</span> <span class="ss">:user</span>
-  <span class="n">has_many</span> <span class="ss">:post_tags</span>
-  <span class="n">has_many</span> <span class="ss">:tags</span><span class="p">,</span> <span class="ss">through: :post_tags</span>
-
-  <span class="kp">extend</span> <span class="no">FindBySlug</span>
-
-  <span class="k">def</span> <span class="nf">slug</span>
-    <span class="nb">self</span><span class="p">.</span><span class="nf">title</span><span class="p">.</span><span class="nf">downcase</span><span class="p">.</span><span class="nf">gsub</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span> <span class="s2">"-"</span><span class="p">)</span>
-  <span class="k">end</span>
-
-  <span class="k">def</span> <span class="nf">readable_date</span>
-    <span class="nb">self</span><span class="p">.</span><span class="nf">created_at</span><span class="p">.</span><span class="nf">strftime</span><span class="p">(</span><span class="s2">"%b %d, %Y"</span><span class="p">)</span>
-  <span class="k">end</span>
-<span class="k">end</span></code></pre></figure>
-
-<p><strong>Controllers:</strong></p>
-
-<p>Unlike a framework like Rails, Sinatra has a unified router and controller. I used a separate controller for each model which helped organize all the different routes and actions. The <code>Users</code> controller focuses on signing up and logging in <code>Users</code>. The <code>Posts</code> controller deals with the majority of the application’s functionality, namely the creation, editting, and deletion of <code>Posts</code> as well as <code>Tags</code> (since <code>Tags</code> are created in the same page as <code>Posts</code>). Finally, the <code>Tags</code> and application  controllers focus on a few utility tasks. As a whole, the controllers work together to facilitate the functionality of the website and process all the data.</p>
-
-<p><em>An route/action to render the new post creation form:</em></p>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">get</span> <span class="s1">'/posts/new'</span> <span class="k">do</span>
-  <span class="k">if</span> <span class="n">logged_in?</span>
-    <span class="vi">@tags</span> <span class="o">=</span> <span class="no">Tag</span><span class="p">.</span><span class="nf">all</span>
-    <span class="n">erb</span> <span class="ss">:'posts/new'</span>
-  <span class="k">else</span>
-    <span class="n">redirect</span> <span class="n">to</span> <span class="s1">'/users/login'</span>
-  <span class="k">end</span>
-<span class="k">end</span></code></pre></figure>
-
-<p><strong>Views:</strong></p>
-
-<p>Just like Rails, Sinatra uses <code>ERB</code> files (Embedded Ruby) to dynamically generate html web pages and serve requested content. The views correspond to the routes/actions in the associated controllers, so there are views for showing a user page, displaying a login form, and so on. Using Bootstrap for basic frontend styling helps make the application look at least palatable (as opposed to hideous unstyled html). It may be a bit superficial, but it helps the application look like a complete thought.</p>
-
-<p><em>The ERB code to display all the posts for a tag:</em></p>
-
-<figure class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="nt">&lt;h2&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@tag</span><span class="p">.</span><span class="nf">name</span> <span class="cp">%&gt;</span><span class="nt">&lt;/h2&gt;</span>
-<span class="cp">&lt;%</span> <span class="vi">@tag</span><span class="p">.</span><span class="nf">posts</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">post</span><span class="o">|</span> <span class="cp">%&gt;</span>
-  <span class="nt">&lt;h3&gt;&lt;a</span> <span class="na">href=</span><span class="s">"/posts/</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">slug</span> <span class="cp">%&gt;</span><span class="s">"</span><span class="nt">&gt;</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">title</span> <span class="cp">%&gt;</span><span class="nt">&lt;/a&gt;&lt;/h3&gt;</span>
-  <span class="nt">&lt;h4&gt;</span>By: <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/users/</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">user</span><span class="p">.</span><span class="nf">slug</span> <span class="cp">%&gt;</span><span class="s">"</span><span class="nt">&gt;</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">user</span><span class="p">.</span><span class="nf">username</span> <span class="cp">%&gt;</span><span class="nt">&lt;/a&gt;&lt;/h4&gt;</span>
-  <span class="nt">&lt;p&gt;&lt;strong&gt;</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">readable_date</span> <span class="cp">%&gt;</span><span class="nt">&lt;/strong&gt;&lt;/p&gt;</span>
-  <span class="nt">&lt;p&gt;</span><span class="cp">&lt;%=</span> <span class="n">post</span><span class="p">.</span><span class="nf">content</span> <span class="cp">%&gt;</span><span class="nt">&lt;/p&gt;</span>
-<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span></code></pre></figure>
-
-<p>In conclusion, the project took longer than I expected due to the necessary refactoring to deal with things like processing the form data during post creation and editting as well all the individual gears necessary for even a simple web project like this involving a back end. It was certainly an educational experience and a good step towards learning to build professional grade applications.</p>
-
-<p>You can find the source code for this project <a href="https://github.com/MitulMistry/sinatra-simple-blog">here on Github.</a></p>
 
 
     

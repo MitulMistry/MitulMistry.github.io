@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "Angular Rails App",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/javascript/rails/angular-rails-app/",
+      "date"     : "2016-07-08 11:00:00 -0500"
+    } ,
+  
+    {
       "title"    : "Building APIs",
       "category" : "",
       "tags"     : "",

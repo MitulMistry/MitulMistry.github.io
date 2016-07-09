@@ -203,6 +203,55 @@
   <header>
     
     <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2016-07-08T11:00:00-05:00"><a href="/javascript/rails/angular-rails-app/">July 08, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/javascript/rails/angular-rails-app/" rel="bookmark" title="Angular Rails App" itemprop="url">Angular Rails App</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    
+      <p><code>Rails</code> templates are powerful and give us an easy way to build a front end that integrates with our back end. However, <code>Rails</code> templates are also limited. They are largely static, meaning they are rendered by the controller before being sent as a response to the user. But that means a hard page reload in your browser, and that makes it more difficult to make applications that operate seamlessly like many modern websites such as Facebook or Twitter.</p>
+
+<p>As seen in one of my <a href="http://mitulmistry.github.io/javascript/rails/jquery-rails-app/">past projects</a>, we can use <code>jQuery</code> to build a single-page application that makes requests asynchronously with <code>AJAX</code>. However, it quickly gets complicated and hard to maintain, organize, and develop. There are many JavaScript front end frameworks that have risen over the last several years. For this project, I used <a href="https://angularjs.org/">Angular</a> to build an application for uploading and sharing sketches.</p>
+
+<p><strong>Integrating Angular With Rails</strong></p>
+
+<p><code>Angular</code> and <code>Rails</code> aren’t really designed to work together, so building an application integrating both together requires some finagling. In order to get the functionality we want, we need to manage both front end and back end dependencies. Back end dependencies are easy to manage: we just use gems in our gemfile and install with Bundler. However, front end dependencies are a bit trickier. There are many front end, Angular related gems we could use, but there aren’t gems for everything. So instead, we can use <a href="https://bower.io/">Bower</a>.</p>
+
+<p>First, we install <a href="https://bower.io/">Bower</a> by running <code>npm install -g bower</code>. Then we isntall <a href="https://github.com/rharriso/bower-rails">bower-rails gem</a> through our gemfile. We specify our front end dependencies in a bower.json file. After that, we run <code>rake bower:install</code>, and our dependencies will be installed (the default directory being vendor/assets/bower_components). We then have to specify the dependencies in the javascript manifest file (app/assets/javascripts/application.js) to incorporate them in the asset pipeline.</p>
+
+<p>Another gem we can use is <a href="https://github.com/pitr/angular-rails-templates">angular-rails-templates</a> to incorporate our <code>Angular</code> templates into the <code>Rails</code> asset pipeline.</p>
+
+<p>You can take a look at my Bower dependencies in my <a href="https://github.com/MitulMistry/sketchbook/blob/master/bower.json">bower.json file here</a> as well as the <a href="https://github.com/MitulMistry/sketchbook/blob/master/app/assets/javascripts/angular-app/app.js">app.js file</a> explaining them.</p>
+
+<p><strong>Rails Back End</strong></p>
+
+<p>The back end is set up similarly to my <a href="http://mitulmistry.github.io/javascript/rails/jquery-rails-app/">last jQuery project</a>, so I won’t go into it in depth.</p>
+
+<p>-Models, controllers - no real views since that will be handled by Angular
+-Devise - use Angular Devise dependency through Bower</p>
+
+<p><strong>Angular Front End</strong></p>
+
+<p>You can see the source code for the project <a href="https://github.com/MitulMistry/sketchbook">here on Github</a>.</p>
+
+
+    
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
       <span class="entry-date date published updated"><time datetime="2016-06-02T11:00:00-05:00"><a href="/ruby/rails/building-apis/">June 02, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
       
       <span class="entry-reading-time">
@@ -486,107 +535,6 @@
 <p>There’s a lot more to it, but this gives a good sense of the basics of the project. You can take a look at the <code>JavaScript</code> portion of the project <a href="https://github.com/MitulMistry/post-it/tree/master/app/assets/javascripts">here</a> and explore some of the additional functionality yourself.</p>
 
 <p>You can see the source code for the whole project <a href="https://github.com/MitulMistry/post-it">here on Github</a>.</p>
-
-
-    
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2016-06-01T07:15:00-05:00"><a href="/ruby/rails/rails-forms/">June 01, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~2 minutes
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/ruby/rails/rails-forms/" rel="bookmark" title="Rails Forms" itemprop="url">Rails Forms</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    
-      <p>To me, forms in web applications feel antiquated. There are better ways to get data from a user, such as getting access to a user’s other accounts (like Twitter or Facebook) via <a href="https://github.com/intridea/omniauth">OAuth</a> and populating data from there, but that’s not always an option. For now, we still have to input data manually and that means we need to use forms.</p>
-
-<p>Forms are obnoxious. You have to pick out which input types are best for your scenario (text, radio buttons, dropdown lists, etc.). You need to style it with <code>CSS</code> so it looks presentable You need to define a route for the form to submit data to the back end. You have to deal with data validations and handle scenarios where users input unacceptable data. And  you have to deal with a host of other miscellaneous issues that come with such complex interaction.</p>
-
-<p>Here’s a sample <code>HTML</code> form:</p>
-
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"users"</span> <span class="na">method=</span><span class="s">"post"</span> <span class="na">accept-charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;fieldset&gt;</span>
-    First name:<span class="nt">&lt;br&gt;</span>
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"firstname"</span><span class="nt">&gt;&lt;br&gt;</span>
-    Last name:<span class="nt">&lt;br&gt;</span>
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"lastname"</span><span class="nt">&gt;&lt;br&gt;&lt;br&gt;</span>
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">value=</span><span class="s">"Submit"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/fieldset&gt;</span>
-<span class="nt">&lt;/form&gt;</span></code></pre></figure>
-
-<p>Fortunately, <code>Rails</code> can help you generate forms using a few different tools which we’ll look at here.</p>
-
-<p><strong>form_tag</strong></p>
-
-<p><code>form_tag</code> is a Rails form helper used to help you build a basic form.</p>
-
-<p>Here’s a sample <code>form_tag</code> form:</p>
-
-<figure class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="cp">&lt;%=</span> <span class="n">form_tag</span><span class="p">(</span><span class="s2">"/users"</span><span class="p">)</span> <span class="k">do</span> <span class="cp">%&gt;</span>
-  Name: <span class="cp">&lt;%=</span> <span class="n">text_field_tag</span> <span class="s2">"name"</span> <span class="cp">%&gt;</span><span class="nt">&lt;br&gt;</span>
-  Email: <span class="cp">&lt;%=</span> <span class="n">text_field_tag</span> <span class="s2">"email"</span> <span class="cp">%&gt;</span>
-  <span class="cp">&lt;%=</span> <span class="n">submit_tag</span> <span class="s2">"Create User"</span> <span class="cp">%&gt;</span>
-<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span></code></pre></figure>
-
-<p>The actual <code>HTML</code> that’s produced will look like this:</p>
-
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"/users"</span> <span class="na">accept-charset=</span><span class="s">"UTF-8"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
- <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"utf8"</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">value=</span><span class="s">"&amp;#x2713;"</span> <span class="nt">/&gt;</span>
- <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"authenticity_token"</span> <span class="na">value=</span><span class="s">"TKTzvQF+atT/XHG/7h48xKVdXvILdiPj83XQhn2mWBNNhvv0Oh5YfAl2LM3DlHsQjbMOFVsYEyOwj+rPaSk3Bw=="</span> <span class="nt">/&gt;</span>
- Name: <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"name"</span> <span class="na">id=</span><span class="s">"name"</span> <span class="nt">/&gt;&lt;br</span> <span class="nt">/&gt;</span>
- Email: <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"email"</span> <span class="na">id=</span><span class="s">"email"</span> <span class="nt">/&gt;</span>
- <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">name=</span><span class="s">"commit"</span> <span class="na">value=</span><span class="s">"Create User"</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;/form&gt;</span></code></pre></figure>
-
-<p>Just with a few simple lines of <code>ERB</code>, we’re able to create a fully realized form. It has an action and method already defined, as well as an authenticity token which is used to help prevent <a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery">cross-site request forgeries</a>.</p>
-
-<p>However, <code>form_tag</code> is limited, specifically when it comes to dealing with forms directly related to back end <code>models</code>. If you want a different action method (such as wanting to reuse the same form for creating and editing a model), you have to specify it manually. It also won’t populate the form with data that’s already there. That’s where <code>form_for</code> comes in.</p>
-
-<p><strong>form_for</strong></p>
-
-<p><code>form_for</code> is like <code>form_tag</code> in that it helps you generate a form with <code>ERB</code> tags in a view template. However, <code>form_for</code> directly connects with a <code>model</code> in your Rails application and makes it easy to allow the creation of new <code>model</code> instances in your database.</p>
-
-<p>Here’s a sample form_for form:</p>
-
-<figure class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="cp">&lt;%=</span> <span class="n">form_for</span> <span class="vi">@post</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="cp">%&gt;</span>
- <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">text_field</span> <span class="ss">:title</span> <span class="cp">%&gt;</span>
- <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">text_area</span> <span class="ss">:content</span> <span class="cp">%&gt;</span>
- <span class="cp">&lt;%=</span> <span class="n">f</span><span class="p">.</span><span class="nf">submit</span> <span class="cp">%&gt;</span>
-<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span></code></pre></figure>
-
-<p>This creates the following <code>HTML</code>:</p>
-
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">class=</span><span class="s">"edit_post"</span> <span class="na">id=</span><span class="s">"edit_post"</span> <span class="na">action=</span><span class="s">"/posts/1"</span> <span class="na">accept-charset=</span><span class="s">"UTF-8"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
- <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">"utf8"</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">value=</span><span class="s">"&amp;#x2713;"</span> <span class="nt">/&gt;</span>
- <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"_method"</span> <span class="na">value=</span><span class="s">"patch"</span> <span class="nt">/&gt;</span>
- <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"authenticity_token"</span> <span class="na">value=</span><span class="s">"nRPP2OqVKB00/Cr+8EvHfYrb5sAkZRtr8f6dzBaJAI+cMceR0fUatcLWd4zdwYCpojW2J3QLK6uyBKeFAgZvmw=="</span> <span class="nt">/&gt;</span>
- <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"post[title]"</span> <span class="na">id=</span><span class="s">"post_title"</span> <span class="na">value=</span><span class="s">"Existing Post Title"</span><span class="nt">/&gt;</span>
- <span class="nt">&lt;textarea</span> <span class="na">name=</span><span class="s">"post[content]"</span> <span class="na">id=</span><span class="s">"post_content"</span><span class="nt">&gt;</span>Existing Post Content<span class="nt">&lt;/textarea&gt;</span>
- <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">name=</span><span class="s">"commit"</span> <span class="na">value=</span><span class="s">"Update Post"</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;/form&gt;</span></code></pre></figure>
-
-<p>This is something that we can reuse for a create and an edit form, and it will populate data in the form automatically if there’s data there. The thing to remember here is that <code>form_for</code> needs an instance of the model to use which has to be provided from the <code>controller</code>. So for example:</p>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">new</span>
-  <span class="vi">@post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">new</span>
-<span class="k">end</span></code></pre></figure>
-
-<p>Of course now we need to wire these forms up with <code>controllers</code> in the back end to actually process the data, but that’s a topic for another day.</p>
-
-<p>You can read more about Rails forms in the <a href="http://guides.rubyonrails.org/form_helpers.html">Rails Guides</a>.</p>
 
 
     

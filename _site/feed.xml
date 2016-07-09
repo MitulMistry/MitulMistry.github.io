@@ -4,13 +4,56 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2016-06-02T16:51:40-05:00</updated>
+<updated>2016-07-09T13:30:30-05:00</updated>
 <id>/</id>
 <author>
   <name>Mitul Mistry</name>
   <uri>/</uri>
   <email>MitulMistryDev@gmail.com</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[Angular Rails App]]></title>
+ <link rel="alternate" type="text/html" href="/javascript/rails/angular-rails-app/" />
+  <id>/javascript/rails/angular-rails-app</id>
+  <published>2016-07-08T11:00:00-05:00</published>
+  <updated>2016-07-08T11:00:00-05:00</updated>
+  <author>
+    <name>Mitul Mistry</name>
+    <uri></uri>
+    <email>MitulMistryDev@gmail.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;code&gt;Rails&lt;/code&gt; templates are powerful and give us an easy way to build a front end that integrates with our back end. However, &lt;code&gt;Rails&lt;/code&gt; templates are also limited. They are largely static, meaning they are rendered by the controller before being sent as a response to the user. But that means a hard page reload in your browser, and that makes it more difficult to make applications that operate seamlessly like many modern websites such as Facebook or Twitter.&lt;/p&gt;
+
+&lt;p&gt;As seen in one of my &lt;a href=&quot;http://mitulmistry.github.io/javascript/rails/jquery-rails-app/&quot;&gt;past projects&lt;/a&gt;, we can use &lt;code&gt;jQuery&lt;/code&gt; to build a single-page application that makes requests asynchronously with &lt;code&gt;AJAX&lt;/code&gt;. However, it quickly gets complicated and hard to maintain, organize, and develop. There are many JavaScript front end frameworks that have risen over the last several years. For this project, I used &lt;a href=&quot;https://angularjs.org/&quot;&gt;Angular&lt;/a&gt; to build an application for uploading and sharing sketches.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Integrating Angular With Rails&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Angular&lt;/code&gt; and &lt;code&gt;Rails&lt;/code&gt; aren’t really designed to work together, so building an application integrating both together requires some finagling. In order to get the functionality we want, we need to manage both front end and back end dependencies. Back end dependencies are easy to manage: we just use gems in our gemfile and install with Bundler. However, front end dependencies are a bit trickier. There are many front end, Angular related gems we could use, but there aren’t gems for everything. So instead, we can use &lt;a href=&quot;https://bower.io/&quot;&gt;Bower&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;First, we install &lt;a href=&quot;https://bower.io/&quot;&gt;Bower&lt;/a&gt; by running &lt;code&gt;npm install -g bower&lt;/code&gt;. Then we isntall &lt;a href=&quot;https://github.com/rharriso/bower-rails&quot;&gt;bower-rails gem&lt;/a&gt; through our gemfile. We specify our front end dependencies in a bower.json file. After that, we run &lt;code&gt;rake bower:install&lt;/code&gt;, and our dependencies will be installed (the default directory being vendor/assets/bower_components). We then have to specify the dependencies in the javascript manifest file (app/assets/javascripts/application.js) to incorporate them in the asset pipeline.&lt;/p&gt;
+
+&lt;p&gt;Another gem we can use is &lt;a href=&quot;https://github.com/pitr/angular-rails-templates&quot;&gt;angular-rails-templates&lt;/a&gt; to incorporate our &lt;code&gt;Angular&lt;/code&gt; templates into the &lt;code&gt;Rails&lt;/code&gt; asset pipeline.&lt;/p&gt;
+
+&lt;p&gt;You can take a look at my Bower dependencies in my &lt;a href=&quot;https://github.com/MitulMistry/sketchbook/blob/master/bower.json&quot;&gt;bower.json file here&lt;/a&gt; as well as the &lt;a href=&quot;https://github.com/MitulMistry/sketchbook/blob/master/app/assets/javascripts/angular-app/app.js&quot;&gt;app.js file&lt;/a&gt; explaining them.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Rails Back End&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The back end is set up similarly to my &lt;a href=&quot;http://mitulmistry.github.io/javascript/rails/jquery-rails-app/&quot;&gt;last jQuery project&lt;/a&gt;, so I won’t go into it in depth.&lt;/p&gt;
+
+&lt;p&gt;-Models, controllers - no real views since that will be handled by Angular
+-Devise - use Angular Devise dependency through Bower&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Angular Front End&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;You can see the source code for the project &lt;a href=&quot;https://github.com/MitulMistry/sketchbook&quot;&gt;here on Github&lt;/a&gt;.&lt;/p&gt;
+
+
+    &lt;p&gt;&lt;a href=&quot;/javascript/rails/angular-rails-app/&quot;&gt;Angular Rails App&lt;/a&gt; was originally published by Mitul Mistry at &lt;a href=&quot;&quot;&gt;Mitul Mistry - Tech Blog&lt;/a&gt; on July 08, 2016.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
