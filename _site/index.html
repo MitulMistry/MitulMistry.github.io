@@ -203,12 +203,12 @@
   <header>
     
     <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2016-07-08T11:00:00-05:00"><a href="/javascript/rails/angular-rails-app/">July 08, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
+      <span class="entry-date date published updated"><time datetime="2016-07-08T14:30:00-05:00"><a href="/javascript/rails/angular-rails-app/">July 08, 2016</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Mitul Mistry">Mitul Mistry</a></span></span>
       
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
         
-        Reading time ~2 minutes
+        Reading time ~3 minutes
       </span><!-- /.entry-reading-time -->
       
     </div><!-- /.entry-meta -->
@@ -218,29 +218,41 @@
   </header>
   <div class="entry-content">
     
-      <p><code>Rails</code> templates are powerful and give us an easy way to build a front end that integrates with our back end. However, <code>Rails</code> templates are also limited. They are largely static, meaning they are rendered by the controller before being sent as a response to the user. But that means a hard page reload in your browser, and that makes it more difficult to make applications that operate seamlessly like many modern websites such as Facebook or Twitter.</p>
+      <p>Rails templates are powerful and give us an easy way to build a front end that integrates with our back end. However, Rails templates are also limited. They are largely static, meaning they are rendered by the controller before being sent as a response to the user. But that means a hard page reload in your browser, and that makes it more difficult to make applications that operate seamlessly like many modern websites such as Facebook or Twitter.</p>
 
 <p>As seen in one of my <a href="http://mitulmistry.github.io/javascript/rails/jquery-rails-app/">past projects</a>, we can use <code>jQuery</code> to build a single-page application that makes requests asynchronously with <code>AJAX</code>. However, it quickly gets complicated and hard to maintain, organize, and develop. There are many JavaScript front end frameworks that have risen over the last several years. For this project, I used <a href="https://angularjs.org/">Angular</a> to build an application for uploading and sharing sketches.</p>
 
 <p><strong>Integrating Angular With Rails</strong></p>
 
-<p><code>Angular</code> and <code>Rails</code> aren’t really designed to work together, so building an application integrating both together requires some finagling. In order to get the functionality we want, we need to manage both front end and back end dependencies. Back end dependencies are easy to manage: we just use gems in our gemfile and install with Bundler. However, front end dependencies are a bit trickier. There are many front end, Angular related gems we could use, but there aren’t gems for everything. So instead, we can use <a href="https://bower.io/">Bower</a>.</p>
+<p>Angular and Rails aren’t really designed to work together, so building an application integrating both requires some finagling. In order to get the functionality we want, we need to manage both front end and back end dependencies. Back end dependencies are easy to manage: we just use gems in our gemfile and install with <code>bundle install</code>. However, front end dependencies are a bit trickier. There are many Angular related gems we could use, but there aren’t gems for everything. So instead, we can use <a href="https://bower.io/">Bower</a>.</p>
 
-<p>First, we install <a href="https://bower.io/">Bower</a> by running <code>npm install -g bower</code>. Then we isntall <a href="https://github.com/rharriso/bower-rails">bower-rails gem</a> through our gemfile. We specify our front end dependencies in a bower.json file. After that, we run <code>rake bower:install</code>, and our dependencies will be installed (the default directory being vendor/assets/bower_components). We then have to specify the dependencies in the javascript manifest file (app/assets/javascripts/application.js) to incorporate them in the asset pipeline.</p>
+<p>First, we install <a href="https://bower.io/">Bower</a> by running <code>npm install -g bower</code>. Then we isntall <a href="https://github.com/rharriso/bower-rails">bower-rails gem</a> through our gemfile. We specify our front end dependencies in a bower.json file. After that, we run <code>rake bower:install</code>, and our dependencies will be installed (the default directory being <code>vendor/assets/bower_components</code>). We then have to specify the dependencies in the javascript manifest file (<code>app/assets/javascripts/application.js</code>) to incorporate them in the asset pipeline.</p>
 
-<p>Another gem we can use is <a href="https://github.com/pitr/angular-rails-templates">angular-rails-templates</a> to incorporate our <code>Angular</code> templates into the <code>Rails</code> asset pipeline.</p>
+<p>Another gem we can use is <a href="https://github.com/pitr/angular-rails-templates">angular-rails-templates</a> to incorporate our Angular templates into the Rails asset pipeline.</p>
 
 <p>You can take a look at my Bower dependencies in my <a href="https://github.com/MitulMistry/sketchbook/blob/master/bower.json">bower.json file here</a> as well as the <a href="https://github.com/MitulMistry/sketchbook/blob/master/app/assets/javascripts/angular-app/app.js">app.js file</a> explaining them.</p>
 
 <p><strong>Rails Back End</strong></p>
 
-<p>The back end is set up similarly to my <a href="http://mitulmistry.github.io/javascript/rails/jquery-rails-app/">last jQuery project</a>, so I won’t go into it in depth. There are several models including sketches and tags. The sketch model uses <a href="https://github.com/thoughtbot/paperclip">Paperclip</a> to manage file attachments. It’s easy to set up file uploads for Paperclip with a <code>Rails</code> form, but with <code>Angular</code> we will have to set up a different solution - namely <a href="https://github.com/danialfarid/ng-file-upload">ngFileUpload</a>.</p>
+<p>The back end is set up similarly to my <a href="http://mitulmistry.github.io/javascript/rails/jquery-rails-app/">last jQuery project</a>, so I won’t go into it in depth. There are several models including sketches and tags. The sketch model uses <a href="https://github.com/thoughtbot/paperclip">Paperclip</a> to manage file attachments. It’s easy to set up file uploads for Paperclip with a Rails form, but with Angular we will have to set up a different solution - namely <a href="https://github.com/danialfarid/ng-file-upload">ngFileUpload</a>.</p>
 
 <p>We’ll enable <code>AJAX</code> functionality by setting up <a href="https://github.com/rails-api/active_model_serializers">Active Model Serializers</a> for <code>JSON</code> serialization of our models through our controller actions.</p>
 
-<p>Authentication is handled with <a href="https://github.com/plataformatec/devise">Devise</a>. Like Paperclip, it’s easy to sign in and register with Devise <code>Rails</code> templates, however, we’ll again have to set up something different with <code>Angular</code>, using <a href="https://github.com/cloudspace/angular_devise">angular-devise</a>.</p>
+<p>Authentication is handled with <a href="https://github.com/plataformatec/devise">Devise</a>. Like Paperclip, it’s easy to sign in and register with Devise Rails templates, however, we’ll again have to set up something different with Angular, using <a href="https://github.com/cloudspace/angular_devise">angular-devise</a>.</p>
 
 <p><strong>Angular Front End</strong></p>
+
+<p>Going over all of the front end code would be an exhaustive process, so I’ll just give a brief overview.</p>
+
+<p>Since this is a single page application, we have to handle routing for pages on the front end, and for this I used <a href="https://github.com/angular-ui/ui-router">ui-router</a>. Ui-router states are created in the application configuration, and I did so in the <a href="https://github.com/MitulMistry/sketchbook/blob/master/app/assets/javascripts/angular-app/app.js">app.js file</a>.</p>
+
+<p>I tried to have some of the organization of the Angular part of the project mimic Rails and its RESTful conventions - such as having a sketches index page, a sketch show page, and reusing the sketch form for creation and updating. Each page has a controller associated with it to handle the unique functionality requirements.</p>
+
+<p>In addition, I have a couple Angular <a href="https://docs.angularjs.org/guide/component">components</a> that act as partials used in <a href="https://docs.angularjs.org/api/ng/directive/ngRepeat">repeaters</a>. There’s an artist component displaying an artist’s name, information, and link to artist show page, as well as a similar component for sketches.</p>
+
+<p>I put all the logic for actually communicating to the back end in various Angular services - such as <a href="https://github.com/MitulMistry/sketchbook/blob/master/app/assets/javascripts/angular-app/services/SketchesService.js">SketchesService</a> for creating and retrieving sketches, and <a href="https://github.com/MitulMistry/sketchbook/blob/master/app/assets/javascripts/angular-app/services/TagsService.js">TagsService</a> for creating and retrieving tags. The services use <a href="https://docs.angularjs.org/api/ng/service/$http">$http</a> to make GET, POST, PUT, and DELETE requests to interact with the back end models via <code>AJAX</code>.</p>
+
+<p>Overall, I found this to be a challenging project, not just due to the complexity of Angular itself, but also due to all the work required to get Angular and Rails to work effectively together.</p>
 
 <p>You can see the source code for the project <a href="https://github.com/MitulMistry/sketchbook">here on Github</a>.</p>
 
